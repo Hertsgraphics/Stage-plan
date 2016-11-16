@@ -23,7 +23,7 @@ var _addNewInstrumentButton = document.getElementById("addButton");
 var _cancelEditButton = document.getElementById("cancelEditButton");
 var _addInstrumentExtraDetail = document.getElementById("addInstrumentExtraDetail");
 var _deleteButton = document.getElementById("deleteButton");
-var _popUpUl = _popUp.children[0];
+var _popUpUl = _popUp.children[1];
 var _instrumentsOnStage = document.getElementById("instrumentsOnStage");
 var _stage = document.getElementById("stage");
 var _selectedInstrument = null;
@@ -58,9 +58,9 @@ document.addEventListener('mouseup', mouseUpWindow);
 _newPlan.addEventListener("click", createNewPlan);
 _showAddInstrument.addEventListener("click", showAddInstrument);
 _showSaveOptions.addEventListener("click", showSaveStageplanPopUp);
-_signInPopUp.addEventListener("click", signInPopUp);
-_showSignUp.addEventListener("click", signUpPopUp);
-_showSuggestionsLink.addEventListener("click", showSuggestionPopUp);
+//_signInPopUp.addEventListener("click", signInPopUp);
+//_showSignUp.addEventListener("click", signUpPopUp);
+//_showSuggestionsLink.addEventListener("click", showSuggestionPopUp);
 /*end Nav events*/
 
 _saveEdit.addEventListener("click", saveEdit);
@@ -68,7 +68,7 @@ _addNewInstrumentButton.addEventListener("click", addNewInstrument);
 
 _deleteButton.addEventListener("click", deleteInstrument);
 
-_loadExistingStageplanPopUp.addEventListener("click", loadExistingStageplanPopUp);
+//_loadExistingStageplanPopUp.addEventListener("click", loadExistingStageplanPopUp);
 
 /*cancel events*/
 _cancelEditButton.addEventListener("click", function () { closePopUp(_popUp); });

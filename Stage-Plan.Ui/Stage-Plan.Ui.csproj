@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StageplanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +204,32 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Stageplan\Css\lmsResponsiveMenu.css" />
+    <Content Include="Content\Stageplan\Css\Stageplan.css" />
+    <Content Include="Content\Stageplan\Images\Acoustic-Guitar.png" />
+    <Content Include="Content\Stageplan\Images\Bass.png" />
+    <Content Include="Content\Stageplan\Images\Captcha-01.jpg" />
+    <Content Include="Content\Stageplan\Images\Captcha-02.jpg" />
+    <Content Include="Content\Stageplan\Images\Captcha-03.jpg" />
+    <Content Include="Content\Stageplan\Images\Cello.png" />
+    <Content Include="Content\Stageplan\Images\Double-Bass.png" />
+    <Content Include="Content\Stageplan\Images\Drums.png" />
+    <Content Include="Content\Stageplan\Images\Fluite.png" />
+    <Content Include="Content\Stageplan\Images\Guitar.png" />
+    <Content Include="Content\Stageplan\Images\Keyboards.png" />
+    <Content Include="Content\Stageplan\Images\Mic.png" />
+    <Content Include="Content\Stageplan\Images\Monitor.png" />
+    <Content Include="Content\Stageplan\Images\Other.png" />
+    <Content Include="Content\Stageplan\Images\Piano.png" />
+    <Content Include="Content\Stageplan\Images\Saxophone.png" />
+    <Content Include="Content\Stageplan\Images\Stage.png" />
+    <Content Include="Content\Stageplan\Images\Trombone.png" />
+    <Content Include="Content\Stageplan\Images\Trumpet.png" />
+    <Content Include="Content\Stageplan\Images\Tuba.png" />
+    <Content Include="Content\Stageplan\Images\Violin.png" />
+    <Content Include="Content\Stageplan\Javascript\lmsResponsiveMenu.js" />
+    <Content Include="Content\Stageplan\Javascript\scripts.js" />
+    <Content Include="Content\Stageplan\Javascript\Stageplan.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -223,12 +250,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\MainSite\" />
-    <Folder Include="Content\Stageplan\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+    <Content Include="Views\Stageplan\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

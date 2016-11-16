@@ -82,6 +82,7 @@
 
                 .popUp ul li img {
                     margin-bottom: 5px;
+                    max-width: 80px;
                 }
 
                     .popUp ul li img.selected {
@@ -140,7 +141,7 @@
         }
 
             ul li img {
-                max-width: 80px;
+                /*max-width: 80px;*/
                 text-align: center;
             }
 

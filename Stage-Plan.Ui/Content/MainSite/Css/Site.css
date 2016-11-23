@@ -42,6 +42,11 @@ footer {
     padding: 2%;
     color: #fff;/* <- Don't forget to remove the colour once the link is working TODO*/
 }
+
+    footer ul {
+    list-style: none;
+    }
+
 footer ul li{
     margin-right: 2%;
     float:left;

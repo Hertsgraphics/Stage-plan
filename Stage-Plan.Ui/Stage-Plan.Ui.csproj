@@ -206,6 +206,7 @@
   <ItemGroup>
     <Content Include="Content\MainSite\Css\reusable.css" />
     <Content Include="Content\MainSite\Css\Site.css" />
+    <Content Include="Content\MainSite\Images\MixingDesk.jpg" />
     <Content Include="Content\MainSite\Images\Stage-Plan-Logo.png" />
     <Content Include="Content\Stageplan\Css\lmsResponsiveMenu.css" />
     <Content Include="Content\Stageplan\Css\Stageplan.css" />

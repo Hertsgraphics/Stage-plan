@@ -204,6 +204,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\MainSite\Css\reusable.css" />
+    <Content Include="Content\MainSite\Css\Site.css" />
+    <Content Include="Content\MainSite\Images\Stage-Plan-Logo.png" />
     <Content Include="Content\Stageplan\Css\lmsResponsiveMenu.css" />
     <Content Include="Content\Stageplan\Css\Stageplan.css" />
     <Content Include="Content\Stageplan\Images\Acoustic-Guitar.png" />
@@ -222,6 +225,8 @@
     <Content Include="Content\Stageplan\Images\Other.png" />
     <Content Include="Content\Stageplan\Images\Piano.png" />
     <Content Include="Content\Stageplan\Images\Saxophone.png" />
+    <Content Include="Content\Stageplan\Images\Stage-Plan-Logo-01.jpg" />
+    <Content Include="Content\Stageplan\Images\Stage-Plan-Logo.png" />
     <Content Include="Content\Stageplan\Images\Stage.png" />
     <Content Include="Content\Stageplan\Images\Trombone.png" />
     <Content Include="Content\Stageplan\Images\Trumpet.png" />
@@ -249,7 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\MainSite\" />
+    <Folder Include="Content\MainSite\Css\Responsive\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

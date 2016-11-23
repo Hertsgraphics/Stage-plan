@@ -1,0 +1,161 @@
+﻿
+/* get rid of those system borders being generated for A tags */
+a:active {
+    outline:none;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
+.clearBoth {
+    clear: both;
+}
+
+.clearLeft {
+    clear: left;
+}
+
+.clearRight {
+    clear: right;
+}
+
+.noBorder {
+    border: none;
+}
+
+
+.padding1px {
+    padding: 1px;
+}
+
+.padding10px {
+    padding: 10px;
+}
+
+.paddingLR10px {
+    padding: 0px 10px;
+}
+
+.paddingLeft10px {
+    padding-left: 10px;
+}
+
+.paddingLeft16px {
+    padding-left: 16px;
+}
+
+.paddingRight10px {
+    padding-right: 10px;
+}
+
+.paddingRight15px{ padding-right: 15px;}
+
+.marginTop10px {
+    margin-top: 10px;
+}
+
+.marginRight15px {
+    margin-right: 15px;
+}
+
+
+.largeFont {
+    font-size: 1.3em;
+}
+
+.smallFont {
+    font-size: .85em;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+
+.textAlignLeft {
+    text-align: left;
+}
+
+
+
+
+
+.displayInLine {
+    display: inline-block;
+}
+
+.center
+{ text-align: center;}
+
+.width100 {
+    width: 100px;
+}
+
+.width150 {
+    width: 150px;
+}
+
+.width180 {
+    width: 180px;
+}
+
+.width200 {
+    width: 200px;
+}
+
+.width230 {
+    width: 230px;
+}
+
+.width250 {
+    width: 250px;
+}
+
+.width300 {
+    width: 300px;
+}
+
+.width380 {
+    width: 380px;
+}
+
+.width400 {
+    width: 400px;
+}
+
+.width450 {
+    width: 450px;
+}
+
+.width500 {
+    width: 500px;
+}
+
+.width550 {
+    width: 550px;
+}
+
+.width600 {
+    width: 600px;
+}
+
+
+.whiteBackground {
+    background-color: white;
+}
+
+
+.todo {
+    padding: 3px;
+    margin: 5px;
+    background-color: yellow;
+}

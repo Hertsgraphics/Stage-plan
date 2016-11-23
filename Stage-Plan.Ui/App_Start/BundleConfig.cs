@@ -23,9 +23,11 @@ namespace Stage_Plan.Ui
             //          "~/Scripts/bootstrap.js",
             //          "~/Scripts/respond.js"));
 
-            //bundles.Add(new StyleBundle("~/Content/css").Include(
-            //          "~/Content/bootstrap.css",
-            //          "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/MainSite/Styles").Include(
+                      "~/Content/MainSite/Css/*.css"));
+
+            bundles.Add(new StyleBundle("~/Content/MainSite/Styles/Responsive").Include(
+                   "~/Content/MainSite/Css/Responsive/*.css"));
         }
     }
 }

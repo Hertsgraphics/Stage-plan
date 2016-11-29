@@ -1,4 +1,7 @@
-﻿
+﻿/* The main blue colour = #18a0ec */
+
+
+
 body {
     padding: 0;
     margin: 0;
@@ -9,6 +12,10 @@ body {
 
 header {
     background-color: #18a0ec;
+}
+
+.mainImage img {
+    width: 100%;
 }
 
 section {
@@ -22,6 +29,17 @@ section {
     float: left;
 }
 
+
+article.quickTutorial {
+    background-image: url("/Content/MainSite/Images/Quick-Tutorial.jpg");
+    background-size:100%;
+    color: #ffd800;
+}
+
+article.quickTutorial ol li{
+    margin-top:20px;
+}
+
 nav, .footerNav {
     color: #fff;
     float: left;
@@ -31,23 +49,34 @@ nav, .footerNav {
     nav ul li {
         display: inline-block;
         text-decoration: none;
-        padding-left: 20px;
+        padding-left: 40px;
     }
 
 footer {
     background-image: url("/Content/MainSite/Images/MixingDesk.jpg");
     max-width: 100%;
+    background-size:100%;
     height: 200px;
     background-repeat: no-repeat;
     padding: 2%;
-    color: #fff;/* <- Don't forget to remove the colour once the link is working TODO*/
+    color: #fff; /* <- Don't forget to remove the colour once the link is working TODO*/
 }
 
     footer ul {
-    list-style: none;
+        list-style: none;
     }
 
-footer ul li{
-    margin-right: 2%;
-    float:left;
+        footer ul li {
+            margin-right: 2%;
+            float: left;
+        }
+
+h1 {
+    text-shadow: 2px 3px 2px #ccc;
+    color: #333;
+}
+
+a {
+    color: #18a0ec;
+    text-decoration: none;
 }

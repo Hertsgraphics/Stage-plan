@@ -194,3 +194,10 @@
                 input[type=button].delete:hover {
                     background: #f77a7d;
                 } 
+
+                .defaultEmptyStagePlan
+                {
+                    text-align:center;
+                    color:white;
+                    font-size:1.2em;
+                }

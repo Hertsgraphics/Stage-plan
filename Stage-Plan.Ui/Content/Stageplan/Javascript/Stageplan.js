@@ -14,8 +14,10 @@ var _showSignUp = document.getElementById("showSignUpLink");
 var _showSuggestionsLink = document.getElementById("showSuggestionsLink");
 /* end nav links */
 
-var _currentPopUp;
 
+var _allInstruments = 0;
+var _currentPopUp;
+var _noInstruments = document.getElementById("noInstruments");
 var _saveEdit = document.getElementById("saveEditButton");
 var _popUp = document.getElementById("addInstrumentPopUp");
 var _instrumentName = document.getElementById("instrumentName");
@@ -148,6 +150,8 @@ function showAddInstrument(e, instrumentDetail, instrumentName, isEdit) {
 
 
 
+
+
 function clearBlur() {
     instrumentsOnStage.className = "";
 }
@@ -173,6 +177,15 @@ function clearInstrumentCss() {
 function deleteInstrument() {
     _selectedInstrument.parentNode.removeChild(_selectedInstrument);
     closePopUp(_popUp);
+    _allInstruments--;
+    isFirstTimeUse();
+}
+
+function isFirstTimeUse() {
+    if (_allInstruments <= 0) 
+        _noInstruments.innerHTML = "Please click on Menu and then add an instrument to the stageplan to get started.";
+    else
+        noInstruments.innerHTML = "";
 }
 
 
@@ -231,6 +244,9 @@ function addNewInstrument(x, y) {
     _isFirstInstrument = false;
 
     _selectedImage = null;
+
+    _allInstruments++;
+    isFirstTimeUse();
 }
 
 
@@ -341,7 +357,7 @@ function editInstrument(e) {
     document.getElementById(instrumentName.replace(" ", "")).className = _cssSelected;
 }
 
-
+isFirstTimeUse();
 
 
 

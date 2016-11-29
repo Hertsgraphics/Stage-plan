@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StageplanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Stageplan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BandName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StageplanInstrument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StageplanId" Type="int" Nullable="false" />
+          <Property Name="InstrumentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Details" Type="nvarchar" MaxLength="800" />
+          <Property Name="X" Type="numeric" Precision="8" Scale="4" Nullable="false" />
+          <Property Name="Y" Type="numeric" Precision="8" Scale="4" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_StageplanInstrument_Stageplan">
+          <End Role="Stageplan" Type="Self.Stageplan" Multiplicity="1" />
+          <End Role="StageplanInstrument" Type="Self.StageplanInstrument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stageplan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StageplanInstrument">
+              <PropertyRef Name="StageplanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StageplanModelStoreContainer">
+          <EntitySet Name="Stageplan" EntityType="Self.Stageplan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StageplanInstrument" EntityType="Self.StageplanInstrument" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="Self.FK_StageplanInstrument_Stageplan">
+            <End Role="Stageplan" EntitySet="Stageplan" />
+            <End Role="StageplanInstrument" EntitySet="StageplanInstrument" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StageplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Stageplan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="StageplanInstruments" Relationship="Self.FK_StageplanInstrument_Stageplan" FromRole="Stageplan" ToRole="StageplanInstrument" />
+        </EntityType>
+        <EntityType Name="StageplanInstrument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StageplanId" Type="Int32" Nullable="false" />
+          <Property Name="InstrumentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="X" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+          <Property Name="Y" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Stageplan" Relationship="Self.FK_StageplanInstrument_Stageplan" FromRole="StageplanInstrument" ToRole="Stageplan" />
+        </EntityType>
+        <Association Name="FK_StageplanInstrument_Stageplan">
+          <End Role="Stageplan" Type="Self.Stageplan" Multiplicity="1" />
+          <End Role="StageplanInstrument" Type="Self.StageplanInstrument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stageplan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StageplanInstrument">
+              <PropertyRef Name="StageplanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StageplanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Stageplans" EntityType="Self.Stageplan" />
+          <EntitySet Name="StageplanInstruments" EntityType="Self.StageplanInstrument" />
+          <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="Self.FK_StageplanInstrument_Stageplan">
+            <End Role="Stageplan" EntitySet="Stageplans" />
+            <End Role="StageplanInstrument" EntitySet="StageplanInstruments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StageplanModelStoreContainer" CdmEntityContainer="StageplanEntities">
+          <EntitySetMapping Name="Stageplans">
+            <EntityTypeMapping TypeName="StageplanModel.Stageplan">
+              <MappingFragment StoreEntitySet="Stageplan">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BandName" ColumnName="BandName" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StageplanInstruments">
+            <EntityTypeMapping TypeName="StageplanModel.StageplanInstrument">
+              <MappingFragment StoreEntitySet="StageplanInstrument">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StageplanId" ColumnName="StageplanId" />
+                <ScalarProperty Name="InstrumentName" ColumnName="InstrumentName" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="StageplanModel.Stageplan" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="StageplanModel.StageplanInstrument" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="StageplanModel.FK_StageplanInstrument_Stageplan" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StageplanModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="StageplanModel.MailingList" Width="1.5" PointX="2.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

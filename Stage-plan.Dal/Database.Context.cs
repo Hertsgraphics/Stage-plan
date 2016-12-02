@@ -27,5 +27,7 @@ namespace Stage_plan.Dal
     
         public virtual DbSet<Stageplan> Stageplans { get; set; }
         public virtual DbSet<StageplanInstrument> StageplanInstruments { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<MailingList> MailingLists { get; set; }
     }
 }

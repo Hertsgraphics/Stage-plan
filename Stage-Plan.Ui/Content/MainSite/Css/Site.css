@@ -1,6 +1,11 @@
 ﻿/* The main blue colour = #18a0ec */
 
 
+@font-face {
+    font-family: 'StageplanFont';
+    src: url('../../Fonts/Impacted2.0.woff');
+}
+
 
 body {
     padding: 0;
@@ -29,16 +34,48 @@ section {
     float: left;
 }
 
+.roadMapSignUp {
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-article.quickTutorial {
+article.quickTutorial, article.roadMap, article.signUp {
     background-image: url("/Content/MainSite/Images/Quick-Tutorial.jpg");
     background-size:100%;
     color: #ffd800;
 }
 
-article.quickTutorial ol li{
+article.quickTutorial ol li, article.roadMap ol li, article.signUp {
     margin-top:20px;
 }
+
+article.roadMap, article.signUp {
+    color: #000;
+    background-image: none;
+}
+
+article.signUp {
+    padding: 0 100px;
+    border: 3px solid #a52a2a;
+}
+
+input {     background-color: #18a0ec;
+            border: 1px solid #a52a2a;
+            color: #fff;
+			padding: 4%;
+			width: 100%;
+            margin: 3%;
+        }
+
+input[type=text] {
+			background: #fff;
+			color: #333;
+			padding: 4%;
+            margin: 2%;
+		}
+        input[type=button]:hover {
+                background: #34ceff;
+            }
 
 nav, .footerNav {
     color: #fff;
@@ -72,8 +109,9 @@ footer {
         }
 
 h1 {
+    font-family:StageplanFont;
     text-shadow: 2px 3px 2px #ccc;
-    color: #333;
+    color: #a52a2a;
 }
 
 a {

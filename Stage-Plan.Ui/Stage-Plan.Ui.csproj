@@ -267,6 +267,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Content\Fonts\Impacted2.0.woff" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Stageplan\Index.cshtml" />
   </ItemGroup>

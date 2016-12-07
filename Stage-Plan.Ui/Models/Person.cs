@@ -1,11 +1,11 @@
-﻿using EsRaco.Ui.Models.Contact;
-using EsRaco.Ui.Models.Emails;
+﻿using Stage_Plan.Ui.Models.Emails;
+using Stage_Plan.Ui.Models.Contact;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace EsRaco.Ui.Models
+namespace Stage_Plan.Ui.Models
 {
     public class Person : AbstractContact
     {

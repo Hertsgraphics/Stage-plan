@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Threading;
 using System.Web;
 
-namespace EsRaco.Ui.Models.Emails
+namespace Stage_Plan.Ui.Models.Emails
 {
     public class Email
     {

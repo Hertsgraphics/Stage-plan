@@ -62,7 +62,7 @@ article.signUp {
     border: 3px solid #a52a2a;
 }
 
-input {     background-color: #18a0ec;
+article.signUp input {     background-color: #18a0ec;
             border: 1px solid #a52a2a;
             color: #fff;
 			padding: 4%;
@@ -70,13 +70,13 @@ input {     background-color: #18a0ec;
             margin: 3%;
         }
 
-input[type=text] {
+article.signUp input[type=text] {
 			background: #fff;
 			color: #333;
 			padding: 4%;
             margin: 2%;
 		}
-        input[type=button]:hover {
+        article.signUp input[type=button]:hover {
                 background: #34ceff;
             }
 

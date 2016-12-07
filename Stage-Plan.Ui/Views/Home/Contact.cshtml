@@ -7,3 +7,21 @@
     <img src="~/Content/MainSite/Images/Live-Venue.jpg" />
 </div>
 
+
+//template for telis
+@using (Html.BeginForm("Home", "Contact"))
+            {
+    @Html.TextBoxFor(a => a.Name, new { @placeholder = EsRaco.Ui.Resources.HomeText.Name, @class = "name" })<br />
+
+                @Html.TextBoxFor(a => a.Email, new { @placeholder = EsRaco.Ui.Resources.HomeText.Email, @class = "email" })<br />
+
+                @Html.TextBoxFor(a => a.Telephone, new { @placeholder = EsRaco.Ui.Resources.HomeText.Number, @class = "phone" })<br />
+
+                @Html.TextBoxFor(a => a.Verification, new { @placeholder = "3 + 4?", @class = "verification" })<br />
+
+                @Html.TextAreaFor(a => a.Message, new { @class = "message", placeholder = EsRaco.Ui.Resources.HomeText.Message })<br /><br />
+
+                <div class="center">
+                    <input type="submit" value="Submit" />
+                </div>
+}

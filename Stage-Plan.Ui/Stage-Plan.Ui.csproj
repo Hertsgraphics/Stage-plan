@@ -208,9 +208,12 @@
     <Content Include="Content\MainSite\Css\Site.css" />
     <Content Include="Content\MainSite\Images\Happy-Emotion.png" />
     <Content Include="Content\MainSite\Images\Live-Event.jpg" />
+    <Content Include="Content\MainSite\Images\Live-Venue.jpg" />
+    <Content Include="Content\MainSite\Images\MixingDesk-Mic.jpg" />
     <Content Include="Content\MainSite\Images\MixingDesk.jpg" />
     <Content Include="Content\MainSite\Images\Quick-Tutorial.jpg" />
     <Content Include="Content\MainSite\Images\Stage-Plan-Logo.png" />
+    <Content Include="Content\MainSite\Images\Venue.jpg" />
     <Content Include="Content\Stageplan\Css\lmsResponsiveMenu.css" />
     <Content Include="Content\Stageplan\Css\Stageplan.css" />
     <Content Include="Content\Stageplan\Images\Acoustic-Guitar.png" />
@@ -270,6 +273,9 @@
     <Content Include="Content\Fonts\Impacted2.0.woff" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Stageplan\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

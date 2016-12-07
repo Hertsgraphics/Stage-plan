@@ -16,9 +16,10 @@
 
 <article class="quickTutorial">
     <section>
+        <h2>How to make a stage plan</h2>
         <ol>
             <li>
-                Create a free stage plan.
+                @Html.ActionLink("Create a free stage plan.", "Index", "Stageplan")
             </li>
             <li>
                 Add instruments, monitors etc and descriptions.
@@ -45,18 +46,20 @@
 <section>
     
     <div class="roadMapSignUp">
-    <article class="roadMap floatLeft">
-        <h1>Road map</h1>
+    <article class="roadMap">
+        <p class="title">Road map</p>
         <ol>
-            <li>Save to PDF</li>
+            <li>Export to PDF</li>
+            <li>Save and load stage plans</li>
             <li>Rating system</li>
-            <li>Android</li>
+            <li>Android app</li>
             <li>Tutorials</li>
         </ol>
     </article>
    
-    <article class="signUp floatRight">
-        <h1>Sign up</h1>
+    <article class="signUp">
+        <p class="title">Sign up</p>
+        <p>Sign up and get emails for any new features.</p>
         <p><input type="text" /></p>
         <p><input type="text" /></p>
         <p><input type="button" value="Submit" /></p>

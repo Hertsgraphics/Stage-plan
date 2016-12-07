@@ -37,6 +37,8 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           <Property Name="Details" Type="nvarchar" MaxLength="800" />
           <Property Name="X" Type="numeric" Precision="8" Scale="4" Nullable="false" />
           <Property Name="Y" Type="numeric" Precision="8" Scale="4" Nullable="false" />
+          <Property Name="DataHelper" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DataText" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -101,6 +103,8 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           <Property Name="X" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
           <Property Name="Y" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
           <NavigationProperty Name="Stageplan" Relationship="Self.FK_StageplanInstrument_Stageplan" FromRole="StageplanInstrument" ToRole="Stageplan" />
+          <Property Name="DataHelper" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DataText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_StageplanInstrument_Stageplan">
           <End Role="Stageplan" Type="Self.Stageplan" Multiplicity="1" />
@@ -164,6 +168,8 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           <EntitySetMapping Name="StageplanInstruments">
             <EntityTypeMapping TypeName="StageplanModel.StageplanInstrument">
               <MappingFragment StoreEntitySet="StageplanInstrument">
+                <ScalarProperty Name="DataText" ColumnName="DataText" />
+                <ScalarProperty Name="DataHelper" ColumnName="DataHelper" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StageplanId" ColumnName="StageplanId" />
                 <ScalarProperty Name="InstrumentName" ColumnName="InstrumentName" />

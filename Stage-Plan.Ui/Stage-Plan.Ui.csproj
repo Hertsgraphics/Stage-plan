@@ -206,7 +206,14 @@
   <ItemGroup>
     <Content Include="Content\MainSite\Css\reusable.css" />
     <Content Include="Content\MainSite\Css\Site.css" />
+    <Content Include="Content\MainSite\Images\Happy-Emotion.png" />
+    <Content Include="Content\MainSite\Images\Live-Event.jpg" />
+    <Content Include="Content\MainSite\Images\Live-Venue.jpg" />
+    <Content Include="Content\MainSite\Images\MixingDesk-Mic.jpg" />
+    <Content Include="Content\MainSite\Images\MixingDesk.jpg" />
+    <Content Include="Content\MainSite\Images\Quick-Tutorial.jpg" />
     <Content Include="Content\MainSite\Images\Stage-Plan-Logo.png" />
+    <Content Include="Content\MainSite\Images\Venue.jpg" />
     <Content Include="Content\Stageplan\Css\lmsResponsiveMenu.css" />
     <Content Include="Content\Stageplan\Css\Stageplan.css" />
     <Content Include="Content\Stageplan\Images\Acoustic-Guitar.png" />
@@ -215,6 +222,7 @@
     <Content Include="Content\Stageplan\Images\Captcha-02.jpg" />
     <Content Include="Content\Stageplan\Images\Captcha-03.jpg" />
     <Content Include="Content\Stageplan\Images\Cello.png" />
+    <Content Include="Content\Stageplan\Images\DI-Box.png" />
     <Content Include="Content\Stageplan\Images\Double-Bass.png" />
     <Content Include="Content\Stageplan\Images\Drums.png" />
     <Content Include="Content\Stageplan\Images\Fluite.png" />
@@ -225,6 +233,9 @@
     <Content Include="Content\Stageplan\Images\Other.png" />
     <Content Include="Content\Stageplan\Images\Piano.png" />
     <Content Include="Content\Stageplan\Images\Saxophone.png" />
+    <Content Include="Content\Stageplan\Images\Speaker-01.png" />
+    <Content Include="Content\Stageplan\Images\Speaker-02.png" />
+    <Content Include="Content\Stageplan\Images\Speaker-04.png" />
     <Content Include="Content\Stageplan\Images\Stage-Plan-Logo-01.jpg" />
     <Content Include="Content\Stageplan\Images\Stage-Plan-Logo.png" />
     <Content Include="Content\Stageplan\Images\Stage.png" />
@@ -259,8 +270,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Content\Fonts\Impacted2.0.woff" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Stageplan\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

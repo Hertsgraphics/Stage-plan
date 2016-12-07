@@ -1,38 +1,133 @@
-﻿
+﻿/* The main blue colour = #18a0ec */
+
+
+@font-face {
+    font-family: 'StageplanFont';
+    src: url('../../Fonts/Impacted2.0.woff');
+}
+
+
 body {
-padding: 0;
-margin: 0 auto;
-max-width: 1180px;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    font-family: Tahoma, Geneva, sans-serif;
+    letter-spacing: .08em;
 }
 
 header {
-background-color: #18a0ec;
-width: 100%;
-padding: 2%;
+    background-color: #18a0ec;
+}
 
+.mainImage img {
+    width: 100%;
 }
 
 section {
-max-width: 960px;
-margin: 0 auto;
-}
-
-section {
-padding: 0 2%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1.5%;
 }
 
 .logo img {
-margin: 1%;
-float: left;
+    margin: .4%;
+    float: left;
 }
 
-nav {
-color: #fff;
-float: left;
-padding-top: 25px;
+.roadMapSignUp {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+article.quickTutorial, article.roadMap, article.signUp {
+    background-image: url("/Content/MainSite/Images/Quick-Tutorial.jpg");
+    background-size:100%;
+    color: #ffd800;
+}
+
+article.quickTutorial ol li, article.roadMap ol li, article.signUp, section.about ul li {
+    margin-top:20px;
+}
+
+article.roadMap, article.signUp {
+    color: #000;
+    background-image: none;
+    width: 35%;
+    margin-right: 2%;
+    float: left;
+}
+
+article.signUp {
+    padding: 0 100px;
+    border: 3px solid #a52a2a;
+}
+
+input {     background-color: #18a0ec;
+            border: 1px solid #a52a2a;
+            color: #fff;
+			padding: 4%;
+			width: 100%;
+            margin: 3%;
+        }
+
+input[type=text] {
+			background: #fff;
+			color: #333;
+			padding: 4%;
+            margin: 2%;
+		}
+        input[type=button]:hover {
+                background: #34ceff;
+            }
+
+nav, .footerNav {
+    color: #fff;
+    float: left;
+    padding-top: 20px;
 }
 
     nav ul li {
-    display: inline-block;text-decoration: none;
-    padding-left: 20px;
+        display: inline-block;
+        text-decoration: none;
+        list-style: none;
+        padding-left: 40px;
     }
+            nav ul li a {
+    color: #fff;
+}
+
+footer {
+    background-image: url("/Content/MainSite/Images/MixingDesk.jpg");
+    max-width: 100%;
+    background-size:100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    padding: 0;
+    color: #fff; /* <- Don't forget to remove the colour once the link is working TODO*/
+}
+
+    footer ul {
+        list-style: none;
+    }
+
+        footer ul li {
+            margin-right: 2%;
+            float: left;
+        }
+
+
+h1, h2, .title {
+    font-size: 1.5em;
+    font-family:StageplanFont;
+    text-shadow: 1px 2px 2px #000;
+    color: #a52a2a;
+}
+
+a {
+    color: #18a0ec;
+    text-decoration: none;
+}
+    a:hover, nav ul li a:hover {
+        color: #34ceff;
+    }
+

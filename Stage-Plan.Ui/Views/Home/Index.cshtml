@@ -2,30 +2,68 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="mainImage">
+    <img src="~/Content/MainSite/Images/Live-Event.jpg" />
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<section>
+    <h1>Create a stage plan</h1>
+    <p>Use our  @Html.ActionLink("stage plan builder", "Index", "Stageplan") to create the exact stage plot for your gig. After that all you need to do is send the provided URL to the engineer of the venue. You can enter your instruments, monitors DI boxes and provide full details of what you want. </p>
+    <p>You don't need to provide your email address or sign up. It's all free.</p>
+    <p>Create as many stage plans as you like. It's free, extremely easy and quick.</p>
+
+</section>
+
+<article class="quickTutorial">
+    <section>
+        <h2>How to make a stage plan</h2>
+        <ol>
+            <li>
+                @Html.ActionLink("Create a free stage plan.", "Index", "Stageplan")
+            </li>
+            <li>
+                Add instruments, monitors etc and descriptions.
+            </li>
+            <li>
+                View and modify your stage plan.
+            </li>
+            <li>
+                Save your stage plan (for free).
+            </li>
+            <li>
+                Enter your band name.
+            </li>
+            <li>
+                Send the unique URL to your band mates/venue/engineer.
+            </li>
+            <li>
+                Oh, did we mention it's free? <img src="~/Content/MainSite/Images/Happy-Emotion.png" />
+            </li>
+        </ol>
+    </section>
+</article>
+
+<section>
+    
+    <div class="roadMapSignUp">
+    <article class="roadMap">
+        <p class="title">Road map</p>
+        <ol>
+            <li>Export to PDF</li>
+            <li>Save and load stage plans</li>
+            <li>Rating system</li>
+            <li>Android app</li>
+            <li>Tutorials</li>
+        </ol>
+    </article>
+   
+    <article class="signUp">
+        <p class="title">Sign up</p>
+        <p>Sign up and get emails for any new features.</p>
+        <p><input type="text" /></p>
+        <p><input type="text" /></p>
+        <p><input type="button" value="Submit" /></p>
+    </article>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    <div class="clearBoth"></div>
+</section>

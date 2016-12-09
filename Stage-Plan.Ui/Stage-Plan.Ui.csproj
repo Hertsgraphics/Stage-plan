@@ -130,6 +130,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Utilies">
+      <HintPath>.\Utilies.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -201,6 +204,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Contact\AbstractContact.cs" />
+    <Compile Include="Models\Contact\Contact.cs" />
     <Compile Include="Models\Contact\IContact.cs" />
     <Compile Include="Models\Emails\Email.cs" />
     <Compile Include="Models\Person.cs" />

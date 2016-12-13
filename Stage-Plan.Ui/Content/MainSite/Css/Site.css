@@ -1,4 +1,5 @@
 ﻿/* The main blue colour = #18a0ec */
+/* The mail red colour = #a52a2a */
 
 
 @font-face {
@@ -41,13 +42,13 @@ section {
 
 article.quickTutorial, article.roadMap, article.signUp {
     background-image: url("/Content/MainSite/Images/Quick-Tutorial.jpg");
-    background-size:100%;
+    background-size: 100%;
     color: #ffd800;
 }
 
-article.quickTutorial ol li, article.roadMap ol li, article.signUp, section.about ul li {
-    margin-top:20px;
-}
+    article.quickTutorial ol li, article.roadMap ol li, article.signUp, section.about ul li {
+        margin-top: 20px;
+    }
 
 article.roadMap, article.signUp {
     color: #000;
@@ -62,25 +63,27 @@ article.signUp {
     border: 3px solid #a52a2a;
 }
 
-input {     background-color: #18a0ec;
-            border: 1px solid #a52a2a;
-            color: #fff;
-			padding: 4%;
-			width: 100%;
-            margin: 3%;
+    article.signUp input {
+        background-color: #18a0ec;
+        border: 1px solid #a52a2a;
+        color: #fff;
+        padding: 4%;
+        width: 100%;
+        margin: 3%;
+    }
+
+        article.signUp input[type=text] {
+            background: #fff;
+            color: #333;
+            padding: 4%;
+            margin: 2%;
         }
 
-input[type=text] {
-			background: #fff;
-			color: #333;
-			padding: 4%;
-            margin: 2%;
-		}
-        input[type=button]:hover {
-                background: #34ceff;
-            }
+        article.signUp input[type=button]:hover {
+            background: #34ceff;
+        }
 
-nav, .footerNav {
+nav {
     color: #fff;
     float: left;
     padding-top: 20px;
@@ -92,14 +95,15 @@ nav, .footerNav {
         list-style: none;
         padding-left: 40px;
     }
-            nav ul li a {
-    color: #fff;
-}
+
+        nav ul li a {
+            color: #fff;
+        }
 
 footer {
     background-image: url("/Content/MainSite/Images/MixingDesk.jpg");
     max-width: 100%;
-    background-size:100%;
+    background-size: 100%;
     height: 200px;
     background-repeat: no-repeat;
     padding: 0;
@@ -115,10 +119,14 @@ footer {
             float: left;
         }
 
+            footer ul li a {
+                color: #fff;
+            }
+
 
 h1, h2, .title {
     font-size: 1.5em;
-    font-family:StageplanFont;
+    font-family: StageplanFont;
     text-shadow: 1px 2px 2px #000;
     color: #a52a2a;
 }
@@ -127,7 +135,31 @@ a {
     color: #18a0ec;
     text-decoration: none;
 }
+
     a:hover, nav ul li a:hover {
         color: #34ceff;
     }
 
+input[type=text], textArea {
+    background: #fff;
+    color: #333;
+    padding: 1%;
+    width:90%;
+    margin: 1%;
+    border: 1px solid #a52a2a;
+}
+
+textArea {
+    height: 150px;
+}
+
+input {
+    background: #18a0ec;
+    color: #fff;
+    border: none;
+    padding: 1%;
+    width: 92.2%;
+    float: left;
+    margin: 1%;
+
+}

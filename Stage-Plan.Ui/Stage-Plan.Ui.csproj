@@ -130,6 +130,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Utilies">
+      <HintPath>.\Utilies.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -195,12 +198,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StageplanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Contact\AbstractContact.cs" />
+    <Compile Include="Models\Contact\Contact.cs" />
     <Compile Include="Models\Contact\IContact.cs" />
     <Compile Include="Models\Emails\Email.cs" />
     <Compile Include="Models\Person.cs" />
@@ -283,12 +288,17 @@
     <None Include="Project_Readme.html" />
     <Content Include="Views\Stageplan\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\ThankYou.cshtml" />
+    <Content Include="Views\Blog\Stage_Plan_Vs_Stage_Plot.cshtml" />
+    <Content Include="Views\Blog\What_An_Engineer_Wants_To_Know.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Home\Disclaimer.cshtml" />
+    <Content Include="Views\Home\Privacy_Policy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

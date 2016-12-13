@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EsRaco.Ui.Models.Contact
+namespace Stage_Plan.Ui.Models.Contact
 {
     public interface IContact
     {

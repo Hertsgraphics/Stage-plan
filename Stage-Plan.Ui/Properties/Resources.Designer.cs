@@ -22,7 +22,7 @@ namespace Stage_Plan.Ui.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Stage_Plan.Ui.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stage_Plan.Ui.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Stage_Plan.Ui.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -84,9 +84,9 @@ namespace Stage_Plan.Ui.Properties {
         ///    &lt;table width=&quot;100%&quot;&gt;
         ///
         ///        &lt;tr&gt;
-        ///            &lt;td style=&quot;background:url(&apos;http://www.esracomacaret.es/Content/Imag [rest of string was truncated]&quot;;.
+        ///            &lt;td style=&quot;background:url(&apos;http://www.Stage_Planmacaret.es/Content/ [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string EmailTemplate {
+        public static string EmailTemplate {
             get {
                 return ResourceManager.GetString("EmailTemplate", resourceCulture);
             }

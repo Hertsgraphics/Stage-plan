@@ -31,14 +31,32 @@ namespace Stage_Plan.Ui.Controllers
 
             return View();
         }
-        
+
+        public ActionResult ThankYou()
+        {
+
+            return View();
+        }
+
+        public ActionResult Disclaimer()
+        {
+
+            return View();
+        }
+
+        public ActionResult Privacy_Policy()
+        {
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Contact(Contact model)
         {
-            var email = "support@stage-plan.co.uk";
+            var email = "support@stage-plan.com";
             var x = Utilies.Email.SendEmail(false, "mail.stage-plan.com", false, 25,email , GetPassword(), email, new List<string> { model.Email }, null, new List<string>{ email },"Email from Stage-Plan", true, GetBody(model));
             //todo verification
-            return View();
+            return View("ThankYou");
         }
 
         private string GetBody(Contact model)

@@ -198,6 +198,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StageplanController.cs" />
     <Compile Include="Global.asax.cs">
@@ -287,8 +288,13 @@
     <None Include="Project_Readme.html" />
     <Content Include="Views\Stageplan\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\ThankYou.cshtml" />
+    <Content Include="Views\Blog\Stage_Plan_Vs_Stage_Plot.cshtml" />
+    <Content Include="Views\Blog\What_An_Engineer_Wants_To_Know.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Home\Disclaimer.cshtml" />
+    <Content Include="Views\Home\Privacy_Policy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

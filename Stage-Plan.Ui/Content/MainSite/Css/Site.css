@@ -83,7 +83,7 @@ article.signUp {
             background: #34ceff;
         }
 
-nav, .footerNav {
+nav {
     color: #fff;
     float: left;
     padding-top: 20px;
@@ -118,6 +118,10 @@ footer {
             margin-right: 2%;
             float: left;
         }
+
+            footer ul li a {
+                color: #fff;
+            }
 
 
 h1, h2, .title {
@@ -157,4 +161,5 @@ input {
     width: 92.2%;
     float: left;
     margin: 1%;
+
 }

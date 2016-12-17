@@ -1,4 +1,4 @@
-﻿
+﻿@model Stage_plan.Bll.SubscriptionPreferences
 @{
     ViewBag.Title = "Subscrition preferences";
 }
@@ -12,12 +12,10 @@
             {
         @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br />
 
-        @Html.TextBoxFor(a => a.Email, new { @placeholder = "Email", @class = "email" })<br />
+        @Html.TextBoxFor(a => a.EmailAddress, new { @placeholder = "Email", @class = "email" })<br />
 
-        @Html.TextBoxFor(a => a.Verification, new { @placeholder = "3 + 4 = ? Type the answer", @class = "verification" })<br />
-
-                @Html.TextAreaFor(a => a.Message, new { @class = "message", placeholder = "Type your message" })<br /><br />
-
+        @Html.RadioButtonFor(a => a.IsOptIn, true) @:Opt In
+        @Html.RadioButtonFor(a => a.IsOptIn, false) @:Opt Out
                 <div class="center">
                     <input type="submit" value="Submit" />
                 </div>

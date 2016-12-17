@@ -1,4 +1,4 @@
-﻿
+﻿@model Stage_Plan.Ui.Models.Contact.AbstractContact
 @{
     ViewBag.Title = "Contact";
 }
@@ -7,3 +7,22 @@
     <img src="~/Content/MainSite/Images/Live-Venue.jpg" />
 </div>
 
+<section>
+    <h1>Get in touch</h1>
+    @using (Html.BeginForm("Contact", "Home"))
+            {
+        @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br />
+
+        @Html.TextBoxFor(a => a.Email, new { @placeholder = "Email", @class = "email" })<br />
+
+                @Html.TextBoxFor(a => a.Verification, new { @placeholder = "3 + 4 = ? Type the answer", @class = "verification" })<br />
+
+                @Html.TextAreaFor(a => a.Message, new { @class = "message", placeholder = "Type your message" })<br /><br />
+
+                <div class="center">
+                    <input type="submit" value="Submit" />
+                </div>
+    }
+</section>
+ <p>&nbsp;</p>
+<div class="clearBoth"></div>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="StageplanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="StageplanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MailingList">
@@ -79,7 +79,8 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
             <End Role="StageplanInstrument" EntitySet="StageplanInstrument" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StageplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -102,37 +103,15 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           <Property Name="Details" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
           <Property Name="X" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
           <Property Name="Y" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+          <Property Name="DataHelper" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Stageplan" Relationship="Self.FK_StageplanInstrument_Stageplan" FromRole="StageplanInstrument" ToRole="Stageplan" />
-          <Property Name="DataHelper" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DataText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_StageplanInstrument_Stageplan">
-          <End Role="Stageplan" Type="Self.Stageplan" Multiplicity="1" />
-          <End Role="StageplanInstrument" Type="Self.StageplanInstrument" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stageplan">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StageplanInstrument">
-              <PropertyRef Name="StageplanId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="StageplanEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Stageplans" EntityType="Self.Stageplan" />
-          <EntitySet Name="StageplanInstruments" EntityType="Self.StageplanInstrument" />
-          <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="Self.FK_StageplanInstrument_Stageplan">
-            <End Role="Stageplan" EntitySet="Stageplans" />
-            <End Role="StageplanInstrument" EntitySet="StageplanInstruments" />
-          </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="StageplanModel.sysdiagram" />
-          <EntitySet Name="MailingLists" EntityType="StageplanModel.MailingList" />
-        </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -147,15 +126,37 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="IsOptin" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <Association Name="FK_StageplanInstrument_Stageplan">
+          <End Role="Stageplan" Type="Self.Stageplan" Multiplicity="1" />
+          <End Role="StageplanInstrument" Type="Self.StageplanInstrument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stageplan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StageplanInstrument">
+              <PropertyRef Name="StageplanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StageplanEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Stageplans" EntityType="Self.Stageplan" />
+          <EntitySet Name="StageplanInstruments" EntityType="Self.StageplanInstrument" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="MailingLists" EntityType="Self.MailingList" />
+          <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="Self.FK_StageplanInstrument_Stageplan">
+            <End Role="Stageplan" EntitySet="Stageplans" />
+            <End Role="StageplanInstrument" EntitySet="StageplanInstruments" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="StageplanModelStoreContainer" CdmEntityContainer="StageplanEntities">
+        <EntityContainerMapping StorageEntityContainer="StageplanModelStoreContainer" CdmEntityContainer="StageplanEntities1">
           <EntitySetMapping Name="Stageplans">
             <EntityTypeMapping TypeName="StageplanModel.Stageplan">
               <MappingFragment StoreEntitySet="Stageplan">
@@ -168,35 +169,35 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           <EntitySetMapping Name="StageplanInstruments">
             <EntityTypeMapping TypeName="StageplanModel.StageplanInstrument">
               <MappingFragment StoreEntitySet="StageplanInstrument">
-                <ScalarProperty Name="DataText" ColumnName="DataText" />
-                <ScalarProperty Name="DataHelper" ColumnName="DataHelper" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StageplanId" ColumnName="StageplanId" />
                 <ScalarProperty Name="InstrumentName" ColumnName="InstrumentName" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
                 <ScalarProperty Name="X" ColumnName="X" />
                 <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="DataHelper" ColumnName="DataHelper" />
+                <ScalarProperty Name="DataText" ColumnName="DataText" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="StageplanModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MailingLists">
             <EntityTypeMapping TypeName="StageplanModel.MailingList">
               <MappingFragment StoreEntitySet="MailingList">
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IsOptin" ColumnName="IsOptin" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsOptin" ColumnName="IsOptin" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -295,6 +295,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Home\Disclaimer.cshtml" />
     <Content Include="Views\Home\Privacy_Policy.cshtml" />
+    <Content Include="Views\Home\SubscriptionPrefrences.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

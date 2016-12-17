@@ -18,5 +18,9 @@ namespace Stage_plan.Dal
         public bool IsOptin { get; set; }
         public string Name { get; set; }
         public string EmailAddress { get; set; }
+        public string ConfirmToken { get; set; }
+        public bool IsConfirmed { get; set; }
+        public System.DateTime DateOptInRequest { get; set; }
+        public System.DateTime DateOptInConfirm { get; set; }
     }
 }

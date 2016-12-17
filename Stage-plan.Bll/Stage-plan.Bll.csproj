@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubscriptionPreferences.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stage-plan.Dal\Stage-plan.Dal.csproj">

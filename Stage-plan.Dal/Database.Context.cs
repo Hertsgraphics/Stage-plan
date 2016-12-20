@@ -13,10 +13,10 @@ namespace Stage_plan.Dal
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class StageplanEntities1 : DbContext
+    public partial class StageplanEntities : DbContext
     {
-        public StageplanEntities1()
-            : base("name=StageplanEntities1")
+        public StageplanEntities()
+            : base("name=StageplanEntities")
         {
         }
     
@@ -25,9 +25,8 @@ namespace Stage_plan.Dal
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<MailingList> MailingLists { get; set; }
         public virtual DbSet<Stageplan> Stageplans { get; set; }
         public virtual DbSet<StageplanInstrument> StageplanInstruments { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<MailingList> MailingLists { get; set; }
     }
 }

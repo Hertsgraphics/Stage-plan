@@ -30,7 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,8 +52,13 @@
     <Compile Include="SubscriptionPreferences.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Stage-plan.Dal\App.Config">
+      <Link>App.Config</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Stage-plan.Dal\Stage-plan.Dal.csproj">
-      <Project>{289a8b29-e0bb-4f47-a354-f40d07f70cf5}</Project>
+      <Project>{13776e4f-edae-45ee-827b-62c886c0318b}</Project>
       <Name>Stage-plan.Dal</Name>
     </ProjectReference>
   </ItemGroup>

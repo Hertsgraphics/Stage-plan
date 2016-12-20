@@ -24,7 +24,7 @@ namespace Stage_Plan.Ui.Models.Emails
         public void SendEmail(string emailAddressTo, string emailContent, string subject, Attachment attachment = null)
         {
             if (String.IsNullOrEmpty(subject))
-                subject = "Gracias";
+                subject = "Thank you";
 
             if (attachment == null)
             {

@@ -4,12 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a069b4cf55914a2c8d1fb3e187fe207d" Name="Diagram1">
-        <EntityTypeShape EntityType="StageplanModel.Stageplan" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StageplanModel.StageplanInstrument" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="StageplanModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StageplanModel.MailingList" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="StageplanModel.FK_StageplanInstrument_Stageplan" ManuallyRouted="false" />
+      <Diagram DiagramId="e2e2a9379c0a4e4d9d7361e7a878b7db" Name="Diagram1">
+        <EntityTypeShape EntityType="StageplanModel.MailingList" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StageplanModel.Stageplan" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StageplanModel.StageplanInstrument" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="StageplanModel.FK_StageplanInstrument_Stageplan" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

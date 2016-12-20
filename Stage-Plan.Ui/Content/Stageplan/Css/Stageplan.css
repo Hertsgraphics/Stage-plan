@@ -120,7 +120,7 @@
             padding: 4%;
         }
 
-        .infoBox .textbox {
+        .infoBox .textbox  {
             width: 98%;
             padding: 1%;
         }
@@ -129,7 +129,9 @@
             float: left;
             margin-left: 24%;
         } */
-
+.bandName {
+    width: 96%;
+}
       
 
         ul li a {

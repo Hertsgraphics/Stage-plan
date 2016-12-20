@@ -28,6 +28,7 @@ namespace Stage_plan.Bll
         [Display(Name = "Email address")]
         public string EmailAddress { get; set; }
 
+        public string Token { get; private set; }
 
         [Required]
         public bool IsOptIn { get; set; }
@@ -55,7 +56,8 @@ namespace Stage_plan.Bll
             {
                 EmailAddress = email.EmailAddress,
                 IsOptIn = email.IsOptin,
-                Name = email.Name
+                Name = email.Name,
+                Token = email.ConfirmToken
             };
         }
 
@@ -83,6 +85,7 @@ namespace Stage_plan.Bll
             };
 
             this._dc.MailingLists.Add(email);
+
             return Save() ? String.Empty : this._faultSavingMessage;
         }
 
@@ -95,6 +98,17 @@ namespace Stage_plan.Bll
 
             this._dc.MailingLists.Remove(email);
             return Save() ? String.Empty : this._faultSavingMessage;
+        }
+
+        public bool ConfirmSubscription(string token)
+        {
+            var result = this._dc.MailingLists.SingleOrDefault(a => a.ConfirmToken == token);
+            if (result == null)
+                return false;
+
+            result.IsConfirmed = true;
+            result.DateOptInConfirm = DateTime.Now;
+            return Save();
         }
 
         private bool Save()

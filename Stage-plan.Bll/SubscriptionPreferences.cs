@@ -15,6 +15,7 @@ namespace Stage_plan.Bll
         public SubscriptionPreferences()
         {
             this._dc = new Dal.StageplanEntities();
+            this.IsOptIn = true;
         }
 
         [Required]

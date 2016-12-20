@@ -8,6 +8,9 @@
 </div>
 <section>
     <h1>Subscription preferences</h1>
+
+    @ViewBag.Message
+
     @using (Html.BeginForm("Contact", "Home"))
             {
         @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br />

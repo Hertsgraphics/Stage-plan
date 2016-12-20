@@ -15,8 +15,8 @@
           <Property Name="EmailAddress" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="ConfirmToken" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsConfirmed" Type="bit" Nullable="false" />
-          <Property Name="DateOptInRequest" Type="datetime" Nullable="false" />
-          <Property Name="DateOptInConfirm" Type="datetime" Nullable="false" />
+          <Property Name="DateOptInRequest" Type="date" Nullable="false" />
+          <Property Name="DateOptInConfirm" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Stageplan">
           <Key>
@@ -74,8 +74,8 @@
           <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ConfirmToken" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="DateOptInRequest" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateOptInConfirm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateOptInRequest" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOptInConfirm" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Stageplan">
           <Key>

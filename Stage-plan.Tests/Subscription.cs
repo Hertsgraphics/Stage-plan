@@ -12,30 +12,29 @@ namespace Stage_plan.Tests
         public void OptIn()
         {
             var email = GetEmail(true);
-            OptIn(email);
+            Save(email);
             Delete(email);//clean up
         }
-       
-        private void OptIn(SubscriptionPreferences email)
+
+        private void Save(SubscriptionPreferences email)
         {
             var result = email.Update();
 
             Assert.IsTrue(String.IsNullOrEmpty(result));
-
-            Assert.IsFalse(email.GetEmail() == null);
         }
 
         [TestMethod]
         public void OptOut()
         {
             var email = GetEmail(true);
-            OptIn(email);
+            Save(GetEmail(true));//opt in first so we can unsubscribe later
+            email.IsOptIn = false;
+            Save(email);//attempt opt out
 
-            email = GetEmail(false);
+            var emailFromDb = new Bll.SubscriptionPreferences().GetEmailByAddress(email.EmailAddress);
 
-            var result = email.Update();
+            Assert.IsFalse(emailFromDb.IsOptIn);
 
-            Assert.IsTrue(String.IsNullOrEmpty(result));
             Delete(email);//clean up
         }
 

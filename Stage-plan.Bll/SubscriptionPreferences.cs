@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Stage_plan.Dal;
 
 namespace Stage_plan.Bll
 {
@@ -15,6 +16,25 @@ namespace Stage_plan.Bll
         public SubscriptionPreferences()
         {
             this._dc = new Dal.StageplanEntities();
+        }
+
+        public SubscriptionPreferences GetEmailByAddress(string email)
+        {
+            var result = this._dc.MailingLists.Where(a => a.EmailAddress == email).SingleOrDefault();
+            if (result == null)
+                return null;
+
+            return Map(result);
+        }
+
+        private SubscriptionPreferences Map(MailingList result)
+        {
+            return new SubscriptionPreferences()
+            {
+                EmailAddress=result.EmailAddress,
+                IsOptIn = result.IsOptin,
+                Name = result.Name
+            };
         }
 
         [Required]
@@ -47,7 +67,7 @@ namespace Stage_plan.Bll
                           where d.EmailAddress == this.EmailAddress
                           select d).SingleOrDefault());
             return email;
-        }
+        } 
 
         private string OptIn()
         {
@@ -59,6 +79,7 @@ namespace Stage_plan.Bll
             {
                 ConfirmToken = Guid.NewGuid().ToString(),
                 DateOptInRequest = DateTime.Now,
+                DateOptInConfirm = new DateTime(),
                 EmailAddress = this.EmailAddress,
                 IsOptin = this.IsOptIn,
                 Name = this.Name
@@ -75,7 +96,7 @@ namespace Stage_plan.Bll
             if (email == null)
                 return "Sorry, we don't have any match for the email address provided.";
 
-            this._dc.MailingLists.Remove(email);
+            email.IsOptin = this.IsOptIn;
             return Save() ? String.Empty : this._faultSavingMessage;
         }
 

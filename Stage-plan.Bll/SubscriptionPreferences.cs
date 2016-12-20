@@ -67,7 +67,7 @@ namespace Stage_plan.Bll
                           where d.EmailAddress == this.EmailAddress
                           select d).SingleOrDefault());
             return email;
-        }
+        } 
 
         private string OptIn()
         {

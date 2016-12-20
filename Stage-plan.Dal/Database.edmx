@@ -5,20 +5,11 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="StageplanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MailingList">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="IsOptin" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="EmailAddress" />
-            <PropertyRef Name="ConfirmToken" />
-            <PropertyRef Name="IsConfirmed" />
-            <PropertyRef Name="DateOptInRequest" />
-            <PropertyRef Name="DateOptInConfirm" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IsOptin" Type="bit" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EmailAddress" Type="nvarchar" MaxLength="150" Nullable="false" />
@@ -48,16 +39,6 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           <Property Name="DataHelper" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="DataText" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <Association Name="FK_StageplanInstrument_Stageplan">
           <End Role="Stageplan" Type="Self.Stageplan" Multiplicity="1" />
           <End Role="StageplanInstrument" Type="Self.StageplanInstrument" Multiplicity="*" />
@@ -71,21 +52,9 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="StageplanModelStoreContainer">
+          <EntitySet Name="MailingList" EntityType="Self.MailingList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stageplan" EntityType="Self.Stageplan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StageplanInstrument" EntityType="Self.StageplanInstrument" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MailingList" EntityType="Self.MailingList" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [MailingList].[Id] AS [Id], 
-    [MailingList].[IsOptin] AS [IsOptin], 
-    [MailingList].[Name] AS [Name], 
-    [MailingList].[EmailAddress] AS [EmailAddress], 
-    [MailingList].[ConfirmToken] AS [ConfirmToken], 
-    [MailingList].[IsConfirmed] AS [IsConfirmed], 
-    [MailingList].[DateOptInRequest] AS [DateOptInRequest], 
-    [MailingList].[DateOptInConfirm] AS [DateOptInConfirm]
-    FROM [dbo].[MailingList] AS [MailingList]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="Self.FK_StageplanInstrument_Stageplan">
             <End Role="Stageplan" EntitySet="Stageplan" />
             <End Role="StageplanInstrument" EntitySet="StageplanInstrument" />
@@ -95,6 +64,19 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StageplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MailingList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsOptin" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConfirmToken" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="DateOptInRequest" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateOptInConfirm" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         <EntityType Name="Stageplan">
           <Key>
             <PropertyRef Name="Id" />
@@ -102,7 +84,7 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="StageplanInstruments" Relationship="Self.FK_StageplanInstrument_Stageplan" FromRole="Stageplan" ToRole="StageplanInstrument" />
+          <NavigationProperty Name="StageplanInstruments" Relationship="StageplanModel.FK_StageplanInstrument_Stageplan" FromRole="Stageplan" ToRole="StageplanInstrument" />
         </EntityType>
         <EntityType Name="StageplanInstrument">
           <Key>
@@ -116,41 +98,20 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
           <Property Name="Y" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
           <Property Name="DataHelper" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DataText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Stageplan" Relationship="Self.FK_StageplanInstrument_Stageplan" FromRole="StageplanInstrument" ToRole="Stageplan" />
+          <NavigationProperty Name="Stageplan" Relationship="StageplanModel.FK_StageplanInstrument_Stageplan" FromRole="StageplanInstrument" ToRole="Stageplan" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="MailingList">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="IsOptin" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="EmailAddress" />
-            <PropertyRef Name="ConfirmToken" />
-            <PropertyRef Name="IsConfirmed" />
-            <PropertyRef Name="DateOptInRequest" />
-            <PropertyRef Name="DateOptInConfirm" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="IsOptin" Type="Boolean" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ConfirmToken" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="DateOptInRequest" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateOptInConfirm" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
+        <EntityContainer Name="StageplanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MailingLists" EntityType="Self.MailingList" />
+          <EntitySet Name="Stageplans" EntityType="Self.Stageplan" />
+          <EntitySet Name="StageplanInstruments" EntityType="Self.StageplanInstrument" />
+          <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="StageplanModel.FK_StageplanInstrument_Stageplan">
+            <End Role="Stageplan" EntitySet="Stageplans" />
+            <End Role="StageplanInstrument" EntitySet="StageplanInstruments" />
+          </AssociationSet>
+        </EntityContainer>
         <Association Name="FK_StageplanInstrument_Stageplan">
-          <End Role="Stageplan" Type="Self.Stageplan" Multiplicity="1" />
-          <End Role="StageplanInstrument" Type="Self.StageplanInstrument" Multiplicity="*" />
+          <End Type="StageplanModel.Stageplan" Role="Stageplan" Multiplicity="1" />
+          <End Type="StageplanModel.StageplanInstrument" Role="StageplanInstrument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Stageplan">
               <PropertyRef Name="Id" />
@@ -160,22 +121,26 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="StageplanEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Stageplans" EntityType="Self.Stageplan" />
-          <EntitySet Name="StageplanInstruments" EntityType="Self.StageplanInstrument" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="MailingLists" EntityType="Self.MailingList" />
-          <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="Self.FK_StageplanInstrument_Stageplan">
-            <End Role="Stageplan" EntitySet="Stageplans" />
-            <End Role="StageplanInstrument" EntitySet="StageplanInstruments" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="StageplanModelStoreContainer" CdmEntityContainer="StageplanEntities1">
+        <EntityContainerMapping StorageEntityContainer="StageplanModelStoreContainer" CdmEntityContainer="StageplanEntities">
+          <EntitySetMapping Name="MailingLists">
+            <EntityTypeMapping TypeName="StageplanModel.MailingList">
+              <MappingFragment StoreEntitySet="MailingList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsOptin" ColumnName="IsOptin" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="ConfirmToken" ColumnName="ConfirmToken" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="DateOptInRequest" ColumnName="DateOptInRequest" />
+                <ScalarProperty Name="DateOptInConfirm" ColumnName="DateOptInConfirm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Stageplans">
             <EntityTypeMapping TypeName="StageplanModel.Stageplan">
               <MappingFragment StoreEntitySet="Stageplan">
@@ -196,31 +161,6 @@ warning 6002: The table/view 'Stageplan.dbo.MailingList' does not have a primary
                 <ScalarProperty Name="Y" ColumnName="Y" />
                 <ScalarProperty Name="DataHelper" ColumnName="DataHelper" />
                 <ScalarProperty Name="DataText" ColumnName="DataText" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="StageplanModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MailingLists">
-            <EntityTypeMapping TypeName="StageplanModel.MailingList">
-              <MappingFragment StoreEntitySet="MailingList">
-                <ScalarProperty Name="DateOptInConfirm" ColumnName="DateOptInConfirm" />
-                <ScalarProperty Name="DateOptInRequest" ColumnName="DateOptInRequest" />
-                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
-                <ScalarProperty Name="ConfirmToken" ColumnName="ConfirmToken" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IsOptin" ColumnName="IsOptin" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

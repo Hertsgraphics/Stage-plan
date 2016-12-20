@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Stage_plan.Dal;
 
 namespace Stage_plan.Bll
 {
@@ -19,7 +20,7 @@ namespace Stage_plan.Bll
         }
 
         [Required]
-        [Display(Name="Name")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
 
@@ -40,6 +41,22 @@ namespace Stage_plan.Bll
                 result = OptOut();
 
             return result;
+        }
+
+        public SubscriptionPreferences GetEmailByAddress(string emailAddress)
+        {
+            var email = this._dc.MailingLists.SingleOrDefault(a => a.EmailAddress == emailAddress);
+            return Map(email);
+        }
+
+        private SubscriptionPreferences Map(MailingList email)
+        {
+            return new SubscriptionPreferences()
+            {
+                EmailAddress = email.EmailAddress,
+                IsOptIn = email.IsOptin,
+                Name = email.Name
+            };
         }
 
         public Dal.MailingList GetEmail()

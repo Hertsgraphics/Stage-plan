@@ -3,6 +3,7 @@ using Stage_Plan.Ui.Models.Contact;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,14 +33,21 @@ namespace Stage_Plan.Ui.Controllers
         {
             return View();
         }
-        
 
-        public ActionResult ThankYou(string message)
+
+        public ActionResult ThankYou(string header, string msg1, string msg2, string msg3)
         {
+            var sb = new StringBuilder();
+            sb.Append("<h1>" + header + "</h1>");
 
-            ViewBag.Message = message;
+            sb.Append("<p>" + msg1 + "</p>");
+            sb.Append("<p>" + msg2 + "</p>");
+            sb.Append("<p>" + msg3 + "</p>");
 
-               return View();
+
+            ViewBag.Message = sb.ToString();
+
+            return View();
         }
 
         public ActionResult Disclaimer()
@@ -64,12 +72,13 @@ namespace Stage_Plan.Ui.Controllers
         public ActionResult OptinRequest(SubscriptionPreferences model)
         {
             model.Update();
-            return RedirectToAction("ThankYou", new { message = "<h1>Hurray...it's great you want to join us</h1> <p> We've sent you an email. You'll need to check it out and follow the instructions to complete the sign up.</p>" });
+            return RedirectToAction("ThankYou", new { header = "Hurray...it's great you want to join us", msg1=  "We've sent you an email. You'll need to check it out and follow the instructions to complete the sign up."  });
         }
 
         public ActionResult OptinConfirm()
         {
-            return RedirectToAction("ThankYou", new { message = "<h1>Hurray...You are now subscribed!</h1><p>Thank you for you for your support!</p>" });
+           
+            return RedirectToAction("ThankYou", new { header = "<h1>Hurray...You are now subscribed!", msg = "Thank you for you for your support!" });
         }
 
 
@@ -78,9 +87,9 @@ namespace Stage_Plan.Ui.Controllers
         public ActionResult Contact(Contact model)
         {
             var email = "support@stage-plan.com";
-            var x = Utilies.Email.SendEmail(false, "mail.stage-plan.com", false, 25,email , GetPassword(), email, new List<string> { model.Email }, null, new List<string>{ email },"Email from Stage-Plan", true, GetBody(model));
+            var x = Utilies.Email.SendEmail(false, "mail.stage-plan.com", false, 25, email, GetPassword(), email, new List<string> { model.Email }, null, new List<string> { email }, "Email from Stage-Plan", true, GetBody(model));
             //todo verification
-            return RedirectToAction("ThankYou", new { message = "<h1>Hurray...we've got your message!</h1><p> Thank you for you message, we'll review you message and come back to you if required!</p>" });
+            return RedirectToAction("ThankYou", new { header = "Hurray...we've got your message!", msg1= "Thank you for you message, we'll review you message and come back to you if required!" });
 
         }
 

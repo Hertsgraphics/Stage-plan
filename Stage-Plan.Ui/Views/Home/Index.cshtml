@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Stage_plan.Bll.SubscriptionPreferences
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -60,9 +62,17 @@
     <article class="signUp">
         <p class="title">Sign up</p>
         <p>Sign up and get emails for any new features.</p>
-        <p><input type="text" /></p>
-        <p><input type="text" /></p>
-        <p><input type="button" value="Submit" /></p>
+        @using (Html.BeginForm("OptinRequest", "Home"))
+            {
+            @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br />
+
+            @Html.TextBoxFor(a => a.EmailAddress, new { @placeholder = "Email", @class = "email" })<br />
+
+         
+            <div class="center">
+                <input type="submit" value="Submit" />
+            </div>
+        }
     </article>
     </div>
     <div class="clearBoth"></div>

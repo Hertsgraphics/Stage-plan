@@ -33,7 +33,7 @@ namespace Stage_plan.Tests
 
             var emailFromDb = new Bll.SubscriptionPreferences().GetEmailByAddress(email.EmailAddress);
 
-            Assert.IsTrue(emailFromDb.IsOptIn);
+            Assert.IsFalse(emailFromDb.IsOptIn);
 
             Delete(email);//clean up
         }

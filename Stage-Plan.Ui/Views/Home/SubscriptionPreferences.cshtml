@@ -15,12 +15,25 @@
             {
         @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br />
 
-        @Html.TextBoxFor(a => a.EmailAddress, new { @placeholder = "Email", @class = "email" })<br />
+        @Html.TextBoxFor(a => a.EmailAddress, new { @placeholder = "Email", @class = "email" })<br /><br />
 
-        @Html.RadioButtonFor(a => a.IsOptIn, true) @:Opt In
-        @Html.RadioButtonFor(a => a.IsOptIn, false) @:Opt Out
-                <div class="center">
-                    <input type="submit" value="Submit" />
-                </div>
-    }
+        <div class="subscriptionOptInOut">
+
+            @Html.RadioButtonFor(a => a.IsOptIn, true) <span>Opt In</span>
+        </div>
+
+        <br />
+
+        <div class="subscriptionOptInOut">
+            @Html.RadioButtonFor(a => a.IsOptIn, false) <span>Opt Out</span>
+            </div>
+
+            <br />
+
+            <div class="center">
+                <input type="submit" value="Submit" />
+            </div>
+            }
+
+            <div class="clearBoth"></div>
 </section>

@@ -12,45 +12,88 @@ namespace Stage_plan.Tests
         public void OptIn()
         {
             var email = GetEmail(true);
-            Save(email);
+            var result = email.Update();
+            Assert.IsTrue(String.IsNullOrEmpty(result));
             Delete(email);//clean up
         }
 
-        private void Save(SubscriptionPreferences email)
-        {
-            var result = email.Update();
-
-            Assert.IsTrue(String.IsNullOrEmpty(result));
-        }
 
         [TestMethod]
-        public void OptOut()
+        public void OptInThenOptOut()
         {
             var email = GetEmail(true);
-            Save(GetEmail(true));//opt in first so we can unsubscribe later
-            email.IsOptIn = false;
-            Save(email);//attempt opt out
+            var result = email.Update();
+            Assert.IsTrue(String.IsNullOrEmpty(result));
 
+            email = GetEmail(false);
+            result = email.Update();//attempt opt out
+            Assert.IsTrue(String.IsNullOrEmpty(result));//expected no error message as there is an email to opt out
+            
             var emailFromDb = new Bll.SubscriptionPreferences().GetEmailByAddress(email.EmailAddress);
 
             Assert.IsFalse(emailFromDb.IsOptIn);
 
-            Delete(email);//clean up
+            Delete(email);//clean up if needed - it shouldn't be as entry should not be saved to database
+
+        }
+
+
+        [TestMethod]
+        public void OptOutOnly()
+        {
+            var email = GetEmail(false);
+            var result = email.Update();//attempt opt out
+
+            Assert.IsTrue(!String.IsNullOrEmpty(result));//expected error message
+
+            Delete(email);//clean up if needed - it shouldn't be as entry should not be saved to database
         }
 
         [TestMethod]
         public void OptInFromOptOut()
         {
+            //opt out first so we can re join later
+            var optIn = GetEmail(false);
+            var result = optIn.Update();
+            Assert.IsTrue(!String.IsNullOrEmpty(result));
+
+            //now attempt to opt in
+            var email = GetEmail(true);
+            result = email.Update();
+            Assert.IsTrue(String.IsNullOrEmpty(result));
+            
+            var emailFromDb = new Bll.SubscriptionPreferences().GetEmailByAddress(email.EmailAddress);
+
+            Assert.IsTrue(emailFromDb.IsOptIn);
+
+            Delete(email);//clean up
         }
 
         [TestMethod]
         public void OptOutWithUnrecognisedEmailAddress()
         {
+            var optin = GetEmail(true);
+            var result = optin.Update();
+            Assert.IsTrue(String.IsNullOrEmpty(result));
+
+            var email = GetEmail(false);
+            email.EmailAddress = email.EmailAddress + "asdf";
+            result = email.Update();
+            Assert.IsTrue(!String.IsNullOrEmpty(result));//expecting error message
+            
+            Delete(optin);//clean up
         }
 
         [TestMethod]
         public void OptOutWithIncompleteModel()
         {
+            var optin = GetEmail(true);
+            optin.EmailAddress = "";
+            var result = optin.Update();
+
+            Assert.IsTrue(!String.IsNullOrEmpty(result));//expecting error message
+
+            Delete(optin);//clean up
         }
 
         private Bll.SubscriptionPreferences GetEmail(bool isOptIn)

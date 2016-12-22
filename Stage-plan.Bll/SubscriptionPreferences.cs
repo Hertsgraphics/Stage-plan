@@ -75,7 +75,23 @@ namespace Stage_plan.Bll
             if (email != null && email.IsOptin)
                 return "The email address provided is already opt in.";
 
-            email = new Dal.MailingList()
+            if (email == null)
+            {
+                email = New();
+                this._dc.MailingLists.Add(email);
+            }
+            else
+            {
+                email.Name = this.Name;
+                email.IsOptin = this.IsOptIn;
+            }
+
+            return Save() ? String.Empty : this._faultSavingMessage;
+        }
+
+        private Dal.MailingList New()
+        {
+            return new Dal.MailingList()
             {
                 ConfirmToken = Guid.NewGuid().ToString(),
                 DateOptInRequest = DateTime.Now,
@@ -83,20 +99,19 @@ namespace Stage_plan.Bll
                 IsOptin = this.IsOptIn,
                 Name = this.Name
             };
-
-            this._dc.MailingLists.Add(email);
-
-            return Save() ? String.Empty : this._faultSavingMessage;
         }
 
         private string OptOut()
         {
             var email = GetEmail();
 
-            if (email == null)
+            if (email == null)  
                 return "Sorry, we don't have any match for the email address provided.";
 
-            this._dc.MailingLists.Remove(email);
+            email.Name = this.Name;
+            email.IsOptin = this.IsOptIn;
+            email.IsConfirmed = false;//need to reset so user can re-opt in
+            email.DateOptInConfirm = new DateTime();
             return Save() ? String.Empty : this._faultSavingMessage;
         }
 
@@ -115,6 +130,9 @@ namespace Stage_plan.Bll
         {
             try
             {
+                if (!Validate())
+                    return false;
+
                 this._dc.SaveChanges();
                 return true;
             }
@@ -123,6 +141,17 @@ namespace Stage_plan.Bll
                 //TODO send fail email
                 return false;
             }
+        }
+
+        private bool Validate()
+        {
+            if (String.IsNullOrEmpty(this.EmailAddress))
+                return false;
+
+            if (String.IsNullOrEmpty(this.Name))
+                return false;
+
+            return true;
         }
     }
 }

@@ -13,5 +13,19 @@ namespace Stage_Plan.Ui.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public JsonResult SaveNewStagePlan(string name)
+        {
+            //todo save
+            return Json(new { id = 1 });
+        }
+
+        [HttpPost]
+        public JsonResult SaveInstrumentToStagePlan(string name)
+        {
+            //todo save
+            return Json(new { didSave = false});
+        }
     }
 }

@@ -229,6 +229,7 @@
     <Content Include="Content\MainSite\Images\Stage-Plan-Logo.png" />
     <Content Include="Content\MainSite\Images\Venue.jpg" />
     <Content Include="Content\Stageplan\Css\lmsResponsiveMenu.css" />
+    <Content Include="Content\Stageplan\Css\spinner.css" />
     <Content Include="Content\Stageplan\Css\Stageplan.css" />
     <Content Include="Content\Stageplan\Images\Acoustic-Guitar.png" />
     <Content Include="Content\Stageplan\Images\Bass.png" />
@@ -257,7 +258,9 @@
     <Content Include="Content\Stageplan\Images\Trumpet.png" />
     <Content Include="Content\Stageplan\Images\Tuba.png" />
     <Content Include="Content\Stageplan\Images\Violin.png" />
+    <Content Include="Content\Stageplan\Javascript\ajax.js" />
     <Content Include="Content\Stageplan\Javascript\lmsResponsiveMenu.js" />
+    <Content Include="Content\Stageplan\Javascript\saveStageplan.js" />
     <Content Include="Content\Stageplan\Javascript\scripts.js" />
     <Content Include="Content\Stageplan\Javascript\Stageplan.js" />
     <Content Include="favicon.ico" />

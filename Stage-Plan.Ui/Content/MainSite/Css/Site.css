@@ -83,6 +83,36 @@ article.signUp {
             background: #34ceff;
         }
 
+input[type=text], textArea {
+    background: #fff;
+    color: #333;
+    padding: 1%;
+    width: 90%;
+    margin: 1%;
+    border: 1px solid #a52a2a;
+}
+
+textArea {
+    height: 150px;
+}
+
+
+ input[type=submit] {
+    background: #18a0ec;
+    color: #fff;
+    border: none;
+    padding: 1%;
+    margin: 1%;
+    width: 92%;
+    float: left; 
+}
+.subscriptionOptInOut {
+  margin-left: 10px;
+  border: 1px solid #a52a2a;
+  width: 50%;
+  padding: 1%;
+}
+
 nav {
     color: #fff;
     float: left;
@@ -139,27 +169,3 @@ a {
     a:hover, nav ul li a:hover {
         color: #34ceff;
     }
-
-input[type=text], textArea {
-    background: #fff;
-    color: #333;
-    padding: 1%;
-    width:90%;
-    margin: 1%;
-    border: 1px solid #a52a2a;
-}
-
-textArea {
-    height: 150px;
-}
-
-input {
-    background: #18a0ec;
-    color: #fff;
-    border: none;
-    padding: 1%;
-    width: 92.2%;
-    float: left;
-    margin: 1%;
-
-}

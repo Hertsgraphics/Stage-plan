@@ -1,0 +1,14 @@
+﻿
+.spinnerWrapper {
+    -webkit-animation: fadeinPart .5s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadeinPart .5s; /* Firefox < 16 */
+    -ms-animation: fadeinPart .5s; /* Internet Explorer */
+    -o-animation: fadeinPart .5s; /* Opera < 12.1 */
+    animation: fadeinPart .5s;
+}
+
+.spinner {
+    min-width: 100%;
+    min-height: 100%;
+    position: fixed;
+}

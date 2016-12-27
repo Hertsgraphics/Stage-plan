@@ -1,8 +1,11 @@
 ﻿
 
 var saveStageplan = new function () {
+    
+    this.save = function (bandName, stageplanHtml, fail) {
 
-    this.save = function (bandName, stageplanHtml) {
+        
+        ajax.postNow("../../SaveNewStagePlan", JSON.stringify({ 'name': 'myName' }, success, fail, fail));
 
     };
 

@@ -13,9 +13,15 @@
     <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/lmsResponsiveMenu.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/stageplan.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/spinner.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/progressBar.css" />
 
 </head>
 <body>
+
+    <div class="progressBar">
+        <div class="inner" id="progressBar">&nbsp;</div>
+    </div>
+
     <div class="stage" id="stage">
 
         <div id="menu"></div>
@@ -120,11 +126,11 @@
         cancel button
         -->
 
-        <input type="text" placeholder="Enter band name" class="bandName" />
+        <input type="text" placeholder="Enter band name" class="bandName" id="bandName" />
 
         <div class="captcha">
             <img src="~/Content/Stageplan/Images/Captcha-01.jpg" id="captcha_signUp" /><br />
-            <input type="text" placeholder="Enter captcha" class="captchaTextBox" />
+            <input type="text" placeholder="Enter captcha" class="captchaTextBox" id="captchaTextBox" />
         </div>
 
         @*<input type="button" value="Save" id="saveProjectButton" />*@
@@ -136,7 +142,7 @@
         <input type="button" value="Save" id="saveStageplanButton" />
         <input type="button" value="cancel" id="cancelSaveStagePlanPopUp" />
 
-    </div><!--close seve stageplan pop up-->
+    </div><!--close save stageplan pop up-->
 
 
 
@@ -158,7 +164,7 @@
 
         <input type="button" value="cancel" id="cancelLoadExistingProject" />
 
-    </div><!--close seve stageplan pop up-->
+    </div><!--close load stageplan pop up-->
 
 
 
@@ -240,7 +246,10 @@
 
     <script src="~/Content/Stageplan/Javascript/lmsResponsiveMenu.js"></script>
     <script src="~/Content/Stageplan/Javascript/scripts.js"></script>
+    <script src="~/Content/Stageplan/Javascript/saveStageplan.js"></script>
+    <script src="~/Content/Stageplan/Javascript/progressBar.js"></script>
     <script src="~/Content/Stageplan/Javascript/stageplan.js"></script>
+
     <script>
 
 

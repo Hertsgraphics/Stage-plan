@@ -1,6 +1,7 @@
 ﻿
 
 lmsResponsiveMenu.setUp({ "parentId": "menu", "navId": "mainNav", "responsiveCssClosed": "responsiveCssClosed", "text": "Menu" });
+progressBar.setUp("progressBar");
 
 /* create the nav links */
 
@@ -67,7 +68,15 @@ _showSaveOptions.addEventListener("click", showSaveStageplanPopUp);
 
 _saveEdit.addEventListener("click", saveEdit);
 _addNewInstrumentButton.addEventListener("click", addNewInstrument);
-
+saveStageplan.setUp("saveStageplanButton",
+                    "bandName",
+                    "instrumentsOnStage",
+                    null,
+                    null,
+                    progressBar.progress,
+                    document.getElementById("captcha_signUp").src,
+                    "captchaTextBox",
+                    null); //todo
 _deleteButton.addEventListener("click", deleteInstrument);
 
 //_loadExistingStageplanPopUp.addEventListener("click", loadExistingStageplanPopUp);
@@ -149,9 +158,6 @@ function showAddInstrument(e, instrumentDetail, instrumentName, isEdit) {
 }
 
 
-
-
-
 function clearBlur() {
     instrumentsOnStage.className = "";
 }
@@ -211,6 +217,7 @@ function addNewInstrument(x, y) {
     var image = document.createElement("img");
     instrumentInfo.setAttribute("data-text", _instrumentName.value);
     instrumentInfo.setAttribute("data-detail", _addInstrumentExtraDetail.value);
+    instrumentInfo.setAttribute("data-src", _selectedImage.src);
 
     image.setAttribute("src", _selectedImage.src);
 

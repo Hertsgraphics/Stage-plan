@@ -229,6 +229,8 @@
     <Content Include="Content\MainSite\Images\Stage-Plan-Logo.png" />
     <Content Include="Content\MainSite\Images\Venue.jpg" />
     <Content Include="Content\Stageplan\Css\lmsResponsiveMenu.css" />
+    <Content Include="Content\Stageplan\Css\progressBar.css" />
+    <Content Include="Content\Stageplan\Javascript\progressBar.js" />
     <Content Include="Content\Stageplan\Css\spinner.css" />
     <Content Include="Content\Stageplan\Css\Stageplan.css" />
     <Content Include="Content\Stageplan\Images\Acoustic-Guitar.png" />

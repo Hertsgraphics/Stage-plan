@@ -2,19 +2,35 @@
 
 var saveStageplan = new function () {
     
+    var _stageplanHtmlId;
+    var _successAction;
+    var _failAction;
+    var _progressBarAction;
+
     this.setUp = function (saveStageplanButtonId, bandNameId, stageplanHtmlId, successAction, failAction, progressBarAction, captchaSrc, captchaTextId, captchaFailAction) {
+
+        _stageplanHtmlId = stageplanHtmlId;
+        _successAction = successAction;
+        _failAction = failAction;
+        _progressBarAction = progressBarAction;
         var saveButton = document.getElementById(saveStageplanButtonId);
         saveButton.addEventListener("click", function () {
-            if (isVerified(captchaSrc, captchaTextId, captchaFailAction)) {
-                save(bandNameId, stageplanHtmlId, successAction, failAction, progressBarAction);
-            }
-            
+
+            var bandName = document.getElementById(bandNameId).value;
+            if (isVerified(captchaSrc, captchaTextId, captchaFailAction, bandName)) {
+                save(bandName, stageplanHtmlId, successAction, failAction, progressBarAction);
+            }            
         });
     };
 
-    function save(bandNameId, stageplanHtmlId, successAction, failAction, progressBarAction) {
+    function save(bandName) {
+        ajaxCall.postNow("../../Stageplan/SaveNewStagePlan", JSON.stringify({ 'name': bandName }), getStageplanIdSuccess, fail, fail);
+    }
 
-        var stagePlanId = getStageplanId(bandNameId);
+    function getStageplanIdSuccess(returnId) {
+
+        var stagePlanId = returnId;
+
         var stageplanHtml = document.getElementById(stageplanHtmlId);
 
         //loop through each instrument
@@ -27,34 +43,30 @@ var saveStageplan = new function () {
             var top = child.offsetTop;
             var src = child.getAttribute("data-src");
 
-           
             progressBarAction(i + 1, stageplanHtml.children.length);
-            var startTime = new Date().getTime(); // get the current time
-            while (new Date().getTime() < startTime + 1000); // hog cpu//todo remove.. used to simulate database save
 
-            //update [progress
-
-            //save
         }
-        //alert("todo save");
-        //ajax.postNow("../../SaveNewStagePlan", JSON.stringify({ 'name': 'myName' }, success, fail, fail));
 
+        //    ajaxCall.postNow("../../SaveNewStagePlan", JSON.stringify({ 'name': 'myName' }, getStageplanIdSuccess, _failAction, _failAction));
     }
 
     function saveInstrument() {
 
     }
 
-    function getStageplanId(bandNameId) {
-        return 1;//todo
-    }
 
-    function isVerified(captchaSrc, captchaTextId, captchaFailAction) {
+    function isVerified(captchaSrc, captchaTextId, captchaFailAction, bandName) {
         var captchaText = document.getElementById(captchaTextId).value;
         var splity = captchaSrc.split("/");
         var src = splity[splity.length -1];
 
+        if (helpers.isNullOrEmpty(bandName))
+            return false;
+
         return true;
     }
 
+    function fail(d) {
+        _failAction("Failed in save...");
+    }
 };

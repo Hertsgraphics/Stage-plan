@@ -72,7 +72,7 @@ saveStageplan.setUp("saveStageplanButton",
                     "bandName",
                     "instrumentsOnStage",
                     null,
-                    null,
+                    fail,
                     progressBar.progress,
                     document.getElementById("captcha_signUp").src,
                     "captchaTextBox",
@@ -133,6 +133,10 @@ function closeCurrentPopUp() {
 
 function createNewPlan() {
     location.reload();
+}
+
+function fail(msg) {
+    alert("TODO - implement.... " + msg)
 }
 
 function showAddInstrument(e, instrumentDetail, instrumentName, isEdit) {

@@ -1,4 +1,5 @@
 ﻿var ajaxCall = new function () {
+    
     this.postNow = function (url, data, successDelegate, failDelegate, errorDelegate) {
 
         if (successDelegate == "" || successDelegate == null)

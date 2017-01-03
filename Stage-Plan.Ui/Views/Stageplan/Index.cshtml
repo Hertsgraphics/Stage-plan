@@ -9,18 +9,14 @@
 <head>
     @*<meta name="viewport" content="width=device-width" />*@
     <title>Index</title>
-    
+
     <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/lmsResponsiveMenu.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/stageplan.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/spinner.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/progressBar.css" />
 
 </head>
 <body>
 
-    <div class="progressBar">
-        <div class="inner" id="progressBar">&nbsp;</div>
-    </div>
 
     <div class="stage" id="stage">
 
@@ -31,11 +27,11 @@
                 <li><a id="showAddInstrumentLink">Add instrument</a></li>
                 <li><a id="showSaveOptionsLink">Save stageplan</a></li>
                 @*<li><a id="showLoadExistingStageplanLink">Load stageplan</a></li>
-                <li><a id="showSignInLink">Sign in</a></li>
-                <li><a id="showSignOutLink">Sign out</a></li>
-                <li><a id="showSignUpLink">Sign up</a></li>
-                <li><a id="showYouTubeLink">Tutorials on YouTube</a></li> 
-                <li><a id="showSuggestionsLink">Suggestions</a></li>*@
+                    <li><a id="showSignInLink">Sign in</a></li>
+                    <li><a id="showSignOutLink">Sign out</a></li>
+                    <li><a id="showSignUpLink">Sign up</a></li>
+                    <li><a id="showYouTubeLink">Tutorials on YouTube</a></li>
+                    <li><a id="showSuggestionsLink">Suggestions</a></li>*@
                 <li><img src="~/Content/Stageplan/Images/Stage-Plan-Logo.png" /></li>
             </ul>
             <div id="noInstruments" class="defaultEmptyStagePlan"></div>
@@ -135,7 +131,7 @@
 
         @*<input type="button" value="Save" id="saveProjectButton" />*@
 
-        <div id="readOnlyStageplanUrl">
+        <div id="readOnlyStageplanUrl" class="hide">
             read only stageplan url
         </div>
 
@@ -165,6 +161,22 @@
         <input type="button" value="cancel" id="cancelLoadExistingProject" />
 
     </div><!--close load stageplan pop up-->
+
+
+
+    <div id="saveUrlPopUp" class="popUp hide">
+
+        <h2>Congratulations</h2>
+
+        <p>Your stage plan has been saved <img src="~/Content/MainSite/Images/Happy-Emotion.png" /></p>
+        <p>Your unique URL is:</p>
+        <div class="urlBox">
+            <span id="savedStagePlanUrl"></span>
+        </div>
+
+        <input type="button" value="cancel" id="cancelSaveUrlPopUp" />
+
+    </div><!--close save URL pop up-->
 
 
 

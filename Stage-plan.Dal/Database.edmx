@@ -23,7 +23,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BandName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BandName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="URL" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="StageplanInstrument">
@@ -32,12 +32,11 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StageplanId" Type="int" Nullable="false" />
-          <Property Name="InstrumentName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Details" Type="nvarchar" MaxLength="800" />
+          <Property Name="DataDetail" Type="nvarchar" MaxLength="800" />
           <Property Name="X" Type="numeric" Precision="8" Scale="4" Nullable="false" />
           <Property Name="Y" Type="numeric" Precision="8" Scale="4" Nullable="false" />
-          <Property Name="DataHelper" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="DataText" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Src" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <Association Name="FK_StageplanInstrument_Stageplan">
           <End Role="Stageplan" Type="Self.Stageplan" Multiplicity="1" />
@@ -82,33 +81,32 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BandName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="StageplanInstruments" Relationship="StageplanModel.FK_StageplanInstrument_Stageplan" FromRole="Stageplan" ToRole="StageplanInstrument" />
         </EntityType>
+        <EntityContainer Name="StageplanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MailingLists" EntityType="Self.MailingList" />
+          <EntitySet Name="Stageplans" EntityType="Self.Stageplan" />
+          <EntitySet Name="StageplanInstruments" EntityType="StageplanModel.StageplanInstrument" />
+          <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="StageplanModel.FK_StageplanInstrument_Stageplan">
+            <End Role="Stageplan" EntitySet="Stageplans" />
+            <End Role="StageplanInstrument" EntitySet="StageplanInstruments" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="StageplanInstrument">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StageplanId" Type="Int32" Nullable="false" />
-          <Property Name="InstrumentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Details" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
-          <Property Name="X" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
-          <Property Name="Y" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
-          <Property Name="DataHelper" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataDetail" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="X" Type="Decimal" Nullable="false" Precision="8" Scale="4" />
+          <Property Name="Y" Type="Decimal" Nullable="false" Precision="8" Scale="4" />
+          <Property Name="DataText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Src" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Stageplan" Relationship="StageplanModel.FK_StageplanInstrument_Stageplan" FromRole="StageplanInstrument" ToRole="Stageplan" />
         </EntityType>
-        <EntityContainer Name="StageplanEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="MailingLists" EntityType="Self.MailingList" />
-          <EntitySet Name="Stageplans" EntityType="Self.Stageplan" />
-          <EntitySet Name="StageplanInstruments" EntityType="Self.StageplanInstrument" />
-          <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="StageplanModel.FK_StageplanInstrument_Stageplan">
-            <End Role="Stageplan" EntitySet="Stageplans" />
-            <End Role="StageplanInstrument" EntitySet="StageplanInstruments" />
-          </AssociationSet>
-        </EntityContainer>
         <Association Name="FK_StageplanInstrument_Stageplan">
           <End Type="StageplanModel.Stageplan" Role="Stageplan" Multiplicity="1" />
           <End Type="StageplanModel.StageplanInstrument" Role="StageplanInstrument" Multiplicity="*" />
@@ -153,14 +151,13 @@
           <EntitySetMapping Name="StageplanInstruments">
             <EntityTypeMapping TypeName="StageplanModel.StageplanInstrument">
               <MappingFragment StoreEntitySet="StageplanInstrument">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StageplanId" ColumnName="StageplanId" />
-                <ScalarProperty Name="InstrumentName" ColumnName="InstrumentName" />
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="X" ColumnName="X" />
-                <ScalarProperty Name="Y" ColumnName="Y" />
-                <ScalarProperty Name="DataHelper" ColumnName="DataHelper" />
+                <ScalarProperty Name="Src" ColumnName="Src" />
                 <ScalarProperty Name="DataText" ColumnName="DataText" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="DataDetail" ColumnName="DataDetail" />
+                <ScalarProperty Name="StageplanId" ColumnName="StageplanId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

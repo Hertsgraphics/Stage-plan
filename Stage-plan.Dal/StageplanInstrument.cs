@@ -16,12 +16,11 @@ namespace Stage_plan.Dal
     {
         public int Id { get; set; }
         public int StageplanId { get; set; }
-        public string InstrumentName { get; set; }
-        public string Details { get; set; }
+        public string DataDetail { get; set; }
         public decimal X { get; set; }
         public decimal Y { get; set; }
-        public string DataHelper { get; set; }
         public string DataText { get; set; }
+        public string Src { get; set; }
     
         public virtual Stageplan Stageplan { get; set; }
     }

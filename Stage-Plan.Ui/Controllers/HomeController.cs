@@ -1,6 +1,6 @@
 ﻿using Stage_plan.Bll;
-using Stage_Plan.Ui.Models.Contact;
-using Stage_Plan.Ui.Models.Emails;
+using Stage_plan.Ui.Models.Contact;
+using Stage_plan.Ui.Models.Emails;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Stage_Plan.Ui.Controllers
+namespace Stage_plan.Ui.Controllers
 {
     public class HomeController : Controller
     {

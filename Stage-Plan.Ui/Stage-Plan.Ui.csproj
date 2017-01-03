@@ -208,6 +208,8 @@
     <Compile Include="Models\Contact\Contact.cs" />
     <Compile Include="Models\Contact\IContact.cs" />
     <Compile Include="Models\Emails\Email.cs" />
+    <Compile Include="Models\Instrument.cs" />
+    <Compile Include="Models\Instruments.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -229,7 +231,7 @@
     <Content Include="Content\MainSite\Images\Stage-Plan-Logo.png" />
     <Content Include="Content\MainSite\Images\Venue.jpg" />
     <Content Include="Content\Stageplan\Css\lmsResponsiveMenu.css" />
-    <Content Include="Content\Stageplan\Css\progressBar.css" />
+    <Content Include="Content\Stageplan\Images\EQ-Spinner.gif" />
     <Content Include="Content\Stageplan\Javascript\helpers.js" />
     <Content Include="Content\Stageplan\Javascript\jquery-2.1.4.min.js" />
     <Content Include="Content\Stageplan\Javascript\progressBar.js" />

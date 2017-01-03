@@ -1,11 +1,11 @@
-﻿using Stage_Plan.Ui.Models.Emails;
-using Stage_Plan.Ui.Models.Contact;
+﻿using Stage_plan.Ui.Models.Emails;
+using Stage_plan.Ui.Models.Contact;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Stage_Plan.Ui.Models
+namespace Stage_plan.Ui.Models
 {
     public class Person : AbstractContact
     {

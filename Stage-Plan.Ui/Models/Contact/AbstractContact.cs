@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace Stage_Plan.Ui.Models.Contact
+namespace Stage_plan.Ui.Models.Contact
 {
     public abstract class AbstractContact
     {

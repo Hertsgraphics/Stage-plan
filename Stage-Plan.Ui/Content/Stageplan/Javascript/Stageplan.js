@@ -1,8 +1,8 @@
 ﻿
 
 lmsResponsiveMenu.setUp({ "parentId": "menu", "navId": "mainNav", "responsiveCssClosed": "responsiveCssClosed", "text": "Menu" });
-progressBar.setUp("progressBar");
 
+var _websiteUrl = "https://stage-plan.com";
 /* create the nav links */
 
 var _newPlan = document.getElementById("showNewPlanLink");
@@ -23,7 +23,6 @@ var _saveEdit = document.getElementById("saveEditButton");
 var _popUp = document.getElementById("addInstrumentPopUp");
 var _instrumentName = document.getElementById("instrumentName");
 var _addNewInstrumentButton = document.getElementById("addButton");
-var _cancelEditButton = document.getElementById("cancelEditButton");
 var _addInstrumentExtraDetail = document.getElementById("addInstrumentExtraDetail");
 var _deleteButton = document.getElementById("deleteButton");
 var _popUpUl = _popUp.children[1];
@@ -48,6 +47,8 @@ var _cancelSignIn = document.getElementById("cancelSignIn");
 var _cancelSignUp = document.getElementById("cancelSignUp");
 var _cancelShowSelectedInstrumentInfo = document.getElementById("cancelShowSelectedInstrumentInfo");
 var _cancelSuggestionsPopUp = document.getElementById("cancelSuggestionsPopUp");
+var _cancelEditButton = document.getElementById("cancelEditButton");
+var _cancelSaveUrlPopUp = document.getElementById("cancelSaveUrlPopUp");
 /*end cancel buttons*/
 var _debug = document.getElementById("debug");
 
@@ -71,12 +72,12 @@ _addNewInstrumentButton.addEventListener("click", addNewInstrument);
 saveStageplan.setUp("saveStageplanButton",
                     "bandName",
                     "instrumentsOnStage",
-                    null,
+                    saveForUrl,
                     fail,
-                    progressBar.progress,
                     document.getElementById("captcha_signUp").src,
                     "captchaTextBox",
-                    null); //todo
+                    null
+                    ); //todo
 _deleteButton.addEventListener("click", deleteInstrument);
 
 //_loadExistingStageplanPopUp.addEventListener("click", loadExistingStageplanPopUp);
@@ -89,6 +90,9 @@ _cancelSignIn.addEventListener("click", function () { closePopUp(document.getEle
 _cancelSignUp.addEventListener("click", function () { closePopUp(document.getElementById("signUpPopUp")); });
 _cancelShowSelectedInstrumentInfo.addEventListener("click", function () { closePopUp(document.getElementById("showSelectedInstrumentInfo")); });
 _cancelSuggestionsPopUp.addEventListener("click", function () { closePopUp(document.getElementById("showSuggestionsPopUp")); });
+_cancelSaveUrlPopUp.addEventListener("click", function () { closePopUp(document.getElementById("saveUrlPopUp")); });
+
+
 /*end cancel events*/
 
 
@@ -96,6 +100,20 @@ for (var i = 0; i < _popUpUl.children.length; i++) {
     var image = _popUpUl.children[i].children[0];
     image.addEventListener("click", selectInstrument);
 }
+
+
+function saveForUrl(data) {
+    closeCurrentPopUp();
+    showPopUp("saveUrlPopUp");
+    var url = _websiteUrl + "/plan/" + data.url;
+    var a = document.createElement("a");
+    a.href = url;
+    var txt = document.createTextNode(url);
+    a.appendChild(txt);
+    var savedStagePlanUrl = document.getElementById("savedStagePlanUrl");
+    savedStagePlanUrl.appendChild(a);
+}
+
 
 function showSuggestionPopUp() {
     showPopUp("showSuggestionsPopUp");
@@ -119,8 +137,7 @@ function signUpPopUp() {
 
 function showPopUp(id) {
     var ele = document.getElementById(id);
-    if (_currentPopUp != null)
-        closeCurrentPopUp();
+    closeCurrentPopUp();
 
     _currentPopUp = ele;
     replaceCssClass(ele, "hide", "");
@@ -192,7 +209,7 @@ function deleteInstrument() {
 }
 
 function isFirstTimeUse() {
-    if (_allInstruments <= 0) 
+    if (_allInstruments <= 0)
         _noInstruments.innerHTML = "Please click on Menu and then add an instrument to the stageplan to get started.";
     else
         noInstruments.innerHTML = "";

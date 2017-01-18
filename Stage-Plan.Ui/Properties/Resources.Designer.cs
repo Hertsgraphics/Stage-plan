@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stage_Plan.Ui.Properties {
+namespace Stage_plan.Ui.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Stage_Plan.Ui.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stage_Plan.Ui.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stage_plan.Ui.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -84,7 +84,7 @@ namespace Stage_Plan.Ui.Properties {
         ///    &lt;table width=&quot;100%&quot;&gt;
         ///
         ///        &lt;tr&gt;
-        ///            &lt;td style=&quot;background:url(&apos;http://www.Stage_Planmacaret.es/Content/ [rest of string was truncated]&quot;;.
+        ///            &lt;td style=&quot;background:url(&apos;http://www.Stage_planmacaret.es/Content/ [rest of string was truncated]&quot;;.
         /// </summary>
         public static string EmailTemplate {
             get {

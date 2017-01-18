@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Stage_Plan.Ui
+namespace Stage_plan.Ui
 {
     public class RouteConfig
     {

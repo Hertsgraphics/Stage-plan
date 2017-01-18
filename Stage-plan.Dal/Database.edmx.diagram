@@ -7,7 +7,7 @@
       <Diagram DiagramId="e2e2a9379c0a4e4d9d7361e7a878b7db" Name="Diagram1">
         <EntityTypeShape EntityType="StageplanModel.MailingList" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StageplanModel.Stageplan" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StageplanModel.StageplanInstrument" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StageplanModel.StageplanInstrument" Width="1.5" PointX="5" PointY="5" />
         <AssociationConnector Association="StageplanModel.FK_StageplanInstrument_Stageplan" />
       </Diagram>
     </edmx:Diagrams>

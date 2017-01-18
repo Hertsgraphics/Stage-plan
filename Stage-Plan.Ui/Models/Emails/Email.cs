@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Threading;
 using System.Web;
 
-namespace Stage_Plan.Ui.Models.Emails
+namespace Stage_plan.Ui.Models.Emails
 {
     public class Email
     {
@@ -96,7 +96,7 @@ namespace Stage_Plan.Ui.Models.Emails
 
         private string GetEmailBody(string content, string subject)
         {
-            string emailTemplate = Stage_Plan.Ui.Properties.Resources.EmailTemplate;
+            string emailTemplate = Stage_plan.Ui.Properties.Resources.EmailTemplate;
 
             string result = emailTemplate.Replace("@@@Content", content);
             result = result.Replace("@@@Heading", subject);

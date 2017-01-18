@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Stage_Plan.Ui.Controllers
+namespace Stage_plan.Ui.Controllers
 {
     public class BlogController : Controller
     {
@@ -14,7 +14,7 @@ namespace Stage_Plan.Ui.Controllers
             return View();
         }
 
-        public ActionResult Stage_Plan_Vs_Stage_Plot()
+        public ActionResult Stage_plan_Vs_Stage_Plot()
         {
             return View();
         }

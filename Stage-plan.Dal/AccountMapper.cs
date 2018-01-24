@@ -12,14 +12,10 @@ namespace Stage_Plan.Dal
     using System;
     using System.Collections.Generic;
     
-    public partial class AccountVenue
+    public partial class AccountMapper
     {
         public int Id { get; set; }
-        public string ContactName { get; set; }
-        public string VenueUrl { get; set; }
-        public string VenueName { get; set; }
         public int AccountId { get; set; }
-    
-        public virtual Account Account { get; set; }
+        public int AccountStageplanId { get; set; }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Stage_plan.Bll;
 
-namespace Stage_plan.Tests
+using Stage_Plan.Bll;
+
+namespace Stage_Plan.Tests
 {
     [TestClass]
     public class Subscription

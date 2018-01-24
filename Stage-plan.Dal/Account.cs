@@ -17,7 +17,7 @@ namespace Stage_Plan.Dal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
-            this.AccountVenues = new HashSet<AccountVenue>();
+            this.AccountStageplans = new HashSet<AccountStageplan>();
         }
     
         public int Id { get; set; }
@@ -25,8 +25,15 @@ namespace Stage_Plan.Dal
         public string TempPassword { get; set; }
         public int VenueTemplateLimit { get; set; }
         public bool IsEnabled { get; set; }
+        public System.DateTime DateTokenCreated { get; set; }
+        public string Token { get; set; }
+        public int Iterations { get; set; }
+        public string Salt { get; set; }
+        public string Password { get; set; }
+        public System.DateTime DateAccountConfirmed { get; set; }
+        public bool IsConfirmed { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AccountVenue> AccountVenues { get; set; }
+        public virtual ICollection<AccountStageplan> AccountStageplans { get; set; }
     }
 }

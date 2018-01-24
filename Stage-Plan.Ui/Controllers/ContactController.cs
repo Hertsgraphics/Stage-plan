@@ -22,12 +22,8 @@ namespace Stage_Plan.Ui.Controllers
         {
             var email = "support@stage-plan.com";
             var x = Utilies.Email.SendEmail(false, "mail.stage-plan.com", false, 25, email, GetPassword(), email, new List<string> { model.Email }, null, new List<string> { email }, "Email from Stage-Plan", true, GetBody(model));
-
-<<<<<<< HEAD
+            
             if (!String.IsNullOrEmpty(x))
-=======
-            if (String.IsNullOrEmpty(x))
->>>>>>> 9f7ee84602bfa1451f4586132c68b6b74bb4f772
                 Utilies.Email.SendFaultEmail("dave@lmsites.co.uk", "Fault with stage plan", true, "<p>Failed to send contact... MSG: " + x + "</p>Name: " + model.Name + "... Email: " + model.Email + "... Message: " + model.Message);
             //todo verification
             return RedirectToAction("ThankYou","Home", new { header = "Hurray...we've got your message!", msg1 = "Thank you for you message, we'll review you message and come back to you if required!" });

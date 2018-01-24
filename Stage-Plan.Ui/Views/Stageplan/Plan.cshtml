@@ -1,0 +1,438 @@
+﻿
+@model Stage_Plan.Ui.Models.PlanViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>@Model.Instruments.BandName Stage Plan</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/global.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/lmsResponsiveMenu.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/stageplan.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/spinner.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/reusable.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/lmsRating.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/Responsive/responsive.css" />
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body>
+
+
+    <div class="stage" id="stage">
+
+        <div id="menu"></div>
+        <nav id="mainNav">
+            <ul id="lmsNavLink" style="visibility:hidden;display:none" ;>
+                <li>@Html.ActionLink("New plan", "Index")</li>
+                @*<li><a id="showAddInstrumentLink">Add instrument</a></li>
+                     <li><a id="showSaveOptionsLink">Save stageplan</a></li>
+                    <li><a id="showLoadExistingStageplanLink">Load stageplan</a></li>
+                         <li><a id="showSignInLink">Sign in</a></li>
+                         <li><a id="showSignOutLink">Sign out</a></li>
+                         <li><a id="showSignUpLink">Sign up</a></li>
+                         <li><a id="showYouTubeLink">Tutorials on YouTube</a></li>
+                         <li><a id="showSuggestionsLink">Suggestions</a></li>*@
+                <li><a href="https://stage-plan.com/" target="_blank"><img src="~/Content/Stageplan/Images/Stage-Plan-Logo.png" /></a></li>
+            </ul>
+            <div id="noInstruments" class="defaultEmptyStagePlan"></div>
+
+        </nav>
+
+        <div style="background: #fff; right:20px; position: absolute; width: 200px; height: 200px " class="hide" id="debug"></div>
+
+        <div id="instrumentsOnStage"></div>
+
+    </div><!--close stage-->
+
+
+
+
+    <div class="crowdImage">
+        <img src="~/Content/Stageplan/Images/Stage.png" />
+        <input type="button" value="Reset" id="resetButton" class="recentBand hide" />
+    </div>
+
+
+
+
+
+    <div class="stageplanDetails border">
+
+        <h2>Band name: @Model.Instruments.BandName</h2>
+
+        <h3>Details</h3>
+        <div class="column-12 ">
+            @{string previousMember = ""; }
+
+            @foreach (var item in Model.Instruments.AllInstruments.OrderBy(a => a.BandMemberName))
+            {
+
+                if (previousMember != item.BandMemberName && !String.IsNullOrEmpty(previousMember))
+                {
+                    <hr />
+                }
+
+
+                if (previousMember != item.BandMemberName)
+                {
+                    <p>
+                        <b>Member name : </b>
+                        @Stage_Plan.Bll.TextHelper.Format(@item.BandMemberName)
+                    </p>
+                }
+
+                <p>
+                    <b>Equipment : </b>
+                    @item.Text
+                </p>
+
+                if (!String.IsNullOrWhiteSpace(item.Detail))               
+                {
+                    <b>Extra details : </b>
+                    @Stage_Plan.Bll.TextHelper.Format(@Html.Raw(HttpUtility.UrlDecode(item.Detail)));
+                    <br />
+                }
+
+
+                previousMember = item.BandMemberName;
+
+            }
+            <hr />
+
+        </div>
+        <div class="clearBoth">&nbsp;</div>
+
+
+        <div id="fb-root"></div>
+        <script>
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9&appId=1444598225826259";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <h5>Remember, your stage plot will only last for @System.Configuration.ConfigurationManager.AppSettings["DaysStagePlanRemains"], and is then automatically deleted. You can create as many as you like and there are lots of browser plugins which will help you to save your plot as an image or pdf.</h5>
+
+        <div class="tabs" id="smoothScrolling">
+            <ul id="lmsTab">
+                <li>
+                    <div id="smoothScrollingRating">Rating</div>
+                    <div class="ratingArea">
+                        <div id="ratingNotGiven">
+                            <h4>Did you love our stage plan creator?</h4>
+
+                            <p>We'd love to know your thoughts. Please leave a rating and leave a comment (the comment won't be visible to any one but us)</p>
+                            <div id="rating" class="ratings"></div>
+                            <p>Please let us know something that you liked:</p>
+                            <textarea id="positiveRatingComments" placeholder="Please let us know anything you liked"></textarea>
+                            <p>Please let us know something you did not like:</p>
+                            <textarea id="negativeRatingComments" placeholder="Please let us know anything you did not like or would like to see in the future"></textarea>
+                            <br /><br />
+                            <input type="button" id="sendRating" value="Send" />
+
+                        </div>
+                        <div id="ratingGiven" class="hide">We have already received your rating, thank you! </div>
+                    </div>
+                </li>
+                <li>
+                    <div id="smoothScrollingYourStagePlan">
+                        Your stage plan URL
+                    </div>
+                    <div>
+                        <h4>Your unique stage plot URL</h4>
+
+
+                        <p class="featureBox copyUrl">
+                            <span id="featureText">
+                                @HttpContext.Current.Request.Url.AbsoluteUri
+                            </span>
+                            <img src="~/Content/Stageplan/Images/copy.png" id="copyText" title="Copy" alt="Copy" />
+                        </p>
+                        <p>The URL above is the URL for your stage plot. It is unique for you. </p>
+                        <p>You can simply copy and paste the above web address (URL) into your email client and send it to your engineer/band mates/venue or who ever else you like.</p>
+                    </div>
+                </li>
+                <li>
+                    <div id="smoothScrollingSharePlan">
+                        Share your plan
+                    </div>
+                    <div class="sharePlan">
+                        <h4>Share this plan</h4>
+
+                        <p>Send this plan direct to yourself, a band made, the sound engineer, venue etc via email.</p>
+                        <p>We (stage-plan.com) will <b>not</b> store any of these details.</p>
+                        @using (Html.BeginForm())
+            {
+                            @Html.ValidationSummary()
+                       
+                            @Html.TextBoxFor(a => a.Contact.Name, new { placeholder = "Required: Your name" })<br /><br />
+                            @Html.TextBoxFor(a => a.Contact.Email, new { placeholder = "Required: Your email" })<br /><br />
+
+                            @Html.TextBoxFor(a => a.Contact.TheirName, new { placeholder = "Required: Name of engineer/person at venue" })<br /><br />
+                            @Html.TextBoxFor(a => a.Contact.TheirEmail, new { placeholder = "Required: Email of engineer/person at venue" })<br /><br />
+                            @Html.TextAreaFor(a => a.Contact.Message, new { placeholder = "Any message" })<br /><br />
+
+                            <div class="captcha">
+
+                                <img id="captcha_saveStageplan" class="captcha" /><br />
+                                @Html.TextBoxFor(a => a.Contact.CaptchaCode, new { @placeholder = "Captcha", @class = "email" })<br />
+                            </div>
+                            @Html.HiddenFor(a => a.Contact.CaptchaPath, new { id = "captchaReference" })
+                            @Html.HiddenFor(a => a.Contact.Band)
+                            @Html.HiddenFor(a => a.Contact.Token)
+
+                            @Html.HiddenFor(a => a.Instruments.BandName)<br /><br />
+                            <input type="submit" value="Send" />
+                        }
+                    </div>
+                </li>
+                @*<li>
+                    <div id="smoothScrollingPdf">
+                        PDF
+                    </div>
+                    <div class="savePdf">
+                        <h4>Save to PDF</h4>
+
+
+
+                        <p>To celebrate this new feature, we're offering it for free. Be quick though because saving to PDF will become a premium feature. </p>
+
+                        <p id="feedBackRequried">
+                            To save to PDF, we request some feedback, so please give us a <a id="switchToRating">rating</a> and we'll enable the PDF save for you.
+                        </p>
+
+                        <p id="feedBackRecieved" class="hide">
+                            <a id="pdfDownload" href="@Url.Action("Pdf","Stageplan", new { id= Model.Token }, null)">Download your PDF <img src="~/Content/Stageplan/Images/pdfIcon.png" alt="Download your PDF" /></a>
+                        </p>
+                    </div>
+                </li>*@
+            </ul>
+        </div>
+        <div class="clearBoth">&nbsp;</div>
+
+
+        <div class="socialMediaButtons">
+            <p>&nbsp;</p>
+
+            <!-- Place this tag where you want the share button to render. -->
+            <div class="g-plus" data-action="share" data-width="120" data-href="https://stage-plan.com"></div>
+            <p>&nbsp;</p>
+
+            <div class="fb-like" data-href="https://stage-plan.com" data-width="340" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery-ui.min.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery.ui.touch-punch.min.js"></script>
+
+    <script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+
+
+    <script src="~/Content/Stageplan/Javascript/lmsResponsiveMenu.js"></script>
+    <script src="~/Content/Stageplan/Javascript/ajax.js"></script>
+
+    <script src="~/Content/Stageplan/Javascript/addInstrument.js"></script>
+    <script src="~/Content/Stageplan/Javascript/loadInstruments.js"></script>
+    <script src="~/Content/Stageplan/Javascript/captcha.js"></script>
+    <script src="~/Content/Stageplan/Javascript/lmsRating.js"></script>
+    <script src="~/Content/Stageplan/Javascript/lmsTabControl.js"></script>
+    <script src="~/Content/Stageplan/Javascript/smoothScrolling.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/rotate.js"></script>
+
+
+    <script>
+        "use strict"
+
+        /* The main blue colour = #18a0ec */
+        /* The main red colour = #a52a2a */
+
+
+        smoothScrolling.setUp([["smoothScrollingSharePlan","smoothScrolling"],["smoothScrollingYourStagePlan","smoothScrolling"],["smoothScrollingRating","smoothScrolling"]]);//,["smoothScrollingPdf","smoothScrolling"]
+
+        var copyText = document.getElementById("copyText");
+        copyText.addEventListener("click", function(){
+            helpers.copy(document.getElementById("featureText"));
+        });
+
+
+        var captchaEle = document.getElementById("captcha_saveStageplan");
+        var captchaRefEle = document.getElementById("captchaReference");
+        captcha.add(captchaEle, captchaRefEle);
+        lmsRating.setUp("rating", "/Content/MainSite/Images/Star.png", "/Content/MainSite/Images/EmptyStar.png", 5);
+        var sendRatingEle = document.getElementById("sendRating");
+        sendRatingEle.addEventListener("click", function(){
+            var comment = "Positive: " + document.getElementById("positiveRatingComments").value + " |||~~||| Negative: " + document.getElementById("negativeRatingComments").value;
+            var rating = getRating();
+
+            if (rating <= 0 || helpers.isNullOrEmpty(document.getElementById("positiveRatingComments").value) || helpers.isNullOrEmpty(document.getElementById("negativeRatingComments").value)){
+                alert("Please choose a number of stars and leave comments! Your feedback is very important to us.");
+                return;
+            }
+
+            ajaxCall.postNow("../../Stageplan/SaveRating", JSON.stringify({
+                "Message": comment,
+                "Rating" : rating
+            })
+        , successActionRating, failActionRating, failActionRating);
+        });
+
+        function getRating() {
+            return lmsRating.getRating();
+        }
+
+        function successActionRating(){
+            showRating();
+
+            localStorage.setItem("rating", "true");
+
+            alert("Thank you. We have recieved your feedback!");
+        }
+
+        function showRating(){
+            var feedBackRequried= document.getElementById("feedBackRequried");
+            feedBackRequried.className = "hide";
+            var feedBackRecieved = document.getElementById("feedBackRecieved");
+            feedBackRecieved.className = helpers.replaceAll(feedBackRecieved.className, "hide", "");
+
+            var ratingGiven = document.getElementById("ratingGiven");
+            var ratingNotGiven= document.getElementById("ratingNotGiven");
+            ratingNotGiven.className += " hide";
+            helpers.replaceCssClass(ratingGiven, "hide", "");
+
+        }
+
+        function failActionRating(){
+            alert("Oh dear. Something went wrong.");
+        }
+
+        //var pdfDownload = document.getElementById("pdfDownload");
+        //pdfDownload.addEventListener("click", function(){
+        //    var parent = pdfDownload.parentNode;
+        //    helpers.clearNodes(pdfDownload);
+        //    pdfDownload.innerHTML = "Please wait... it is loading and may take up to 30 seconds.";
+        //});
+
+        lmsTabControl.setUp({selectedCssClass:'selectedTab',parentId:'lmsTab', bodyCssClass:'body', defaultOpenTab: 0});//must exist after rating
+
+        //var switchToRating = document.getElementById("switchToRating");
+        //switchToRating.addEventListener("click", function(){
+        //    lmsTabControl.switchTab(0);
+        //});
+
+
+        var instrumentsOnStage = document.getElementById("instrumentsOnStage");
+
+        if (localStorage.getItem("rating") == "true")
+        {
+            showRating();
+            
+        }
+
+        var allInsturments = [];
+
+    </script>
+   
+
+    @foreach (var instrument in Model.Instruments.AllInstruments)
+    {
+        //x, y, instrumentName, addInstrumentExtraDetail, selectedImage, instrumentsOnStage
+        <script>
+            allInsturments.push({
+                'left': @Html.Raw(instrument.Left),
+                'top':@Html.Raw(instrument.Top),
+                'detail':'@Stage_Plan.Bll.TextHelper.Format(instrument.Detail)',
+                'text':'@Stage_Plan.Bll.TextHelper.Format(instrument.Text)',
+                'src':'@Stage_Plan.Bll.TextHelper.Format(instrument.Src)',
+                'isFixedPosition' : '@instrument.IsFixedPosition.ToString()',
+                'bandMemberName':'@Html.Raw(instrument.BandMemberName)',
+                'instrumentId':'instrumentsOnStage',
+                'addInstrumentCallback':addInstrument,
+                'width' : @Html.Raw(instrument.Width),
+                'height' : @Html.Raw(instrument.Height),
+                'zIndex' : @Html.Raw(instrument.Zindex),
+                'rotateAngle' : @Html.Raw(instrument.RotateAngle),
+                'selectedInstrument': '@Html.Raw(instrument.SelectedInstrument)'
+            });
+        </script>        
+    }
+
+
+    <script>
+
+        function loadAllInstrumentsToPlan (){
+            clearStageplan();
+            loadInstruments.setup(@Model.Instruments.Width, @Model.Instruments.Height, document.documentElement.clientWidth, document.documentElement.clientHeight);
+
+            for (var i = 0; i < allInsturments.length; i++) {
+                loadInstruments.loadPlan(allInsturments[i], callReset, null);
+            }
+        }
+
+        loadAllInstrumentsToPlan ();
+
+        window.onresize =function(){
+            loadAllInstrumentsToPlan ()};
+
+        function callReset () {//show reset
+            var resetButton = document.getElementById("resetButton");
+            helpers.replaceCssClass(resetButton, "hide", "");
+        };
+
+        var resetButton = document.getElementById("resetButton");
+        resetButton.addEventListener("click", function(){
+            resetButton.className += " hide";
+            loadAllInstrumentsToPlan ();
+        });
+
+        lmsResponsiveMenu.setUp({ "parentId": "menu", "navId": "mainNav", "responsiveCssClosed": "responsiveCssClosed", "text": "Menu" });
+
+        function clearStageplan (){
+            var instrumentsOnStage = document.getElementById("instrumentsOnStage");
+            helpers.clearNodes(instrumentsOnStage);
+        }
+
+    </script>
+
+    @if (!HttpContext.Current.Request.Url.Host.ToLower().Contains("localhost"))
+    {
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-98102430-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    }
+
+    <script>
+        alert("Please scroll down to see more information");
+    </script>
+
+</body>
+
+
+
+
+</html>

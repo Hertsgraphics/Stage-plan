@@ -1,0 +1,140 @@
+﻿@model Stage_Plan.Bll.Stats
+
+
+<section>
+    <article>
+        <h2 style="text-decoration: underline;">Rating</h2>
+
+        <p>@Model.Rating</p>
+        <p>@Model.TotalStagePlans stage plans created</p>
+
+        <h2 style="text-decoration: underline;">&#8220;Other&#8221; instruments</h2>
+        @foreach (var item in Model.OtherInstruments)
+        {
+            <div class="column-5">
+                @item.Key
+            </div>
+
+            <div class="column-5">
+                @item.Value
+            </div>
+            <div class="clearBoth"></div>
+
+            <hr />
+        }
+
+        <h2 style="text-decoration: underline;">Recent plans</h2>
+
+        @foreach (var item in Model.RecentPlans)
+        {
+            <div class="column-3" title="Band name">
+                @item.Item1
+            </div>
+
+            <div class="column-3" title="Date created">
+                @item.Item2 
+            </div>
+
+            <div class="column-3" title="Band plan">
+               <a href="https://stage-plan.com/stageplan/plan/@item.Item3" target="_blank">Stage Plan</a>
+            </div>
+            <div class="column-3" title="Band member count">
+                @item.Item4
+            </div>
+
+            <div class="clearBoth"></div>
+
+            <hr />
+        }
+
+        <h2 style="text-decoration: underline;">Visitors in the last 60 days</h2>
+        <div style="width:75%;">
+
+            <canvas id="canvas"></canvas>
+
+        </div>
+    </article>
+</section>
+
+<div class="clearBoth"></div>
+
+
+@section head{
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+}
+
+@section scripts{
+
+    <script src="~/Content/Stageplan/Javascript/Libaries/ChartBundle.js"></script>
+
+
+    <script>
+
+
+        var x = @Html.Raw(Json.Encode(Model.Visits.Select(a => a.Key)));
+        var y = @Html.Raw(Json.Encode(Model.Visits.Select(a=> a.Value)));
+
+
+        var config = {
+
+            type: 'line',
+            data: {
+                labels: x,
+                datasets: [{
+                    label: "Created",
+                    backgroundColor: "#f00",
+                    borderColor: "#00f",
+                    data: y,
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Stage plans created per day in last 60 days'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Plans Created'
+                        }
+                    }]
+                }
+            }
+        };
+
+
+
+        window.onload = function () {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myLine = new Chart(ctx, config);
+        };
+
+
+
+    </script>
+}

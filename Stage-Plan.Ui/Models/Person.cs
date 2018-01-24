@@ -1,11 +1,11 @@
-﻿using Stage_plan.Ui.Models.Emails;
-using Stage_plan.Ui.Models.Contact;
+﻿using Stage_Plan.Ui.Models.Contact;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Stage_Plan.Bll;
 
-namespace Stage_plan.Ui.Models
+namespace Stage_Plan.Ui.Models
 {
     public class Person : AbstractContact
     {
@@ -13,8 +13,8 @@ namespace Stage_plan.Ui.Models
         {
             try
             {
-                Email email = new Email();
-                email.SendEmail(base.Email, base.GetContent(), subject);
+                var email = new Email();
+                email.SendEmail(base.Email, null, base.GetContent(), subject);
                 base.DidSend = true;
                 return base.DidSend;
             }

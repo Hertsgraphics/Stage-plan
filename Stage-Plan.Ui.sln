@@ -5,11 +5,21 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-Plan.Ui", "Stage-Plan.Ui\Stage-Plan.Ui.csproj", "{06E8377E-B012-45CE-BD54-4AC6ADB53484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-plan.Bll", "Stage-plan.Bll\Stage-plan.Bll.csproj", "{E97CBCC0-BDA4-48ED-A5EB-9459AB65CEE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-Plan.Bll", "Stage-plan.Bll\Stage-Plan.Bll.csproj", "{E97CBCC0-BDA4-48ED-A5EB-9459AB65CEE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-plan.Tests", "Stage-plan.Tests\Stage-plan.Tests.csproj", "{F6381076-C2D9-4286-A594-97371992F0D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-Plan.Tests", "Stage-plan.Tests\Stage-Plan.Tests.csproj", "{F6381076-C2D9-4286-A594-97371992F0D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-plan.Dal", "Stage-plan.Dal\Stage-plan.Dal.csproj", "{13776E4F-EDAE-45EE-827B-62C886C0318B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-Plan.Dal", "Stage-plan.Dal\Stage-Plan.Dal.csproj", "{13776E4F-EDAE-45EE-827B-62C886C0318B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-Plan.RemoveOldPosts", "RemoveOldPosts\Stage-Plan.RemoveOldPosts.csproj", "{027C7F7F-0EA6-48F5-8599-4594442E175E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-Plan.RemoveOldMailingList", "Stage-Plan.RemoveOldMailingList\Stage-Plan.RemoveOldMailingList.csproj", "{2E031791-21C0-4097-B012-8A737FED7B9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-Plan.Selenium", "Stage-Plan.Selenium\Stage-Plan.Selenium.csproj", "{7B8F18BA-5336-4C92-839C-329434F9F156}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-Plan.Selenium.PostTests", "Stage-Plan.Selenium.PostTests\Stage-Plan.Selenium.PostTests.csproj", "{99F56ADD-491B-48AE-A483-AB1C700AA839}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage-Plan.ImageComparison", "Stage-Plan.ImageComparison\Stage-Plan.ImageComparison.csproj", "{823BAEB3-FE78-43CA-93A3-B9DD2C54EA6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +43,26 @@ Global
 		{13776E4F-EDAE-45EE-827B-62C886C0318B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13776E4F-EDAE-45EE-827B-62C886C0318B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13776E4F-EDAE-45EE-827B-62C886C0318B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{027C7F7F-0EA6-48F5-8599-4594442E175E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{027C7F7F-0EA6-48F5-8599-4594442E175E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{027C7F7F-0EA6-48F5-8599-4594442E175E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{027C7F7F-0EA6-48F5-8599-4594442E175E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E031791-21C0-4097-B012-8A737FED7B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E031791-21C0-4097-B012-8A737FED7B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E031791-21C0-4097-B012-8A737FED7B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E031791-21C0-4097-B012-8A737FED7B9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B8F18BA-5336-4C92-839C-329434F9F156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B8F18BA-5336-4C92-839C-329434F9F156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B8F18BA-5336-4C92-839C-329434F9F156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B8F18BA-5336-4C92-839C-329434F9F156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F56ADD-491B-48AE-A483-AB1C700AA839}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{99F56ADD-491B-48AE-A483-AB1C700AA839}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{99F56ADD-491B-48AE-A483-AB1C700AA839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F56ADD-491B-48AE-A483-AB1C700AA839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{823BAEB3-FE78-43CA-93A3-B9DD2C54EA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{823BAEB3-FE78-43CA-93A3-B9DD2C54EA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{823BAEB3-FE78-43CA-93A3-B9DD2C54EA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{823BAEB3-FE78-43CA-93A3-B9DD2C54EA6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

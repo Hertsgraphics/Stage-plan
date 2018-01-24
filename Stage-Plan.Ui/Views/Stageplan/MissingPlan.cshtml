@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Stageplan Not Found";
+}
+
+<div class="mainImage">
+    <img src="~/Content/MainSite/Images/Missing-plan.jpg" />
+</div>
+
+<section class="error clearAndExpandIfSmall">
+
+    <h1>Whoops, we can not find your stage plot. <img src="~/Content/MainSite/Images/Crying-Emotion.png" /></h1>
+    <p>Sorry, but we can not find your stage plot.</p>
+    <p>Your stage plan will only last for @System.Configuration.ConfigurationManager.AppSettings["DaysStagePlanRemains"] days and it is then automatically deleted.</p>
+    <p>We are going to add the functionality to save your stage plot to your account in the future but we're not there yet.</p>
+    <p>If you want to find out when this is going to happen, simply subscribe to our mailing list and we'll keep you up to date!</p>
+    <p>If you think there has been a fault or error then please @Html.ActionLink("contact us direct", "Contact", "Home").</p>
+    <p>&nbsp;</p>
+    <p>
+        Of course we'd love to hear your @Html.ActionLink("feedback", "Contact", "Home") and ideas for improving the site.
+        @Html.ActionLink("Create a new stage plan for your band", "Index", "Stageplan").
+    </p>
+
+</section>

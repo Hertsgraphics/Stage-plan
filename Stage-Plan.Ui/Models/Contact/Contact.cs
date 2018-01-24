@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Stage_plan.Ui.Models.Contact
+namespace Stage_Plan.Ui.Models.Contact
 {
     public class Contact : AbstractContact
     {

@@ -1,0 +1,27 @@
+﻿@model Stage_Plan.Bll.SubscriptionPreferences
+
+@{
+    ViewBag.Title = "Subscribe to Stage Plan";
+}
+
+
+
+<section>
+    <div class="column-8 clearAndExpandIfSmall">
+        <h2>Subscribe to our emailing list</h2>
+        @Html.Partial("_SignUpMailingList", Model)
+
+
+    </div>
+    <div class="displayAtTheBottom">
+        <img src="~/Content/MainSite/Images/Keyboardist.png" />
+    </div>
+    <div class="clearBoth"></div>
+</section>
+<script src="~/Content/Stageplan/Javascript/captcha.js"></script>
+
+<script>
+        var captchaEle = document.getElementById("captcha_saveStageplan");
+        var captchaRefEle = document.getElementById("captchaReference");
+        captcha.add(captchaEle, captchaRefEle);
+</script>

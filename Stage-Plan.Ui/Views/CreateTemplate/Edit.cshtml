@@ -1,0 +1,168 @@
+﻿@*http://localhost:53081/Stageplan/plan/762397cb-3b57-4395-9bd0-ba751b62361f*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <title>Stage plot creator</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/lmsResponsiveMenu.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/stageplan.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/global.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/spinner.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/reusable.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Javascript/Libaries/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/Responsive/responsive.css" />
+
+
+
+</head>
+<body>
+    <h2 id="errorMessage" style="margin-left:20%;"></h2>
+
+    <div class="popUpMask hide" id="popUpMask">&nbsp;</div>
+
+    <div class="crowdImage">
+        <img src="~/Content/Stageplan/Images/Stage.png" />
+    </div>
+
+    @*<img src="~/Content/Stageplan/Images/Stage.png" style="height: 100px; position:absolute; bottom: 0; min-width:100%;" />*@
+
+
+    <div class="stage" id="stage">
+
+        <div id="menu"></div>
+        <nav id="mainNav">
+            <ul id="lmsNavLink" style="visibility:hidden;display:none;">
+                <li><a id="showNewPlanLink">New plan</a></li>
+                <li><a id="showAddInstrumentLink">Add instrument</a></li>
+                <li><a id="showSaveOptionsLink">Save stageplan</a></li>
+                @*<li><a id="showLoadExistingStageplanLink">Load stageplan</a></li>
+                    <li><a id="showSignInLink">Sign in</a></li>
+                    <li><a id="showSignOutLink">Sign out</a></li>
+                    <li><a id="showSignUpLink">Sign up</a></li>
+                    <li><a id="showYouTubeLink">Tutorials on YouTube</a></li>
+                    <li><a id="showSuggestionsLink">Suggestions</a></li>*@
+                <li><a href="https://stage-plan.com/" target="_blank"><img src="~/Content/Stageplan/Images/Stage-Plan-Logo.png" /></a></li>
+            </ul>
+            <div id="noInstruments" class="defaultEmptyStagePlan"></div>
+
+        </nav>
+
+        @Html.Partial("PopUp/_AddInstrumentPopUp")
+
+        <div style="background: #fff; right:20px; position: absolute; width: 200px; height: 200px " class="hide" id="debug"></div>
+
+        <div id="instrumentsOnStage" class="instrumentsOnStage"></div>
+
+    </div><!--close stage-->
+    @*This capcha has to be here due to partials*@
+    <script src="~/Content/Stageplan/Javascript/captcha.js"></script>
+
+
+
+    @*@Html.Partial("PopUp/_EnterBandDetails")*@
+
+
+    @Html.Partial("PopUp/_SaveStagePlanPopUp")
+
+
+    @Html.Partial("PopUp/_ShowSelectedInstrumentInfo")
+
+
+
+
+    @*<div data-parent="parent" id="x" data-text="LLL" data-detail="" data-img-id="LLL" data-src="http://localhost:53081/Content/Stageplan/Images/Instruments/Laptop.svg" data-bandmember="Not used" data-is-fixed-position="false" data-is-fixed-position-venue-edit="false" style="top: 85px; left: 541px; position: absolute;">
+        <img src="http://localhost:53081/Content/Stageplan/Images/Instruments/Laptop.svg" id="y">
+    </div>*@
+
+
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery-ui.min.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery.ui.touch-punch.min.js"></script>
+
+    @*<script>
+        $("#x").resizable({
+            aspectRatio: 4 / 3
+        });
+    </script>*@
+
+
+    <script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+
+    <script src="~/Content/Stageplan/Javascript/registerBandDetails.js"></script>
+    <script src="~/Content/Stageplan/Javascript/addInstrument.js"></script>
+    <script src="~/Content/Stageplan/Javascript/lmsResponsiveMenu.js"></script>
+    <script src="~/Content/Stageplan/Javascript/dropDownList.js"></script>
+
+
+
+    <script src="~/Content/Stageplan/Javascript/ajax.js"></script>
+    <script src="~/Content/Stageplan/Javascript/saveStageplan.js"></script>
+    <script src="~/Content/Stageplan/Javascript/progressBar.js"></script>
+    <script src="~/Content/Stageplan/Javascript/validation.js"></script>
+    <script src="~/Content/Stageplan/Javascript/enterBandDetails.js"></script>
+    <script>
+        @*The order is immportant, keep seperate scripts like this *@
+        lmsResponsiveMenu.setUp({ "parentId": "menu", "navId": "mainNav", "responsiveCssClosed": "responsiveCssClosed", "text": "Menu" });//leave before stageplan.js
+
+    </script>
+
+    <script src="~/Content/Stageplan/Javascript/closePopUpFunction.js"></script>
+
+    <script src="~/Content/Stageplan/Javascript/stageplan.js"></script>
+    <script src="~/Content/Stageplan/Javascript/enums.js"></script>
+    <script>
+        @*The order is immportant, keep seperate scripts like this, and after stageplan.js *@
+
+
+
+        function start(isError) {
+
+            var errorMessage = document.getElementById("errorMessage");
+            var popUpMask = document.getElementById("popUpMask");
+            var mainNav = document.getElementById("mainNav");
+
+
+            if (isError) {
+                var msg = "We're really sorry, this isn't working. We're working on it now!";
+                errorMessage.innerHTML = msg;
+                document.getElementById("enterBandDetails").className += " hide";
+                mainNav.className += " hide";
+            } else {
+                errorMessage.className += " hide";
+                //enterBandDetails.setUp("enterBandDetails_Submit", "enterBandDetails_BandName", "enterBandDetails_BandMemberNames", helpers, validation, registerBandDetails, closeCurrentPopUp, setBandDetails);
+                //setStartupPopup();
+                
+                stagePlan.setUp(g_stagePlanType.EditVenue);
+                closeCurrentPopUp();
+            }
+        }
+
+        start(false);
+
+
+    </script>
+
+    @if (!HttpContext.Current.Request.Url.Host.ToLower().Contains("localhost"))
+    {
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-98102430-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    }
+
+</body>
+</html>

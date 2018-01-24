@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Do I Need To Provide An Input List";
+}
+
+
+<div class="mainImage">
+    <img src="~/Content/MainSite/Images/Venue.jpg" />
+</div>
+
+<div class="blog">
+
+    <section>
+        <h1>
+
+            Do I need to provide an input list
+        </h1>
+
+        <p>
+            Consider a more advanced input list. This is where you break down by each input going into the desk. Let's assume there is a duet. One of the members is the drummer, the other plays semi-acoustic guitar and sings. Both need a monitor. They are playing a small 100 person venue or club. Let's consider how many inputs this could be:
+        </p>
+
+        <ol>
+            <li>Input: Kick drum.</li>
+
+
+
+            <li>
+                Input: Snare drum.
+            </li>
+            <li>
+                Input: Hi-hat.
+            </li>
+            <li>
+                Input: Overheads (1 microphone)
+            </li>
+            <li>
+                Input: DI for the guitar (or a microphone)
+            </li>
+            <li>
+                Input: Vocal mic.
+            </li>
+            <li>
+                Output: monitor for drummer (with details about the mix)
+            </li>
+            <li>
+                Output: monitor for guitarist/vocalist (with details about the mix)
+            </li>
+        </ol>
+        <p>
+            So the 2 piece band have a list of 8 items.
+        </p>
+
+        <p>
+            And it can get more complex. Maybe you know about the type of boom stand, or what inserts are required. Maybe your list is
+        </p>
+
+
+        <ol>
+            <li>
+                Input: Kick drum. D112 microphone. Short boom stand. Gate
+
+            </li>
+            <li>
+                Input: Snare drum. SM-57 microphone. Short boom stand. Compression. Plate reverb.
+
+            </li>
+            <li>
+                Input: Hi-hat. SM-57 microphone. Short boom stand
+
+            </li>
+            <li>
+                Input: Toms and Overheads. C100s microphone. Long boom stand.
+
+            </li>
+            <li>
+                Input: Acoustic guitar. DI
+
+            </li>
+            <li>
+                Input: Vocal mic. SM-58 microphone. Long boom stand. Compression and plate reverb.
+
+            </li>
+            <li>
+                Output: monitor for drummer (with details about the mix)
+
+            </li>
+            <li>
+                Output: monitor for guitarist/vocalist (with details about the mix)
+            </li>
+        </ol>
+
+
+
+
+        @*Currently, stage-plan.com doesn't consider this level of detail. You can add it within the more details section of course. Within the more detail, just add what you want – maybe you're the violinist and you need to hear mostly tuba and banjo. Maybe as the bassist you want to hear kick drum and guitar only, where-as the vocalist may only want to hear the guitar and piano.*@
+
+
+        <p>
+            Just don't forget the input list is a guide! It helps the engineer visualise what you're after so don't treat it as a rule – the sound engineer has lots of experience remember and may decide that, using the example above, for a 10,000 person venue you may want a few more microphones on the drum kit (on each tack tom for example).
+        </p>
+
+
+
+        <p>&nbsp;<br />@Html.ActionLink("Create a free stage plan", "Index", "Stageplan", null, new { @class = "stagePlanButton blueBg whiteText", id = "stagePlanButton" })</p>
+    </section>
+</div>
+
+<script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+
+<script src="~/Content/MainSite/Javascript/stagePlanButton.js"></script>
+<script>        document.getElementById("stagePlanButton").className += " " + stagePlanButton.getCss();
+
+</script>

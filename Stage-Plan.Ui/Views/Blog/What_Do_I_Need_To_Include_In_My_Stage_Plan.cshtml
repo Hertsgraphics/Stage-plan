@@ -1,0 +1,52 @@
+﻿
+
+@{
+    ViewBag.Title = "What Do I Need To Include In My Stage Plan";
+}
+
+
+<div class="mainImage">
+    <img src="~/Content/MainSite/Images/Venue.jpg" />
+</div>
+
+<div class="blog">
+
+    <section>
+        <h1>
+            What do I need to include in my stage plan
+        </h1>
+        <p>
+            As much detail as you can. With stage-plan.com, all instruments and items (including DI boxes, amps, plug sockets etc) are associated with a musician. This is why we ask you to enter your band member names. Many bands will take their own microphones with them and using the extra detail box, you can write up what mics you have and where they are needed to be placed. This gives the engineer/venue an idea of what you're expecting. Also don't forget to include any props! If the engineer knows that you've got a great statue of Stonehenge then he knows he probably can't put any microphone stands there!
+        </p>
+
+
+        <p>
+            A stage plot which shows a drummer, a bassist and a guitarist is great, but that's nowhere near enough – How many parts make the drum (how many kick drums, snares, number of toms, what cymbals etc), does the bassist require a DI or would he/she rather live microphones (or both)? You need to explain this. You may also want to read about whether you need an @Html.ActionLink("input list", "Do_I_Need_To_Provide_An_Input_List", "blog").
+        </p>
+
+        <p>
+            You can add any detail you like to the details section of each instrument. Within the more detail, just add what you want – maybe you want to add hardware the drummer has, or that the guitarist actually uses a stereo amp. Maybe the violinist uses an electric violin and a DI is acceptable or requires a microphone which you provide. Provide the sound engineer with as much information as you can so he/she can use your stage plan and understand exactly what you need.
+        </p>
+
+        <p class="bold">
+            Just don't forget, the stage plan is a plan, not a rule! Treat it as a guide!
+        </p>
+
+    </section>
+    <article class="trueStory">
+        <section>
+            True story: I have been lucky enough to work with many professional touring bands and although we were always provided with a stage plan and input list, the bands always spoke to us about what they wanted after getting to the venue. Sometimes the plan was followed tightly, other times as a guide and sometimes, hardly at all!
+        </section>
+    </article>
+
+    <section>
+
+        <p>&nbsp;<br />@Html.ActionLink("Create a free stage plan", "Index", "Stageplan", null, new { @class = "stagePlanButton blueBg whiteText", id = "stagePlanButton" })</p>
+    </section>
+</div>
+<script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+
+<script src="~/Content/MainSite/Javascript/stagePlanButton.js"></script>
+<script>        document.getElementById("stagePlanButton").className += " " + stagePlanButton.getCss();
+
+</script>

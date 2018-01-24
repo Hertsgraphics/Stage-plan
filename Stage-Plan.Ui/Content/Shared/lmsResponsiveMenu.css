@@ -1,0 +1,44 @@
+﻿.lmsResponsiveViewCursor{ cursor: pointer;}
+
+ul#lmsResponsiveMenuInner {
+    margin: 10px;
+    padding: 0;
+}
+
+    ul#lmsResponsiveMenuInner li,ul#lmsResponsiveMenuInner li a {
+        display: block;
+        text-align: left;
+        border: none;
+        padding: 4px 0;
+    }
+
+        #lmsResponsiveMenu li.lmsActive {
+            border-bottom: solid 3px #bbf7f4;
+        }
+
+.lmsResponsiveMenuHide {
+    visibility: collapse;
+    display: none;
+}
+
+.lmsResponsiveMenuShow {
+    visibility: visible;
+    display: block;
+    -webkit-animation: 1s;
+    animation: 1s;
+    animation-name: lmsResponsiveMenuFadeIn;
+}
+.lmsResponsiveMenuShow a{
+    cursor:pointer;
+}
+
+@keyframes lmsResponsiveMenuFadeIn {
+  from {
+           opacity: 0;
+  }
+
+  to {
+         opacity: 1;
+  }
+}
+

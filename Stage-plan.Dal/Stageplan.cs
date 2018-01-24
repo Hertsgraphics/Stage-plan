@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stage_plan.Dal
+namespace Stage_Plan.Dal
 {
     using System;
     using System.Collections.Generic;
@@ -22,7 +22,17 @@ namespace Stage_plan.Dal
     
         public int Id { get; set; }
         public string BandName { get; set; }
-        public string URL { get; set; }
+        public string Token { get; set; }
+        public decimal Width { get; set; }
+        public decimal Height { get; set; }
+        public System.DateTime CreationDate { get; set; }
+        public int SavedByAccountId { get; set; }
+        public string Website { get; set; }
+        public string SocialMedia { get; set; }
+        public string Genre { get; set; }
+        public bool IsDeprecated { get; set; }
+        public string Country { get; set; }
+        public bool WillShowInRecentBands { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StageplanInstrument> StageplanInstruments { get; set; }

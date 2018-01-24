@@ -60,7 +60,7 @@
 
                 spinnerImg = document.createElement("img");
                 spinnerImg.id = "lmsSpinnerImgId";
-                spinnerImg.src = "../Content/Stageplan/Images/EQ-Spinner.gif";
+                spinnerImg.src = "/Content/Stageplan/Images/EQ-Spinner.gif";
                 spinnerImg.className = "spinner";
                 spinnerImg.style.maxWidth = "300px";
                 spinnerImg.style.maxHeight= "300px";

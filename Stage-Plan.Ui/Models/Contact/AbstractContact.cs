@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace Stage_plan.Ui.Models.Contact
+namespace Stage_Plan.Ui.Models.Contact
 {
     public abstract class AbstractContact
     {
@@ -14,7 +14,7 @@ namespace Stage_plan.Ui.Models.Contact
         [Required]
         public string Name { get; set; }
 
-        internal string GetContent()
+        public virtual string GetContent()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("<p>Hi " + this.Name + ", </p>");
@@ -36,8 +36,8 @@ namespace Stage_plan.Ui.Models.Contact
         [EmailAddress]
         public string Email { get; set; }
         
-        [Required(ErrorMessage = "The answer is 7!")]
-        public string Verification { get; set; }
+        //[Required(ErrorMessage = "The answer is 7!")]
+        //public string Verification { get; set; }
         
         public string Message { get; set; }
 
@@ -45,6 +45,7 @@ namespace Stage_plan.Ui.Models.Contact
 
         public abstract bool Send(string subject);
 
+      
 
         //protected string Content { get; set; }
     }

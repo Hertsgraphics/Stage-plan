@@ -1,4 +1,4 @@
-﻿
+﻿@*http://localhost:53081/Stageplan/plan/762397cb-3b57-4395-9bd0-ba751b62361f*@
 @{
     Layout = null;
 }
@@ -8,21 +8,39 @@
 <html>
 <head>
     @*<meta name="viewport" content="width=device-width" />*@
-    <title>Index</title>
+    <title>Stage plot creator</title>
 
-    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/lmsResponsiveMenu.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/lmsResponsiveMenu.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/stageplan.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/global.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/spinner.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/reusable.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Javascript/Libaries/jquery-ui.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/Responsive/responsive.css" />
+
+
 
 </head>
 <body>
+    <h2 id="errorMessage" style="margin-left:20%;"></h2>
+
+    <div class="popUpMask" id="popUpMask">&nbsp;</div>
+
+    @*<img src="~/Content/Stageplan/Images/Instruments/Mic.svg" id="demo" />*@
+
+    <div class="crowdImage">
+        <img src="~/Content/Stageplan/Images/Stage.png" />
+    </div>
+
+    @*<img src="~/Content/Stageplan/Images/Stage.png" style="height: 100px; position:absolute; bottom: 0; min-width:100%;" />*@
 
 
     <div class="stage" id="stage">
 
         <div id="menu"></div>
         <nav id="mainNav">
-            <ul id="lmsNavLink" style="visibility:hidden;display:none" ;>
+            <ul id="lmsNavLink" style="visibility:hidden;display:none;">
                 <li><a id="showNewPlanLink">New plan</a></li>
                 <li><a id="showAddInstrumentLink">Add instrument</a></li>
                 <li><a id="showSaveOptionsLink">Save stageplan</a></li>
@@ -32,242 +50,136 @@
                     <li><a id="showSignUpLink">Sign up</a></li>
                     <li><a id="showYouTubeLink">Tutorials on YouTube</a></li>
                     <li><a id="showSuggestionsLink">Suggestions</a></li>*@
-                <li><img src="~/Content/Stageplan/Images/Stage-Plan-Logo.png" /></li>
+                <li><a href="https://stage-plan.com/" target="_blank"><img src="~/Content/Stageplan/Images/Stage-Plan-Logo.png" /></a></li>
             </ul>
             <div id="noInstruments" class="defaultEmptyStagePlan"></div>
 
         </nav>
-        <div id="addInstrumentPopUp" class="popUp hide">
-            <p>Select instrument</p>
-            <ul>
-                <li><img src="~/Content/Stageplan/Images/Drums.png" data-text="Drums" id="Drums" data-helper="How many toms, cymbals, kick drums etc and which pieces need microphones" /><br />Drums<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Mic.png" data-text="Microphone" id="Microphone" data-helper="Male or female vocalist, or backing vocalist, microphone model and if you're also using the same microphone for another instrument etc" /><br />Microphone<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Bass.png" data-text="Bass" id="Bass" data-helper="DI, microphone or both or any effects the sound engineer needs to be aware of" /><br />Bass<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Guitar.png" data-text="Electric Guitar" id="ElectricGuitar" data-helper="Number and size of cabinets, microphone(s) and any effects the sound engineer needs to be aware of" /><br />Electric Guitar<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Keyboards.png" data-text="Keyboards" id="Keyboards" data-helper="Mono or stereo, DI if required" /><br />Keyboards<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Piano.png" data-text="Piano" id="Piano" data-helper="Microphone(s) if required" /><br />Piano<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Saxophone.png" data-text="Saxophone" id="Saxophone" data-helper="Microphone(s) if required" /><br />Saxophone<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Violin.png" data-text="Violin" id="Violin" data-helper="Microphone(s) if required" /><br />Violin<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Cello.png" data-text="Cello" id="Cello" data-helper="Microphone(s) if required" /><br />Cello<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Double-Bass.png" data-text="Double Bass" id="DoubleBass" data-helper="Microphone(s) if required" /><br />Double Bass<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Trumpet.png" data-text="Trumpet" id="Trumpet" data-helper="Microphone(s) if required" /><br />Trumpet<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Trombone.png" data-text="Trombone" id="Trombone" data-helper="Microphone(s) if required" /><br />Trombone<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Tuba.png" data-text="Tuba" id="Tuba" data-helper="Microphone(s) if required" /><br />Tuba<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Other.png" data-text="Other" id="Other" data-helper="Enter as much information as possible such as instrument description and microphone requirements etc" /><br />Other<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Monitor.png" data-text="Monitor" id="Monitor" data-helper="Stage mix requirements for this monitor" /><br />Monitor<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Fluite.png" data-text="Fluite" id="Fluite" data-helper="Microphone(s) if required" /><br />Fluite<br /></li>
-                <li><img src="~/Content/Stageplan/Images/Acoustic-Guitar.png" data-text="Acoustic Guitar" id="AcousticGuitar" data-helper="DI, microphone or both or any effects the sound engineer needs to be aware of" /><br />Acoustic Guitar<br /></li>
-            </ul>
 
-            <div class="infoBox">
-                Name: <br />
-                <input type="text" id="instrumentName" class="textbox" /><br />
-                Extra Information: <br />
-                <textarea placeholder="Please enter as much information as possible (optional)" id="addInstrumentExtraDetail"></textarea>
-                <br />
-                <br />
-                <input type="button" value="Add" id="addButton" />
-                <input type="button" value="Save" id="saveEditButton" />
-                <input type="button" value="Cancel" id="cancelEditButton" />
-                <input type="button" value="Delete" class="delete" id="deleteButton" />
-
-            </div>
-        </div>
+        @Html.Partial("PopUp/_AddInstrumentPopUp")
 
         <div style="background: #fff; right:20px; position: absolute; width: 200px; height: 200px " class="hide" id="debug"></div>
 
-        <div id="instrumentsOnStage"></div>
+        <div id="instrumentsOnStage" class="instrumentsOnStage"></div>
 
     </div><!--close stage-->
+    @*This capcha has to be here due to partials*@
+    <script src="~/Content/Stageplan/Javascript/captcha.js"></script>
 
-    <div id="showSuggestionsPopUp" class="popUp hide showSuggestionsPopUp">
 
-        <h2>Suggestions</h2>
 
-        <div class="infoBox">
-            <textarea placeholder="Please enter suggestons or issues"></textarea>
-        </div>
+    @Html.Partial("PopUp/_EnterBandDetails")
 
-        <div class="captcha">
-            <img src="~/Content/Stageplan/Images/Captcha-01.jpg" id="captcha_suggestions" /><br />
-            <input type="text" placeholder="Enter captcha" class="captchaTextBox" />
-        </div>
 
-        <input type="button" value="Send" id="sendSuggestionsButton" />
-        <input type="button" value="cancel" id="cancelSuggestionsPopUp" />
+    @Html.Partial("PopUp/_ShowSuggestionsPopUp")
 
 
-    </div><!--close Show Suggestions PopUp-->
+    @Html.Partial("PopUp/_ShowYouTubePopUp")
 
 
-    <div id="showYouTubePopUp" class="popUp hide showYouTubePopUp">
+    @Html.Partial("PopUp/_SaveStagePlanPopUp")
 
-        <!--todo-->
-    </div><!--close show YouTube pop up-->
 
+    @Html.Partial("PopUp/_LoadExistingStageplanPopUp")
 
 
-    <div id="saveStagePlanPopUp" class="popUp hide saveStagePlanPopUp">
+    @Html.Partial("PopUp/_ShowUrlPopUp")
 
-        <!--
-        SaveStagePlanPopUp pop up
-        captcha
-        save button
 
-        after save (ajax)
-        show the url of to get to the read only version
+    @Html.Partial("PopUp/_SignInPopUp")
 
-        save project if signed in or show they could have saved
 
-        cancel button
-        -->
+    @Html.Partial("PopUp/_ShowSelectedInstrumentInfo")
 
-        <input type="text" placeholder="Enter band name" class="bandName" id="bandName" />
 
-        <div class="captcha">
-            <img src="~/Content/Stageplan/Images/Captcha-01.jpg" id="captcha_signUp" /><br />
-            <input type="text" placeholder="Enter captcha" class="captchaTextBox" id="captchaTextBox" />
-        </div>
+    @Html.Partial("PopUp/_SignUpPopUp")
 
-        @*<input type="button" value="Save" id="saveProjectButton" />*@
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery-ui.min.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery.ui.touch-punch.min.js"></script>
 
-        <div id="readOnlyStageplanUrl" class="hide">
-            read only stageplan url
-        </div>
 
-        <input type="button" value="Save" id="saveStageplanButton" />
-        <input type="button" value="cancel" id="cancelSaveStagePlanPopUp" />
-
-    </div><!--close save stageplan pop up-->
-
-
-
-    <div id="loadExistingStageplanPopUp" class="popUp hide">
-
-        <h2>Load existing stageplan</h2>
-
-        <!--
-        load pop up
-        Only available if signed in
-
-        a list of previous saves which they can click on and load
-        -->
-        <div class="allStageplans">
-            allStage plans
-        </div>
-
-        <input type="button" value="Load" id="loadExistingProject" />
-
-        <input type="button" value="cancel" id="cancelLoadExistingProject" />
-
-    </div><!--close load stageplan pop up-->
-
-
-
-    <div id="saveUrlPopUp" class="popUp hide">
-
-        <h2>Congratulations</h2>
-
-        <p>Your stage plan has been saved <img src="~/Content/MainSite/Images/Happy-Emotion.png" /></p>
-        <p>Your unique URL is:</p>
-        <div class="urlBox">
-            <span id="savedStagePlanUrl"></span>
-        </div>
-
-        <input type="button" value="cancel" id="cancelSaveUrlPopUp" />
-
-    </div><!--close save URL pop up-->
-
-
-
-
-    <div id="signInPopUp" class="popUp hide signInPopUp">
-
-        <h2>Sign in to your account</h2>
-
-        <div>
-            <input type="text" placeholder="Your username" id="SignInUserName" />
-
-        </div>
-
-        <div>
-            <input type="text" placeholder="Your password" id="SignInPassword" />
-        </div>
-
-        <input type="button" value="Sign in" id="signInButton" />
-
-        <input type="button" value="cancel" id="cancelSignIn" />
-
-    </div><!--close sign in-->
-
-
-    <div id="showSelectedInstrumentInfo" class="popUp hide">
-
-        <p id="showSelectedInstrumentInfoText"></p>
-
-        <input type="button" value="cancel" id="cancelShowSelectedInstrumentInfo" />
-
-    </div><!--close info-->
-
-
-
-    <div id="signUpPopUp" class="popUp hide signUpPopUp">
-
-        <h2>Create your free account</h2>
-
-        <div>
-            <input type="text" placeholder="Create your username" id="SignUpUserName" />
-
-        </div>
-
-        <div>
-            <input type="text" placeholder="Create your password" id="SignUpPassword" />
-        </div>
-
-        <div>
-            <input type="text" placeholder="Your name" id="SignUpName" />
-        </div>
-
-        <div>
-            <input type="text" placeholder="Your email" id="SignUpEmail" />
-        </div>
-
-        <div>
-            <input type="text" placeholder="Your country" id="SignUpCountry" />
-        </div>
-
-        <div class="captcha">
-            <img src="~/Content/Stageplan/Images/captcha-01.jpg" id="captcha_signUp" /><br />
-            <input type="text" placeholder="Enter captcha" class="captchaTextBox" />
-        </div>
-
-        <input type="button" value="Sign up" id="signUp" />
-
-        <input type="button" value="cancel" id="cancelSignUp" />
-
-    </div><!--close sign in-->
-
-
-
-
-
-    <div class="crowdImage">
-        <img src="~/Content/Stageplan/Images/Stage.png" />
-    </div>
-
-
-    <script src="~/Content/Stageplan/Javascript/jquery-2.1.4.min.js"></script>
     <script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+
+    <script src="~/Content/Stageplan/Javascript/registerBandDetails.js"></script>
+    <script src="~/Content/Stageplan/Javascript/addInstrument.js"></script>
     <script src="~/Content/Stageplan/Javascript/lmsResponsiveMenu.js"></script>
-    <script src="~/Content/Stageplan/Javascript/scripts.js"></script>
+    <script src="~/Content/Stageplan/Javascript/dropDownList.js"></script>
+
+
+
     <script src="~/Content/Stageplan/Javascript/ajax.js"></script>
     <script src="~/Content/Stageplan/Javascript/saveStageplan.js"></script>
     <script src="~/Content/Stageplan/Javascript/progressBar.js"></script>
-    <script src="~/Content/Stageplan/Javascript/stageplan.js"></script>
-
+    <script src="~/Content/Stageplan/Javascript/validation.js"></script>
+    <script src="~/Content/Stageplan/Javascript/enterBandDetails.js"></script>
     <script>
+        @*The order is immportant, keep seperate scripts like this *@
+        lmsResponsiveMenu.setUp({ "parentId": "menu", "navId": "mainNav", "responsiveCssClosed": "responsiveCssClosed", "text": "Menu" });//leave before stageplan.js
+
+    </script>
+
+    <script src="~/Content/Stageplan/Javascript/closePopUpFunction.js"></script>
+
+    <script src="~/Content/Stageplan/Javascript/reposition.js"></script>
+    <script src="~/Content/Stageplan/Javascript/stageplan.js"></script>
+    <script src="~/Content/Stageplan/Javascript/enums.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/rotate.js"></script>
+    <script>
+
+        //var demo = document.getElementById("demo");
+        //demo.addEventListener("click", function () {
+        //    var img = this;
+        //    var angle = $(this).getRotateAngle()[0];
+        //    angle += 90;
+        //    $(this).rotate(angle);
+        //});
+
+
+        @*The order is immportant, keep seperate scripts like this, and after stageplan.js *@
+
+       
+
+        function start(isError) {
+
+            var errorMessage = document.getElementById("errorMessage");
+            var popUpMask = document.getElementById("popUpMask");
+            var mainNav = document.getElementById("mainNav");
+            
+
+            if (isError) {
+                var msg = "We're really sorry, this isn't working. We're working on it now!";
+                errorMessage.innerHTML = msg;
+                document.getElementById("enterBandDetails").className += " hide";
+                mainNav.className += " hide";
+            } else {
+                errorMessage.className += " hide";
+                enterBandDetails.setUp("enterBandDetails_Submit", "enterBandDetails_BandName", "enterBandDetails_BandMemberNames", helpers, validation, registerBandDetails, closeCurrentPopUp, setBandDetails);
+                setStartupPopup();
+                stagePlan.setUp(g_stagePlanType.Stageplan);
+            }
+        }
+
+        start(false);
 
 
     </script>
+
+    @if (!HttpContext.Current.Request.Url.Host.ToLower().Contains("localhost"))
+    {
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-98102430-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    }
+
 </body>
 </html>

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Stage_plan.Ui.Startup))]
-namespace Stage_plan.Ui
+[assembly: OwinStartupAttribute(typeof(Stage_Plan.Ui.Startup))]
+namespace Stage_Plan.Ui
 {
     public partial class Startup
     {

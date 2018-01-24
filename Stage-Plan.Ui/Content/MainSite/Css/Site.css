@@ -1,28 +1,68 @@
-﻿/* The main blue colour = #18a0ec */
-/* The mail red colour = #a52a2a */
+﻿
+
+/* The main blue colour = #18a0ec */
+/* The light blue  is   = #8ad2fa*/
+/* The main red colour = #a52a2a */
 
 
 @font-face {
     font-family: 'StageplanFont';
-    src: url('../../Fonts/Impacted2.0.woff');
+    src: url('/Content/Fonts/Impacted2.0.woff');
 }
+
+@font-face {
+    font-family: 'AdventPro';
+    src: url(/Content/Fonts/AdventPro-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'AdventProBold';
+    src: url(/Content/Fonts/AdventPro-Bold.ttf);
+}
+
 
 
 body {
     padding: 0;
     margin: 0;
     background-color: #fff;
-    font-family: Tahoma, Geneva, sans-serif;
+    font-family: AdventPro;
     letter-spacing: .08em;
+    font-size: 1.1em;
 }
 
-header {
+header, .blog article {
     background-color: #18a0ec;
 }
 
-.mainImage img {
-    width: 100%;
+.socialMedia img {
+    max-width: 30px;
 }
+
+.mainImage {
+     background-image: url("/Content/MainSite/Images/Live-Event.jpg");
+    width: 100%;
+    height: 240px;
+    background-repeat: no-repeat;
+    background-size:cover;
+    padding-top:1%;
+    font-size: 2em;
+}
+
+    .mainImage span {
+    margin-left: 4%;
+    padding-top: -20px;
+    position: relative;
+    }
+
+    .mainImage section {
+        background-color: rgba(255, 255, 255, .5);
+        padding: .5%;
+    }
+
+    .mainImage img {
+    max-width: 50px;
+    }
 
 section {
     max-width: 1180px;
@@ -30,87 +70,126 @@ section {
     padding: 1.5%;
 }
 
+    section img {
+        max-width: 360px;
+        margin-left: 20px;
+    }
+
 .logo img {
     margin: .4%;
     float: left;
 }
 
-.roadMapSignUp {
-    max-width: 900px;
-    margin: 0 auto;
+header .hamburger {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    float: right;
+    cursor: pointer;
 }
 
-article.quickTutorial, article.roadMap, article.signUp {
-    background-image: url("/Content/MainSite/Images/Quick-Tutorial.jpg");
+    header .hamburger span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: #f0f0f0;
+        border-radius: 9px;
+    }
+
+        header .hamburger span:nth-child(1) {
+            margin-top: 0;
+        }
+
+        header .hamburger span:nth-child(2) {
+            margin-top: 9px;
+        }
+
+        header .hamburger span:nth-child(3) {
+            margin-top: 18px;
+        }
+
+
+article.showRecentBands {
+    /*#fcca9a*/
+    background-color: #8ad2fa;
+    color: #fff;
+}
+
+    article.showRecentBands a {
+        color: white;
+        text-decoration: underline;
+    }
+
+        article.showRecentBands a:hover {
+            text-decoration: none;
+            color: #f0f0f0;
+        }
+
+
+    article.showRecentBands span {
+        margin-left: 20px;
+        font-weight: bold;
+    }
+
+    article.showRecentBands hr {
+        height: 1px;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    article.showRecentBands .recentBand {
+        margin: 1% .5%;
+        /*background: is Done via C#, see Bll.ReceentBands*/
+        border-radius: 8px;
+        padding: 2.5%;
+        border: solid 1px #e7f9fe;
+    }
+
+article.quickTutorial {
+    background-image: url("/Content/MainSite/Images/Quick-Tutorial-01.jpg");
     background-size: 100%;
-    color: #ffd800;
+    color: #ffffff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #9a9999;
+    font-family: AdventProBold;
+    font-size: 1.15em;
 }
 
     article.quickTutorial ol li, article.roadMap ol li, article.signUp, section.about ul li {
         margin-top: 20px;
     }
 
+    article.quickTutorial a {
+        font-size: 1.3em;
+        color: #34ceff;
+    }
+
+        article.quickTutorial a:hover {
+            color: #18a0ec;
+        }
+
+    article.quickTutorial ol li {
+        text-shadow: 1px 1px 2px #000;
+    }
+
 article.roadMap, article.signUp {
     color: #000;
     background-image: none;
-    width: 35%;
-    margin-right: 2%;
     float: left;
 }
 
 article.signUp {
-    padding: 0 100px;
+    padding: 0 2%;
     border: 3px solid #a52a2a;
 }
 
-    article.signUp input {
-        background-color: #18a0ec;
-        border: 1px solid #a52a2a;
-        color: #fff;
-        padding: 4%;
-        width: 100%;
-        margin: 3%;
-    }
-
-        article.signUp input[type=text] {
-            background: #fff;
-            color: #333;
-            padding: 4%;
-            margin: 2%;
-        }
-
-        article.signUp input[type=button]:hover {
-            background: #34ceff;
-        }
-
-input[type=text], textArea {
-    background: #fff;
-    color: #333;
-    padding: 1%;
-    width: 90%;
-    margin: 1%;
-    border: 1px solid #a52a2a;
-}
-
-textArea {
-    height: 150px;
-}
-
-
- input[type=submit] {
-    background: #18a0ec;
-    color: #fff;
-    border: none;
-    padding: 1%;
-    margin: 1%;
-    width: 92%;
-    float: left; 
-}
 .subscriptionOptInOut {
-  margin-left: 10px;
-  border: 1px solid #a52a2a;
-  width: 50%;
-  padding: 1%;
+    margin-left: 25px;
+    border: 1px solid #a52a2a;
+    width: 60%;
+    padding: 1%;
 }
 
 nav {
@@ -126,7 +205,7 @@ nav {
         padding-left: 40px;
     }
 
-        nav ul li a {
+        nav ul li a, .mobMenu a {
             color: #fff;
         }
 
@@ -155,9 +234,9 @@ footer {
 
 
 h1, h2, .title {
-    font-size: 1.5em;
+    font-size: 1.8em;
     font-family: StageplanFont;
-    text-shadow: 1px 2px 2px #000;
+    /*text-shadow: 1px 2px 2px #000;*/
     color: #a52a2a;
 }
 
@@ -171,3 +250,56 @@ a {
     }
 
 
+.blog .trueStory {
+    padding: 2% 6%;
+    text-align: center;
+    font-style: italic;
+    color: #f1f1f1;
+}
+
+
+.stagePlanButton {
+    border: solid 1px #191919;
+    border-radius: 8px;
+    padding: 15px 15px 15px 70px;
+    font-size: 1.2em;
+    font-family: StageplanFont;
+}
+
+.guitarist {
+    background: url("/Content/MainSite/Images/MusiciansButton/GuitaristAlone.png");
+   background-repeat: no-repeat;
+    background-size: contain;
+ }
+
+.bassist {
+    background: url("/Content/MainSite/Images/MusiciansButton/BassistAlone.png");
+   background-repeat: no-repeat;
+    background-size: contain;
+ }
+
+.drummer {
+    background: url("/Content/MainSite/Images/MusiciansButton/DrummerAlone.png");
+   background-repeat: no-repeat;
+    background-size: contain;
+ }
+
+.keyboardist {
+    background: url("/Content/MainSite/Images/MusiciansButton/KeyboardistAlone.png");
+   background-repeat: no-repeat;
+    background-size: contain;
+ }
+
+.vocalist {
+    background: url("/Content/MainSite/Images/MusiciansButton/VocalistAlone.png");
+   background-repeat: no-repeat;
+    background-size: contain;
+ }
+
+.blueBg {
+    background-color: #18a0ec;
+}
+
+.whiteText {
+    color: #f1f1f1;
+}

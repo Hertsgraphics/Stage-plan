@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stage_plan.Dal
+namespace Stage_Plan.Dal
 {
     using System;
     using System.Collections.Generic;
@@ -22,5 +22,6 @@ namespace Stage_plan.Dal
         public bool IsConfirmed { get; set; }
         public System.DateTime DateOptInRequest { get; set; }
         public System.DateTime DateOptInConfirm { get; set; }
+        public string IpAddress { get; set; }
     }
 }

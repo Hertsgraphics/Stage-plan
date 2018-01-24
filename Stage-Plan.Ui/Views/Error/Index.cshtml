@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Something went very wrong - 404";
+}
+
+<div class="mainImage">
+    <img src="~/Content/MainSite/Images/Page-not-found.jpg" />
+</div>
+
+<section class="error clearAndExpandIfSmall">
+
+    <h1>Whoops, something has gone very wrong. <img src="~/Content/MainSite/Images/Crying-Emotion.png" /></h1>
+    <p>Sorry, but we can not find the page you wanted or complete what you were trying to do.</p>
+    
+    <p>If you want to let us know about this then please @Html.ActionLink("contact us direct", "Contact", "Home").</p>
+    <p>&nbsp;</p>
+    <p>
+        Of course we'd love to hear your @Html.ActionLink("feedback", "Contact", "Home") and ideas for improving the site.
+        @Html.ActionLink("Create a new stage plan for your band", "Index", "Stageplan").
+    </p>
+
+</section>

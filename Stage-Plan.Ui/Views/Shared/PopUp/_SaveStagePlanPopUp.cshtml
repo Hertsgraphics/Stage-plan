@@ -1,0 +1,88 @@
+﻿<div id="saveStagePlanPopUp" class="popUp hide saveStagePlanPopUp">
+
+    <!--
+    SaveStagePlanPopUp pop up
+    captcha
+    save button
+
+    after save (ajax)
+    show the url of to get to the read only version
+
+    save project if signed in or show they could have saved
+
+    cancel button
+    -->
+
+    @*<input type="text" placeholder="Enter band name" class="bandName" id="bandName" />*@
+
+    <div class="captcha">
+        <img id="captcha_saveStageplan" /><br />
+        <input type="text" placeholder="Enter captcha" class="captchaTextBox" id="captchaSaveStagePlanTextBox" />
+    </div>
+
+    <br />
+    <input type="checkbox" id="toggleAdvert" checked="checked" />
+    <label for="toggleAdvert" class="lightText">Show my band on the home page for free</label>
+    <div class="clearBoth">&nbsp;</div>
+    <div id="showBandAdvert">
+        <input type="text" placeholder="Band's website (optional)" id="saveStagePlanBandWebAddress" />
+        <p>&nbsp;</p>
+        <input type="text" placeholder="Band's social media (optional)" id="saveStagePlanBandSocialMedia" />
+        <p>&nbsp;</p>
+        <input type="text" placeholder="Genre of music (optional)" id="saveStagePlanBandGenre" />
+        <p>&nbsp;</p>
+<input type="text" placeholder="Country (optional)" id="saveStagePlanBandCountry" />
+        <p>&nbsp;</p>
+@*<input type="button" value="Save" id="saveProjectButton" />*@
+    
+    </div>
+    
+    <input type="text" placeholder="Get an email with your unique URL (optional, we'll provide you with the URL either way)" id="saveStagePlanBandEmail" />
+    <p>&nbsp;</p>
+    <input type="checkbox" id="WillSignUp" />
+    <label for="WillSignUp" id="WillSignUpFor">Sign up to our mailing list to hear when we add new features</label>
+
+
+
+    <div id="readOnlyStageplanUrl" class="hide">
+        read only stageplan url
+    </div>
+    <p>Please note, your stage plan will only be saved for @System.Configuration.ConfigurationManager.AppSettings["DaysStagePlanRemains"] days.</p>
+
+    <input type="button" value="Save" id="saveStageplanButton" />
+    <p>&nbsp;</p>
+    <input type="button" value="Cancel" id="cancelSaveStagePlanPopUp" />
+
+</div><!--close save stageplan pop up-->
+
+
+<script>
+    var captchaEle = document.getElementById("captcha_saveStageplan");
+    captcha.add(captchaEle);
+
+    var toggleAdvert = document.getElementById("toggleAdvert");
+    var showBandAdvert = document.getElementById("showBandAdvert");
+    toggleAdvert.addEventListener("click", function () {
+        if (toggleAdvert.checked) {
+            showBandAdvert.className = null;
+        } else {
+            showBandAdvert.className = "hide";
+        }
+    });
+
+    var emailEle = document.getElementById("saveStagePlanBandEmail");
+    emailEle.addEventListener("keyup", toggleSignUpVisibility);
+    emailEle.addEventListener("click", toggleSignUpVisibility);
+
+    function toggleSignUpVisibility() {
+        if (emailEle.value.length <= 0){
+            document.getElementById("WillSignUp").className = "hide";
+            document.getElementById("WillSignUpFor").className = "hide";
+        } else {
+            document.getElementById("WillSignUp").className = null;
+            document.getElementById("WillSignUpFor").className = null;
+        }
+    }
+
+    toggleSignUpVisibility();//Make sure that this runs on load to hide the sign up box
+</script>

@@ -1,0 +1,58 @@
+﻿
+
+<div id="enterVenueDetails" class="popUp enterVenueDetails">
+
+    <h2>Enter venue details</h2>
+
+    @Html.Partial("PopUp/_EnterInitialVenueDetailsContent")
+
+
+    <div class="captcha">
+        <img id="captcha_enterVenueDetails" /><br />
+        <input type="text" placeholder="Enter captcha" class="captchaTextBox" id="captchaEnterInitialVenueDetailsTextBox" />
+    </div>
+    <br />    <br />
+    <input type="button" value="Continue" id="enterVenueDetails_Submit" />
+
+</div><!--close load stageplan pop up-->
+
+<script src="~/Content/Stageplan/Javascript/Libaries/jquery-3.2.1.min.js"></script>
+<script src="~/Content/Stageplan/Javascript/captcha.js"></script>
+
+<script src="~/Content/Stageplan/Javascript/validation.js"></script>
+
+<script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+<script src="~/Content/Stageplan/Javascript/ajax.js"></script>
+
+<script src="~/Content/Stageplan/Javascript/enterVenueDetails.js"></script>
+
+
+<script>
+    enterVenueDetails.setUp("enterVenueDetails_VenueName", "captcha_enterVenueDetails", "captchaEnterInitialVenueDetailsTextBox", "enterVenueDetails_Submit", "enterVenueDetails_Email", "enterVenueDetails_URL", "enterVenueDetails_Password", helpers, validation, ajaxResponse, ajaxError);
+
+    var captchaEle = document.getElementById("captcha_enterVenueDetails");
+    captcha.add(captchaEle);
+
+    function ajaxResponse(message) {
+        var ele = document.getElementById("enterVenueDetails_Error");
+        if (message.IsError) {
+            if (!helpers.isNullOrEmpty(message.Message))
+                ele.innerHTML = message.Message;
+            alert(message.Message);
+        }
+        else {
+            alert("forward: Need to update to the logged in page so it can be correctly forwarded");
+            window.location = "/Template/";
+        }
+    };
+
+    function ajaxError(message) {
+        var ele = document.getElementById("enterVenueDetails_Error");
+        if (!helpers.isNullOrEmpty(message)) {
+            ele.innerHTML = message;
+        }
+        alert(message);
+    }
+
+
+</script>

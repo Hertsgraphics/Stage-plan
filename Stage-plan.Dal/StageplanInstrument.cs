@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stage_plan.Dal
+namespace Stage_Plan.Dal
 {
     using System;
     using System.Collections.Generic;
@@ -21,6 +21,13 @@ namespace Stage_plan.Dal
         public decimal Y { get; set; }
         public string DataText { get; set; }
         public string Src { get; set; }
+        public string BandMember { get; set; }
+        public bool IsFixedPosition { get; set; }
+        public string SelectedInstrument { get; set; }
+        public Nullable<int> Width { get; set; }
+        public Nullable<int> Height { get; set; }
+        public int Zindex { get; set; }
+        public int RotateAngle { get; set; }
     
         public virtual Stageplan Stageplan { get; set; }
     }

@@ -1,0 +1,172 @@
+﻿
+@*http://localhost:53081/Stageplan/plan/762397cb-3b57-4395-9bd0-ba751b62361f*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <title>Template stage plot creator</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/lmsResponsiveMenu.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/stageplan.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/global.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/spinner.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/reusable.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/Responsive/responsive.css" />
+
+
+
+</head>
+<body>
+
+    <div class="popUpMask" id="popUpMask">&nbsp;</div>
+
+    <div class="crowdImage">
+        <img src="~/Content/Stageplan/Images/Stage.png" />
+    </div>
+
+    @*<img src="~/Content/Stageplan/Images/Stage.png" style="height: 100px; position:absolute; bottom: 0; min-width:100%;" />*@
+
+    <div class="stage" id="stage">
+
+        <div id="menu"></div>
+        <nav id="mainNav">
+            <ul id="lmsNavLink" style="visibility:hidden;display:none" ;>
+                <li><a id="showNewPlanLink">New plan</a></li>
+                <li><a id="showAddInstrumentLink">Add instrument</a></li>
+                <li><a id="showSaveOptionsLink">Save stageplan</a></li>
+                @*<li><a id="showLoadExistingStageplanLink">Load stageplan</a></li>
+                    <li><a id="showSignInLink">Sign in</a></li>
+                    <li><a id="showSignOutLink">Sign out</a></li>
+                    <li><a id="showSignUpLink">Sign up</a></li>
+                    <li><a id="showYouTubeLink">Tutorials on YouTube</a></li>
+                    <li><a id="showSuggestionsLink">Suggestions</a></li>*@
+                <li><a href="https://stage-plan.com/" target="_blank"><img src="~/Content/Stageplan/Images/Stage-Plan-Logo.png" /></a></li>
+            </ul>
+            <div id="noInstruments" class="defaultEmptyStagePlan"></div>
+
+        </nav>
+
+        @Html.Partial("PopUp/_AddInstrumentPopUp")
+
+        <div style="background: #fff; right:20px; position: absolute; width: 200px; height: 200px " class="hide" id="debug"></div>
+
+        <div id="instrumentsOnStage" class="instrumentsOnStage"></div>
+
+    </div><!--close stage-->
+    @*This capcha has to be here due to partials*@
+
+
+
+    @Html.Partial("PopUp/_EnterInitialVenueDetails")
+
+
+    <script src="~/Content/Stageplan/Javascript/lmsResponsiveMenu.js"></script>
+
+
+    <script>
+
+        lmsResponsiveMenu.setUp({ "parentId": "menu", "navId": "mainNav", "responsiveCssClosed": "responsiveCssClosed", "text": "Menu" });//leave before stageplan.js
+
+
+
+
+
+        //var fileToUpload = document.getElementById("fileToUpload");
+        //fileToUpload.addEventListener("change", fileSelected);
+
+        //var fileUpload = document.getElementById("fileUpload");
+        //fileUpload.addEventListener("click", uploadFile);
+
+        //function fileSelected() {
+
+        //    document.getElementById("filePreview").src = null;
+
+        //    var file = document.getElementById('fileToUpload').files[0];
+        //    if (file) {
+        //        var fileSize = 0;
+        //        if (file.size > 1024 * 1024)
+        //            fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
+        //        else
+        //            fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+
+        //        document.getElementById('fileName').innerHTML = 'Name: ' + file.name;
+        //        document.getElementById('fileSize').innerHTML = 'Size: ' + fileSize;
+        //        document.getElementById('fileType').innerHTML = 'Type: ' + file.type;
+
+        //        var reader = new FileReader();
+
+        //        reader.onload = function (e) {
+        //            document.getElementById("filePreview").src = e.target.result;
+        //        }
+
+        //        reader.readAsDataURL(file);
+        //    }
+        //}
+
+        //function uploadFile() {
+        //    //var xhr = new XMLHttpRequest();
+        //    //var fd = document.getElementById('form1').getFormData();
+
+        //    ///* event listners */
+        //    //xhr.upload.addEventListener("progress", uploadProgress, false);
+        //    //xhr.addEventListener("load", uploadComplete, false);
+        //    //xhr.addEventListener("error", uploadFailed, false);
+        //    //xhr.addEventListener("abort", uploadCanceled, false);
+        //    ///* Be sure to change the url below to the url of your upload server side script */
+        //    //xhr.open("POST", "UploadMinimal.aspx");
+        //    //xhr.send(fd);
+
+        //}
+
+
+        //function uploadProgress(evt) {
+        //    if (evt.lengthComputable) {
+        //        var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+        //        document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
+        //    }
+        //    else {
+        //        document.getElementById('progressNumber').innerHTML = 'unable to compute';
+        //    }
+        //}
+
+        //function uploadComplete(evt) {
+        //    /* This event is raised when the server send back a response */
+        //    alert(evt.target.responseText);
+        //}
+
+        //function uploadFailed(evt) {
+        //    alert("There was an error attempting to upload the file.");
+        //}
+
+        //function uploadCanceled(evt) {
+        //    alert("The upload has been canceled by the user or the browser dropped the connection.");
+        //}
+
+
+    </script>
+    @*<script src="~/Content/Stageplan/Javascript/closePopUpFunction.js"></script>*@
+        @*<script src="~/Content/Stageplan/Javascript/stageplan.js"></script>
+        <script src="~/Content/Stageplan/Javascript/enums.js"></script>
+
+        *@
+    @if (!HttpContext.Current.Request.Url.Host.ToLower().Contains("localhost"))
+    {
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-98102430-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    }
+
+</body>
+</html>

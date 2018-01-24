@@ -80,7 +80,7 @@ namespace Stage_Plan.Bll
 
         public void Send(Email email)
         {
-            var webPage = WebPaths.GetDomain() + "/OptinConfirm/" + this.Token;
+            var webPage = WebPaths.GetDomain() + "/OptinConfirm/Join/" + this.Token;
             var msg = "<p>Hi " + this.Name + "</p><p>Thanks for joining us! There is one thing we need, and that is for you to verify you want our occasional emails. To do so, simply visit this page: <a href=\""+webPage+"\" > " + webPage + "</a><p>Please don't forget to add us to your safe list.</p>";
 
             email.SendEmail(this.EmailAddress, null, msg, "Confirm your subscription to Stage Plan");

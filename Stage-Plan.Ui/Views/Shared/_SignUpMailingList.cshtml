@@ -1,6 +1,6 @@
 ﻿@model Stage_Plan.Bll.SubscriptionPreferences
 
-@using (Html.BeginForm("OptinRequest", "Home"))
+@using (Html.BeginForm("Index", "OptinRequest"))
             {
     @Html.ValidationSummary(false)
     @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br /><br />

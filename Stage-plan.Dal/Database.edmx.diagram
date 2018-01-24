@@ -5,16 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e2e2a9379c0a4e4d9d7361e7a878b7db" Name="Diagram1">
-        <EntityTypeShape EntityType="StageplanModel.Account" Width="1.5" PointX="5.75" PointY="0.875" />
-        <EntityTypeShape EntityType="StageplanModel.AccountVenue" Width="1.5" PointX="8" PointY="0.875" />
-        <EntityTypeShape EntityType="StageplanModel.Generic" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="StageplanModel.MailingList" Width="1.5" PointX="5.75" PointY="4.75" />
-        <EntityTypeShape EntityType="StageplanModel.Stageplan" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="StageplanModel.Account" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="StageplanModel.AccountMapper" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="StageplanModel.AccountStageplan" Width="1.5" PointX="8" PointY="1.625" />
+        <EntityTypeShape EntityType="StageplanModel.Generic" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="StageplanModel.ImageId" Width="1.5" PointX="4.75" PointY="5.75" />
+        <EntityTypeShape EntityType="StageplanModel.MailingList" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="StageplanModel.Stageplan" Width="1.5" PointX="0.75" PointY="1.125" />
         <EntityTypeShape EntityType="StageplanModel.StageplanInstrument" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="StageplanModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="StageplanModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" />
         <AssociationConnector Association="StageplanModel.FK_AccountVenue_Account" />
         <AssociationConnector Association="StageplanModel.FK_StageplanInstrument_Stageplan" />
-        <EntityTypeShape EntityType="StageplanModel.ImageId" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

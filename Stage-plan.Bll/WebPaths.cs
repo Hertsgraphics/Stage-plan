@@ -20,11 +20,16 @@ namespace Stage_Plan.Bll
             return "http://" + url;
         }
 
+        public static string GetFacebook()
+        {
+            return "https://www.facebook.com/people/Stageplan-Stageplan/100015404205242";
+        }
+
         /// <summary>
         /// Returns https://stage-plan.com
         /// </summary>
         /// <returns></returns>
-                public static string GetDomain()
+        public static string GetDomain()
         {
             return "https://stage-plan.com";
         }

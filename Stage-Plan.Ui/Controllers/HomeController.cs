@@ -24,19 +24,24 @@ namespace Stage_Plan.Ui.Controllers
             return View();
         }
 
-        public ActionResult Subscribe()
-        {
-            var model = new SubscriptionPreferences(Request.UserHostAddress);
-            return View(model);
-        }
-
         public ActionResult About()
         {
 
             return View();
         }
 
-        public ActionResult Contact()
+
+        public ActionResult Disclaimer()
+        {
+            return View();
+        }
+
+        public ActionResult Privacy_Policy()
+        {
+            return View();
+        }
+
+        public ActionResult SubscriptionPreferences()
         {
             return View();
         }
@@ -54,82 +59,6 @@ namespace Stage_Plan.Ui.Controllers
 
             ViewBag.Message = sb.ToString();
 
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult OptinRequest(SubscriptionPreferences model)
-        {
-            model.IpAddress = Request.UserHostAddress;
-
-            var errorMsg = model.Update();
-            if (String.IsNullOrEmpty(errorMsg))
-            {
-                var email = new Email();
-                
-                model.Send(email);
-
-                return RedirectToAction("ThankYou", new { header = "Hurray...it's great you want to join us", msg1 = "Thanks for joining! We need you to do one more thing - Please check your email and you'll see a link to confirm your subscription. If you don't see an email from us please check your spam folder and add us to your white list." });
-            }
-            else
-            {
-                Utilies.Email.SendFaultEmail("dave@lmsites.co.uk", "Fault subscribing in to Stage Plan", true, "<p>stageplansp15f35 Could not subscribe: " + model.EmailAddress + " <br/>" + model.Name + "<br />IsOptIn: " + model.IsOptIn + "<br />" + errorMsg);
-
-                return RedirectToAction("ThankYou", new { header = "Oh no...it's great you want to join us but something is wrong...", msg1 = errorMsg });
-            }
-
-
-        }
-
-        public ActionResult OptinConfirm(string id)
-        {
-            //id is the token
-            var sp = new Stage_Plan.Bll.SubscriptionPreferences(Request.UserHostAddress);
-            var didConfirm = sp.ConfirmSubscription(id);
-
-            return RedirectToAction("ThankYou", new { header = "Hurray...You are now subscribed!", msg = "Thank you for you for your support!" });
-        }
-
-
-
-        [HttpPost]
-        public ActionResult Contact(Contact model)
-        {
-            var email = "support@stage-plan.com";
-            var x = Utilies.Email.SendEmail(false, "mail.stage-plan.com", false, 25, email, GetPassword(), email, new List<string> { model.Email }, null, new List<string> { email }, "Email from Stage-Plan", true, GetBody(model));
-
-            if (String.IsNullOrEmpty(x))
-                Utilies.Email.SendFaultEmail("dave@lmsites.co.uk", "Fault with stage plan", true, "<p>Failed to send contact... MSG: " + x + "</p>Name: " + model.Name + "... Email: " + model.Email + "... Message: " + model.Message);
-            //todo verification
-            return RedirectToAction("ThankYou", new { header = "Hurray...we've got your message!", msg1 = "Thank you for you message, we'll review you message and come back to you if required!" });
-
-        }
-
-        private string GetBody(Contact model)
-        {
-            return "<p>Name: " + model.Name + "</p><p>Email: " + model.Email + "</p><p>Message: " + model.Message + "</p>";
-        }
-
-        private string GetPassword()
-        {
-            Email email = new Email();
-            return email.GetPassword();
-        }
-
-
-
-        public ActionResult Disclaimer()
-        {
-            return View();
-        }
-
-        public ActionResult Privacy_Policy()
-        {
-            return View();
-        }
-
-        public ActionResult SubscriptionPreferences()
-        {
             return View();
         }
 

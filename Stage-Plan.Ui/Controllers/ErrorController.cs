@@ -14,7 +14,7 @@ namespace Stage_Plan.Ui.Controllers
             var couldNotGetToPage = Request.QueryString["aspxerrorpath"];
             var previousPage = Request.ServerVariables["HTTP_REFERER"];
 
-            if (String.IsNullOrEmpty(couldNotGetToPage) && String.IsNullOrEmpty(previousPage))
+            //if (String.IsNullOrEmpty(couldNotGetToPage) && String.IsNullOrEmpty(previousPage))
                 Utilies.Email.SendFaultEmail("dave@lmsites.co.uk", "Missing page on Stage Plan", true, "<p>Fault on stage plan... User couldn't get to " + couldNotGetToPage + " from " + previousPage);
 
             return View();

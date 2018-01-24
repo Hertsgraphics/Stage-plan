@@ -26,12 +26,13 @@ namespace Stage_Plan.Dal
         }
     
         public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<AccountVenue> AccountVenues { get; set; }
+        public virtual DbSet<AccountMapper> AccountMappers { get; set; }
+        public virtual DbSet<AccountStageplan> AccountStageplans { get; set; }
         public virtual DbSet<Generic> Generics { get; set; }
+        public virtual DbSet<ImageId> ImageIds { get; set; }
         public virtual DbSet<MailingList> MailingLists { get; set; }
         public virtual DbSet<Stageplan> Stageplans { get; set; }
         public virtual DbSet<StageplanInstrument> StageplanInstruments { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<ImageId> ImageIds { get; set; }
     }
 }

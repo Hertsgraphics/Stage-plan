@@ -14,16 +14,32 @@
           <Property Name="TempPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="VenueTemplateLimit" Type="int" Nullable="false" />
           <Property Name="IsEnabled" Type="bit" Nullable="false" />
+          <Property Name="DateTokenCreated" Type="datetime" Nullable="false" />
+          <Property Name="Token" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Iterations" Type="int" Nullable="false" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DateAccountConfirmed" Type="datetime" Nullable="false" />
+          <Property Name="IsConfirmed" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="AccountVenue">
+        <EntityType Name="AccountMapper">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ContactName" Type="nvarchar" MaxLength="50" />
-          <Property Name="VenueUrl" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="VenueName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="AccountStageplanId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountStageplan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="StageplanId" Type="int" Nullable="false" />
+          <Property Name="FacebookUrl" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Generic">
           <Key>
@@ -105,12 +121,12 @@
         </EntityType>
         <Association Name="FK_AccountVenue_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="AccountVenue" Type="Self.AccountVenue" Multiplicity="*" />
+          <End Role="AccountStageplan" Type="Self.AccountStageplan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AccountVenue">
+            <Dependent Role="AccountStageplan">
               <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
@@ -129,7 +145,8 @@
         </Association>
         <EntityContainer Name="StageplanModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AccountVenue" EntityType="Self.AccountVenue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountMapper" EntityType="Self.AccountMapper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountStageplan" EntityType="Self.AccountStageplan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Generic" EntityType="Self.Generic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImageId" EntityType="Self.ImageId" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MailingList" EntityType="Self.MailingList" Schema="dbo" store:Type="Tables" />
@@ -138,7 +155,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AccountVenue_Account" Association="Self.FK_AccountVenue_Account">
             <End Role="Account" EntitySet="Account" />
-            <End Role="AccountVenue" EntitySet="AccountVenue" />
+            <End Role="AccountStageplan" EntitySet="AccountStageplan" />
           </AssociationSet>
           <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="Self.FK_StageplanInstrument_Stageplan">
             <End Role="Stageplan" EntitySet="Stageplan" />
@@ -151,21 +168,22 @@
       <Schema Namespace="StageplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="StageplanEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="StageplanModel.Account" />
-          <EntitySet Name="AccountVenues" EntityType="StageplanModel.AccountVenue" />
+          <EntitySet Name="AccountMappers" EntityType="StageplanModel.AccountMapper" />
+          <EntitySet Name="AccountStageplans" EntityType="StageplanModel.AccountStageplan" />
           <EntitySet Name="Generics" EntityType="StageplanModel.Generic" />
+          <EntitySet Name="ImageIds" EntityType="StageplanModel.ImageId" />
           <EntitySet Name="MailingLists" EntityType="StageplanModel.MailingList" />
           <EntitySet Name="Stageplans" EntityType="StageplanModel.Stageplan" />
           <EntitySet Name="StageplanInstruments" EntityType="StageplanModel.StageplanInstrument" />
           <EntitySet Name="sysdiagrams" EntityType="StageplanModel.sysdiagram" />
           <AssociationSet Name="FK_AccountVenue_Account" Association="StageplanModel.FK_AccountVenue_Account">
             <End Role="Account" EntitySet="Accounts" />
-            <End Role="AccountVenue" EntitySet="AccountVenues" />
+            <End Role="AccountStageplan" EntitySet="AccountStageplans" />
           </AssociationSet>
           <AssociationSet Name="FK_StageplanInstrument_Stageplan" Association="StageplanModel.FK_StageplanInstrument_Stageplan">
             <End Role="Stageplan" EntitySet="Stageplans" />
             <End Role="StageplanInstrument" EntitySet="StageplanInstruments" />
           </AssociationSet>
-          <EntitySet Name="ImageIds" EntityType="StageplanModel.ImageId" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -176,18 +194,34 @@
           <Property Name="TempPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VenueTemplateLimit" Type="Int32" Nullable="false" />
           <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="AccountVenues" Relationship="StageplanModel.FK_AccountVenue_Account" FromRole="Account" ToRole="AccountVenue" />
+          <Property Name="DateTokenCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Iterations" Type="Int32" Nullable="false" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DateAccountConfirmed" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AccountStageplans" Relationship="StageplanModel.FK_AccountVenue_Account" FromRole="Account" ToRole="AccountStageplan" />
         </EntityType>
-        <EntityType Name="AccountVenue">
+        <EntityType Name="AccountMapper">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VenueUrl" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="VenueName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="AccountId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Account" Relationship="StageplanModel.FK_AccountVenue_Account" FromRole="AccountVenue" ToRole="Account" />
+          <Property Name="AccountStageplanId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountStageplan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="StageplanId" Type="Int32" Nullable="false" />
+          <Property Name="FacebookUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="StageplanModel.FK_AccountVenue_Account" FromRole="AccountStageplan" ToRole="Account" />
         </EntityType>
         <EntityType Name="Generic">
           <Key>
@@ -197,6 +231,14 @@
           <Property Name="TotalScore" Type="Int32" Nullable="false" />
           <Property Name="NumberOfVoters" Type="Int32" Nullable="false" />
           <Property Name="TotalStagePlans" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImageId">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageId1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PaneId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="MailingList">
           <Key>
@@ -248,8 +290,8 @@
           <Property Name="Width" Type="Int32" />
           <Property Name="Height" Type="Int32" />
           <Property Name="Zindex" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Stageplan" Relationship="StageplanModel.FK_StageplanInstrument_Stageplan" FromRole="StageplanInstrument" ToRole="Stageplan" />
           <Property Name="RotateAngle" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Stageplan" Relationship="StageplanModel.FK_StageplanInstrument_Stageplan" FromRole="StageplanInstrument" ToRole="Stageplan" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -263,12 +305,12 @@
         </EntityType>
         <Association Name="FK_AccountVenue_Account">
           <End Type="StageplanModel.Account" Role="Account" Multiplicity="1" />
-          <End Type="StageplanModel.AccountVenue" Role="AccountVenue" Multiplicity="*" />
+          <End Type="StageplanModel.AccountStageplan" Role="AccountStageplan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AccountVenue">
+            <Dependent Role="AccountStageplan">
               <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
@@ -285,14 +327,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ImageId">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ImageId1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="PaneId" Type="Int32" Nullable="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -302,6 +336,13 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="StageplanModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="DateAccountConfirmed" ColumnName="DateAccountConfirmed" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Iterations" ColumnName="Iterations" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="DateTokenCreated" ColumnName="DateTokenCreated" />
                 <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
                 <ScalarProperty Name="VenueTemplateLimit" ColumnName="VenueTemplateLimit" />
                 <ScalarProperty Name="TempPassword" ColumnName="TempPassword" />
@@ -310,13 +351,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AccountVenues">
-            <EntityTypeMapping TypeName="StageplanModel.AccountVenue">
-              <MappingFragment StoreEntitySet="AccountVenue">
+          <EntitySetMapping Name="AccountMappers">
+            <EntityTypeMapping TypeName="StageplanModel.AccountMapper">
+              <MappingFragment StoreEntitySet="AccountMapper">
+                <ScalarProperty Name="AccountStageplanId" ColumnName="AccountStageplanId" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
-                <ScalarProperty Name="VenueName" ColumnName="VenueName" />
-                <ScalarProperty Name="VenueUrl" ColumnName="VenueUrl" />
-                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountStageplans">
+            <EntityTypeMapping TypeName="StageplanModel.AccountStageplan">
+              <MappingFragment StoreEntitySet="AccountStageplan">
+                <ScalarProperty Name="FacebookUrl" ColumnName="FacebookUrl" />
+                <ScalarProperty Name="StageplanId" ColumnName="StageplanId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -327,6 +378,15 @@
                 <ScalarProperty Name="TotalStagePlans" ColumnName="TotalStagePlans" />
                 <ScalarProperty Name="NumberOfVoters" ColumnName="NumberOfVoters" />
                 <ScalarProperty Name="TotalScore" ColumnName="TotalScore" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageIds">
+            <EntityTypeMapping TypeName="StageplanModel.ImageId">
+              <MappingFragment StoreEntitySet="ImageId">
+                <ScalarProperty Name="PaneId" ColumnName="PaneId" />
+                <ScalarProperty Name="ImageId1" ColumnName="ImageId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -393,15 +453,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ImageIds">
-            <EntityTypeMapping TypeName="StageplanModel.ImageId">
-              <MappingFragment StoreEntitySet="ImageId">
-                <ScalarProperty Name="PaneId" ColumnName="PaneId" />
-                <ScalarProperty Name="ImageId1" ColumnName="ImageId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

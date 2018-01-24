@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stage_plan.Ui.Properties {
+namespace Stage_Plan.Ui.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Stage_plan.Ui.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stage_plan.Ui.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stage_Plan.Ui.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,38 +57,6 @@ namespace Stage_plan.Ui.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
-        ///
-        ///&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-        ///&lt;head&gt;
-        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
-        ///    &lt;title&gt;Es Raco&lt;/title&gt;
-        ///    &lt;style&gt;
-        ///        body {
-        ///            font-family: Arial, Helvetica, sans-serif;
-        ///            font-size: 1.3em;
-        ///            color: #363636;
-        ///        }
-        ///
-        ///        a {
-        ///            text-decoration: none;
-        ///        }
-        ///    &lt;/style&gt;
-        ///&lt;/head&gt;
-        ///&lt;body&gt;
-        ///
-        ///    &lt;table width=&quot;100%&quot;&gt;
-        ///
-        ///        &lt;tr&gt;
-        ///            &lt;td style=&quot;background:url(&apos;http://www.Stage_planmacaret.es/Content/ [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string EmailTemplate {
-            get {
-                return ResourceManager.GetString("EmailTemplate", resourceCulture);
             }
         }
     }

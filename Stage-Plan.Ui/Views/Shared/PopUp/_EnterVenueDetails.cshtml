@@ -1,0 +1,83 @@
+﻿
+
+<div id="enterVenueDetails" class="popUp enterVenueDetails">
+
+    <h2>Enter venue details</h2>
+
+    <div id="enterVenueDetails_Error"></div>
+    
+    @Html.Partial("PopUp/_EnterInitialVenueDetailsContent")
+
+
+
+
+     @*
+       logo
+       stage dimensions
+       *@
+    <input type="text" id="enterVenueDetails_Contact" placeholder="Enter venue contact name" />
+    <br />    <br />
+    <input type="text" id="enterVenueDetails_PhoneNumber" placeholder="Enter venue phone number" />
+    <br />    <br />
+    <input type="text" id="enterVenueDetails_Website" placeholder="Enter venue website" />
+    <br />    <br />
+    <input type="text" id="enterVenueDetails_SocialMedia" placeholder="Enter venue social media address" />
+    <br />    <br />
+    <input type="text" id="enterVenueDetails_StageWidth" placeholder="Enter stage width" />
+    <br />    <br />
+    <input type="text" id="enterVenueDetails_StageDepth" placeholder="Enter stage depth" />
+    <br />    <br />
+
+  <textarea placeholder="Enter venue address" id="enterVenueDetails_Address"></textarea>
+    <br />    <br />
+
+    <label for="fileToUpload">Select a File to Upload</label><br />
+    <input type="file" name="fileToUpload" id="fileToUpload" />
+
+    <div id="fileName"></div>
+    <div id="fileSize"></div>
+    <div id="fileType"></div>
+    <img id="filePreview" />
+    <div class="row">
+        <input type="button" id="fileUpload" value="Upload" />
+    </div>
+    <div id="progressNumber"></div>
+
+
+
+
+    <br /><br />
+
+
+    <div class="captcha">
+        <img id="captcha_enterVenueDetails" /><br />
+        <input type="text" placeholder="Enter captcha" class="captchaTextBox" id="captchaSaveStagePlanTextBox" />
+    </div>
+    <br />    <br />
+    <input type="button" value="Continue" id="enterVenueDetails_Submit" />
+
+</div><!--close load stageplan pop up-->
+
+<script src="~/Content/Stageplan/Javascript/Libaries/jquery-3.2.1.min.js"></script>
+<script src="~/Content/Stageplan/Javascript/captcha.js"></script>
+
+<script src="~/Content/Stageplan/Javascript/validation.js"></script>
+
+<script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+<script src="~/Content/Stageplan/Javascript/ajax.js"></script>
+
+<script src="~/Content/Stageplan/Javascript/enterVenueDetails.js"></script>
+
+
+<script>
+    enterVenueDetails.setUp("enterVenueDetails_Submit", "enterVenueDetails_Contact", "enterVenueDetails_Email", "enterVenueDetails_PhoneNumber", "enterVenueDetails_Website", "enterVenueDetails_SocialMedia", "enterVenueDetails_URL", "enterVenueDetails_Password", "enterVenueDetails_Address","enterVenueDetails_StageWidth","enterVenueDetails_StageDepth", helpers, validation, onError);
+
+    var captchaEle = document.getElementById("captcha_enterVenueDetails");
+    captcha.add(captchaEle);
+
+    function onError (message) {
+        var ele = document.getElementById("enterVenueDetails_Error");
+        ele.innerHTML = message;
+    };
+
+    </script>

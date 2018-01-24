@@ -1,4 +1,4 @@
-﻿@model Stage_plan.Bll.SubscriptionPreferences
+﻿@model Stage_Plan.Bll.SubscriptionPreferences
 @{
     ViewBag.Title = "Subscrition preferences";
 }
@@ -8,32 +8,46 @@
 </div>
 <section>
     <h1>Subscription preferences</h1>
+    <div class="subscriptionOptInOut">
+        @ViewBag.Message
 
-    @ViewBag.Message
-
-    @using (Html.BeginForm("Contact", "Home"))
+        @using (Html.BeginForm("SubscriptionPreferences", "Home"))
             {
-        @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br />
+            @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br />
 
-        @Html.TextBoxFor(a => a.EmailAddress, new { @placeholder = "Email", @class = "email" })<br /><br />
+            @Html.TextBoxFor(a => a.EmailAddress, new { @placeholder = "Email", @class = "email" })<br /><br />
 
-        <div class="subscriptionOptInOut">
+            <div class="subscriptionOptInOut">
 
-            @Html.RadioButtonFor(a => a.IsOptIn, true) <span>Opt In</span>
-        </div>
+                @Html.RadioButtonFor(a => a.IsOptIn, true, new { Checked = "checked" }) <span>Subscribe</span>
+                </div>
 
-        <br />
+                <br /><br />
 
-        <div class="subscriptionOptInOut">
-            @Html.RadioButtonFor(a => a.IsOptIn, false) <span>Opt Out</span>
+                <div class="subscriptionOptInOut">
+                    @Html.RadioButtonFor(a => a.IsOptIn, false) <span>Unsubscribe</span>
+                </div>
+
+                <br />
+                <img id="captcha_saveStageplan" /><br />
+                @Html.TextBoxFor(a => a.Captcha, new { @placeholder = "Captcha", @class = "email" })<br />
+
+                @Html.HiddenFor(a => a.CaptchaReferenceUrl, new { id = "captchaReference" })
+
+                <div class="center">
+                    <input type="submit" value="Submit" />
+                </div>
+                }
+
+                <div class="clearBoth"></div>
             </div>
 
-            <br />
-
-            <div class="center">
-                <input type="submit" value="Submit" />
-            </div>
-            }
-
-            <div class="clearBoth"></div>
 </section>
+
+<script src="~/Content/Stageplan/Javascript/captcha.js"></script>
+
+<script>
+        var captchaEle = document.getElementById("captcha_saveStageplan");
+        var captchaRefEle = document.getElementById("captchaReference");
+        captcha.add(captchaEle, captchaRefEle);
+</script>

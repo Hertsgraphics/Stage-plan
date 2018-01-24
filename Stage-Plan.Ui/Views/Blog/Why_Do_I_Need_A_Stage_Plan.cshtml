@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Why Do I Need A Stage Plan";
+}
+
+<div class="mainImage">
+    <img src="~/Content/MainSite/Images/Venue.jpg" />
+</div>
+
+<div class="blog">
+
+    <section>
+        <h1>
+
+            Why do I need a stage plan
+        </h1>
+
+        <p>
+            A stage plan is a very important document for the sound engineer. It shows them your line up (such as how many performers) and what equipment is being used. It shows what equipment the band has and what they expect the venue to provide. This includes microphones, placement of equipment/boom stands etc and so they can get a good overview before you even go into the venue. This gives them a great heads up, especially since many bands do the weird and the wonderful.
+        </p>
+    </section>
+
+
+    <article class="trueStory">
+        <section>
+            True story:  I once worked in a venue and there was a band who insisted that the 2 guitarists stood on opposite sides of the stage (quite normal) but in-front of each-others amp! They wanted to get their own sound in the monitor in front of them and their partners guitar from behind them. The point is when you get a stage plot you can see this is the intent. And then ask them if they're sure : )
+        </section>
+    </article>
+    <section>
+        <p>
+            It also shows the engineer and the stage hand how many plug sockets the band needs and where to run cables for DI boxes and microphone leads. Where and what boom stands are needed. This is vital since there is often more than 1 act on each night so it gives the venue an idea how to change the bands over as well.
+        </p>
+
+        <p>
+            To get this overview up front makes life easier for everyone as it can often reduce any unpleasant surprises.
+        </p>
+
+    </section>
+
+    <article class="trueStory">
+        <section>
+            True story: I once worked on an acoustic/open mic night. One of the bands used to play things they found on their walk to the venue. They played the shopping basket, the bicycle, the beer cans… and had effect requirements (such as loads of reverb and delays). Ignoring the insanity, this is very hard to mic up in a live room especially if you don't know about it in advance.
+        </section>
+    </article>
+
+    <section>
+
+        <p>
+            There are a few stage plot creators out there. The ones which cost are great, but they cost after a few days and this gets expensive. It is also not always easy if you're not by your home computer! Others are free but are too basic, often requiring you to print it out and write extra detail or provide it as a supporting document to the venue. stage-plan.com tries to do it all for free. If you can think of something else stage-plan.com needs, then contact us with a suggestion. If you don't ask, you don't get :)
+        </p>
+
+        <p>&nbsp;<br />@Html.ActionLink("Create a free stage plan", "Index", "Stageplan", null, new { @class = "stagePlanButton blueBg whiteText", id = "stagePlanButton" })</p>
+    </section>
+</div>
+<script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+
+<script src="~/Content/MainSite/Javascript/stagePlanButton.js"></script>
+<script>
+        document.getElementById("stagePlanButton").className += " " + stagePlanButton.getCss();
+</script>

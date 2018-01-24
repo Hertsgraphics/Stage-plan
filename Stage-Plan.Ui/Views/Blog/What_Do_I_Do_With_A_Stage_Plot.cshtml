@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "What Do I Do With A Stage Plot";
+}
+
+
+<div class="mainImage">
+    <img src="~/Content/MainSite/Images/Venue.jpg" />
+</div>
+
+<div class="blog">
+
+    <section>
+        <h1>
+            What do I do with a stage plan
+        </h1>
+
+        <p>
+            The stage plan is a map of where your instruments are. The person who needs this is the sound engineer or the venue (or even both). This then gives them a good idea of your bands set up and where everyone wants to be. Of course, during the gig we know many musicians won't be rooted to the spot but your amps, keyboards, pianist, drummer, monitors, DI boxes etc probably will be. This is what they need.
+        </p>
+
+        <p>
+            Within stage plan, you can share the final page with Facebook, copy the page URL and email it, or send an email direct to the engineer/venue.
+        </p>
+
+        <p>&nbsp;<br />@Html.ActionLink("Create a free stage plan", "Index", "Stageplan", null, new { @class = "stagePlanButton blueBg whiteText", id = "stagePlanButton" })</p>
+    </section>
+</div>
+<script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+
+<script src="~/Content/MainSite/Javascript/stagePlanButton.js"></script>
+<script>        document.getElementById("stagePlanButton").className += " " + stagePlanButton.getCss();
+
+</script>

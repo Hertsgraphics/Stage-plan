@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Stage_plan.Ui
+namespace Stage_Plan.Ui
 {
     public class BundleConfig
     {
@@ -24,10 +24,12 @@ namespace Stage_plan.Ui
             //          "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/MainSite/Styles").Include(
-                      "~/Content/MainSite/Css/*.css"));
+                      "~/Content/MainSite/Css/*.css",
+                      "~/Content/Shared/*.css"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/MainSite/Styles/Responsive").Include(
-                   "~/Content/MainSite/Css/Responsive/*.css"));
+                   "~/Content/Shared/Responsive/*.css"));
         }
     }
 }

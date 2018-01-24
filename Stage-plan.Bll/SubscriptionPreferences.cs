@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Stage_plan.Dal;
+using Stage_Plan.Dal;
 
-namespace Stage_plan.Bll
+namespace Stage_Plan.Bll
 {
-    public class SubscriptionPreferences
+    public class SubscriptionPreferences : ICaptcha
     {
         private Dal.StageplanEntities _dc;
         private string _faultSavingMessage = "There was a fault. We could not save the change. Please email us direct";
@@ -19,6 +19,12 @@ namespace Stage_plan.Bll
             this.IsOptIn = true;
         }
 
+        public SubscriptionPreferences(string ipAddress) : this()
+        {
+            this.IpAddress = ipAddress;
+
+        }
+
         [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
@@ -26,21 +32,33 @@ namespace Stage_plan.Bll
 
         [Required]
         [Display(Name = "Email address")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string EmailAddress { get; set; }
+
+        public string IpAddress { get; set; }
 
         public string Token { get; private set; }
 
         [Required]
+        [Display(Name = "Enter the letters/numbers")]
+        public string CaptchaCode { get; set; }
+
+        [Required]
         public bool IsOptIn { get; set; }
+
+        public string CaptchaPath { get; set; }
+
 
         public string Update()
         {
             string result = String.Empty;
+            var token = String.Empty;
             if (IsOptIn)
-                result = OptIn();
+                result = OptIn(out token);
             else
                 result = OptOut();
 
+            this.Token = token;
             return result;
         }
 
@@ -50,16 +68,7 @@ namespace Stage_plan.Bll
             return Map(email);
         }
 
-        private SubscriptionPreferences Map(MailingList email)
-        {
-            return new SubscriptionPreferences()
-            {
-                EmailAddress = email.EmailAddress,
-                IsOptIn = email.IsOptin,
-                Name = email.Name,
-                Token = email.ConfirmToken
-            };
-        }
+
 
         public Dal.MailingList GetEmail()
         {
@@ -69,8 +78,30 @@ namespace Stage_plan.Bll
             return email;
         }
 
-        private string OptIn()
+        public void Send(Email email)
         {
+            var webPage = WebPaths.GetDomain() + "/OptinConfirm/" + this.Token;
+            var msg = "<p>Hi " + this.Name + "</p><p>Thanks for joining us! There is one thing we need, and that is for you to verify you want our occasional emails. To do so, simply visit this page: <a href=\""+webPage+"\" > " + webPage + "</a><p>Please don't forget to add us to your safe list.</p>";
+
+            email.SendEmail(this.EmailAddress, null, msg, "Confirm your subscription to Stage Plan");
+        }
+
+        public bool ConfirmSubscription(string token)
+        {
+            var result = this._dc.MailingLists.SingleOrDefault(a => a.ConfirmToken == token);
+            if (result == null)
+                return false;
+
+            result.IsConfirmed = true;
+            result.DateOptInConfirm = DateTime.Now;
+            return Save();
+        }
+
+        #region Private
+
+        private string OptIn(out string token)
+        {
+            token = String.Empty;
             var email = GetEmail();
             if (email != null && email.IsOptin)
                 return "The email address provided is already opt in.";
@@ -85,8 +116,25 @@ namespace Stage_plan.Bll
                 email.Name = this.Name;
                 email.IsOptin = this.IsOptIn;
             }
+            email.IpAddress = this.IpAddress;
+            token = email.ConfirmToken;
+
+            var msg = Validate();
+            if (!String.IsNullOrEmpty(msg))
+                return msg;
 
             return Save() ? String.Empty : this._faultSavingMessage;
+        }
+
+        private SubscriptionPreferences Map(MailingList email)
+        {
+            return new SubscriptionPreferences(email.IpAddress)
+            {
+                EmailAddress = email.EmailAddress,
+                IsOptIn = email.IsOptin,
+                Name = email.Name,
+                Token = email.ConfirmToken
+            };
         }
 
         private Dal.MailingList New()
@@ -97,7 +145,8 @@ namespace Stage_plan.Bll
                 DateOptInRequest = DateTime.Now,
                 EmailAddress = this.EmailAddress,
                 IsOptin = this.IsOptIn,
-                Name = this.Name
+                Name = this.Name,
+                IpAddress = this.IpAddress
             };
         }
 
@@ -105,7 +154,7 @@ namespace Stage_plan.Bll
         {
             var email = GetEmail();
 
-            if (email == null)  
+            if (email == null)
                 return "Sorry, we don't have any match for the email address provided.";
 
             email.Name = this.Name;
@@ -115,24 +164,12 @@ namespace Stage_plan.Bll
             return Save() ? String.Empty : this._faultSavingMessage;
         }
 
-        public bool ConfirmSubscription(string token)
-        {
-            var result = this._dc.MailingLists.SingleOrDefault(a => a.ConfirmToken == token);
-            if (result == null)
-                return false;
 
-            result.IsConfirmed = true;
-            result.DateOptInConfirm = DateTime.Now;
-            return Save();
-        }
 
         private bool Save()
         {
             try
             {
-                if (!Validate())
-                    return false;
-
                 this._dc.SaveChanges();
                 return true;
             }
@@ -143,15 +180,25 @@ namespace Stage_plan.Bll
             }
         }
 
-        private bool Validate()
+        private string Validate()
         {
-            if (String.IsNullOrEmpty(this.EmailAddress))
-                return false;
+            var errorMsg = String.Empty;
+            if (String.IsNullOrEmpty(this.EmailAddress) || !this.EmailAddress.Contains("@"))
+                errorMsg += "Invalid email address. ";
 
             if (String.IsNullOrEmpty(this.Name))
-                return false;
+                errorMsg += "Invalid name. ";
 
-            return true;
+
+            Captcha captcha = new Bll.Captcha();
+            if (!captcha.IsValid(this))
+                errorMsg += "Invalid captcha. ";
+
+
+            return errorMsg;
         }
+
+        #endregion
+
     }
 }

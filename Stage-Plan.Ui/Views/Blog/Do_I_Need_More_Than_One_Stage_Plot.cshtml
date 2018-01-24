@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Do I Need More Than One Stage Plot";
+}
+
+<div class="mainImage">
+    <img src="~/Content/MainSite/Images/Venue.jpg" />
+</div>
+
+<div class="blog">
+
+    <section>
+        <h1>
+            Do I need just one stage plot?</h1>
+
+        <p>
+            That depends of course – how many line ups you have? Maybe you're the type of band who can go out as a duo at the smallest size and an eight piece as full band!
+        </p>
+        <p>
+            So you may have just one which is probably the most common, but then it's also quite possible you'll have 2 or 3 (or even more).
+        </p>
+
+        <p>
+            Just remember, however many you need to create, always add as much detail as you can. Make your sound engineers life easy!
+        </p>
+
+        <p>&nbsp;<br />@Html.ActionLink("Create a free stage plan", "Index", "Stageplan", null, new { @class= "stagePlanButton blueBg whiteText", id="stagePlanButton" })</p>
+</section>
+</div>
+
+<script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+<script src="~/Content/MainSite/Javascript/stagePlanButton.js"></script>
+    <script>        document.getElementById("stagePlanButton").className += " " + stagePlanButton.getCss();
+
+</script>

@@ -1,0 +1,194 @@
+﻿
+@model Stage_Plan.Ui.Models.PlanViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <title>Template stage plot creator</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/lmsResponsiveMenu.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/stageplan.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/global.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Stageplan/Css/spinner.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/reusable.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Shared/Responsive/responsive.css" />
+</head>
+<body>
+
+    <div class="popUpMask hide" id="popUpMask">&nbsp;</div>
+
+
+    <div class="crowdImage">
+        <img src="~/Content/Stageplan/Images/Stage.png" />
+    </div>
+
+    @*<img src="~/Content/Stageplan/Images/Stage.png" style="height: 100px; position:absolute; bottom: 0; min-width:100%;" />*@
+
+    <div class="stage" id="stage">
+
+        <div id="menu"></div>
+        <nav id="mainNav">
+            <ul id="lmsNavLink" style="visibility:hidden;display:none" ;>
+                @*<li><a id="showNewPlanLink">Reset</a></li>*@
+                <li><a id="showAddVenueInstrumentLink">Add instrument</a></li>
+                <li><a id="showSaveOptionsLink">Save equipment</a></li>
+                @*<li><a id="showLoadExistingStageplanLink">Load stageplan</a></li>
+                    <li><a id="showSignInLink">Sign in</a></li>
+                    <li><a id="showSignOutLink">Sign out</a></li>
+                    <li><a id="showSignUpLink">Sign up</a></li>
+                    <li><a id="showYouTubeLink">Tutorials on YouTube</a></li>
+                    <li><a id="showSuggestionsLink">Suggestions</a></li>*@
+                <li><a href="https://stage-plan.com/" target="_blank"><img src="~/Content/Stageplan/Images/Stage-Plan-Logo.png" /></a></li>
+            </ul>
+            <div id="noInstruments" class="defaultEmptyStagePlan"></div>
+
+        </nav>
+
+        @Html.Partial("PopUp/_AddInstrumentPopUp")
+
+        <div style="background: #fff; right:20px; position: absolute; width: 200px; height: 200px " class="hide" id="debug"></div>
+
+        <div id="instrumentsOnStage"></div>
+
+    </div><!--close stage-->
+    @*This capcha has to be here due to partials*@
+    <script src="~/Content/Stageplan/Javascript/captcha.js"></script>
+
+
+
+    @* @Html.Partial("PopUp/_EnterBandDetails")*@
+
+
+    @Html.Partial("PopUp/_ShowSuggestionsPopUp")
+
+
+    @Html.Partial("PopUp/_ShowYouTubePopUp")
+
+
+    @Html.Partial("PopUp/_SaveStagePlanPopUp")
+
+
+    @Html.Partial("PopUp/_LoadExistingStageplanPopUp")
+
+
+    @Html.Partial("PopUp/_ShowUrlPopUp")
+
+
+    @Html.Partial("PopUp/_SignInPopUp")
+
+
+    @Html.Partial("PopUp/_ShowSelectedInstrumentInfo")
+
+
+    @Html.Partial("PopUp/_SignUpPopUp")
+
+
+    <script src="~/Content/Stageplan/Javascript/lmsResponsiveMenu.js"></script>
+    <script>
+    lmsResponsiveMenu.setUp({ "parentId": "menu", "navId": "mainNav", "responsiveCssClosed": "responsiveCssClosed", "text": "Menu" });
+    </script>
+
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery-ui.min.js"></script>
+    <script src="~/Content/Stageplan/Javascript/Libaries/jquery.ui.touch-punch.min.js"></script>
+
+
+    <script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+
+    <script src="~/Content/Stageplan/Javascript/addInstrument.js"></script>
+    <script src="~/Content/Stageplan/Javascript/dropDownList.js"></script>
+
+    <script src="~/Content/Stageplan/Javascript/ajax.js"></script>
+
+    <script src="~/Content/Stageplan/Javascript/loadInstruments.js"></script>
+    <script src="~/Content/Stageplan/Javascript/saveStageplan.js"></script>
+    <script src="~/Content/Stageplan/Javascript/progressBar.js"></script>
+    <script src="~/Content/Stageplan/Javascript/validation.js"></script>
+
+    <script>
+
+        //lmsResponsiveMenu.setUp({ "parentId": "menu", "navId": "mainNav", "responsiveCssClosed": "responsiveCssClosed", "text": "Menu" });//leave before stageplan.js
+        var instrumentsOnStage = document.getElementById("instrumentsOnStage");
+        var allInsturments = [];
+        var instrumentId = 0;
+
+    </script>
+    <script src="~/Content/Stageplan/Javascript/closePopUpFunction.js"></script>
+    <script src="~/Content/Stageplan/Javascript/stageplan.js"></script>
+    <script src="~/Content/Stageplan/Javascript/enums.js"></script>
+
+
+
+
+    @foreach (var instrument in Model.Instruments.AllInstruments)
+    {
+
+        <script>
+            instrumentId++;
+            allInsturments.push({
+                'left': @Html.Raw(instrument.Left),
+                'top':@Html.Raw(instrument.Top),
+                'detail':'@Stage_Plan.Bll.TextHelper.Format(instrument.Detail)',
+                'text':'@Stage_Plan.Bll.TextHelper.Format(instrument.Text)',
+                'src':'@Stage_Plan.Bll.TextHelper.Format(instrument.Src)',
+                'isFixedPosition' : '@instrument.IsFixedPosition.ToString()',
+                'instrumentId':'instrumentsOnStage',
+                'addInstrumentCallback': addInstrument,
+                'selectedInstrument': '@Html.Raw(instrument.SelectedInstrument)'
+                
+                });//'id': 'loadInstrumentId_' + instrumentId
+        </script>
+
+
+    }
+
+
+    <script>
+        
+
+        function loadAllInstrumentsToPlan (){
+            clearStageplan();
+            loadInstruments.setup(@Model.Instruments.Width, @Model.Instruments.Height, document.documentElement.clientWidth, document.documentElement.clientHeight);
+
+            for (var i = 0; i < allInsturments.length; i++) {
+                loadInstruments.loadPlan(allInsturments[i], null, editInstrument);
+            }
+        }
+
+        loadAllInstrumentsToPlan ();
+
+        window.onresize =function(){
+            loadAllInstrumentsToPlan ()
+        };
+
+
+        function clearStageplan (){
+            var instrumentsOnStage = document.getElementById("instrumentsOnStage");
+            helpers.clearNodes(instrumentsOnStage);
+        }
+
+        
+    </script>
+
+
+    @if (!HttpContext.Current.Request.Url.Host.ToLower().Contains("localhost"))
+    {
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-98102430-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    }
+
+</body>
+</html>

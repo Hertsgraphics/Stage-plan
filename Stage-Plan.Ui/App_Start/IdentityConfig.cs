@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
-namespace Stage_plan.Ui
+namespace Stage_Plan.Ui
 {
     
 }

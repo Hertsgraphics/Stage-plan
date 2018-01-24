@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Stage_Plan.Bll;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stage_plan.Bll
+namespace Stage_Plan.Bll
 {
     public class Save : DataAccess
     {
-        public int SaveBand(string name)
+        public int SaveBand(string name, decimal width, decimal height, int userAccountId, string bandWebUrl, string socialMediaUrl, string genre, string country, bool willSaveForRecent)
         {
 
             var dc = new Dal.StageplanEntities();
@@ -16,7 +17,16 @@ namespace Stage_plan.Bll
             var stagePlan = new Dal.Stageplan()
             {
                 BandName = name,
-                URL = guid
+                Token = guid,
+                Height = height,
+                Width = width,
+                SavedByAccountId = userAccountId,
+                CreationDate = DateTime.Now,
+                Genre = genre,
+                SocialMedia = WebPaths.AddMissingHttp(socialMediaUrl),
+                Website = WebPaths.AddMissingHttp(bandWebUrl),
+                Country = country,
+                WillShowInRecentBands = willSaveForRecent
             };
 
             dc.Stageplans.Add(stagePlan);
@@ -35,7 +45,7 @@ namespace Stage_plan.Bll
             while (i < 100)
             {
                 guid = Guid.NewGuid().ToString();
-                if (!dc.Stageplans.Any(a => a.URL == guid))
+                if (!dc.Stageplans.Any(a => a.Token == guid))
                     return guid;
             }
 
@@ -50,16 +60,23 @@ namespace Stage_plan.Bll
             {
                 DataText = inst.Text,
                 DataDetail = inst.Detail,
-                X = inst.Left, 
+                X = inst.Left,
                 Y = inst.Top,
-                Src=inst.Src,
-                Stageplan = stagePlan
+                Src = inst.Src,
+                Stageplan = stagePlan,
+                BandMember = inst.BandMemberName,
+                IsFixedPosition = inst.IsFixedPosition,
+                SelectedInstrument = inst.SelectedInstrument,
+                Width = inst.Width,
+                Height = inst.Height,
+                Zindex = inst.Zindex,
+                RotateAngle = inst.RotateAngle
             };
 
             dc.StageplanInstruments.Add(instrument);
 
             return base.SaveToDatabase(dc);
         }
-        
+
     }
 }

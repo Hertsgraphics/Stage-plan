@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Stage_plan.Ui
+namespace Stage_Plan.Ui
 {
     public class FilterConfig
     {

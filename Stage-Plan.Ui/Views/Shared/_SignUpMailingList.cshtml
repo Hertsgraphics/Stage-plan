@@ -1,0 +1,24 @@
+﻿@model Stage_Plan.Bll.SubscriptionPreferences
+
+@using (Html.BeginForm("OptinRequest", "Home"))
+            {
+    @Html.ValidationSummary(false)
+    @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br /><br />
+
+    @Html.TextBoxFor(a => a.EmailAddress, new { @placeholder = "Email", @class = "email" })<br /><br />
+    <img id="captcha_saveStageplan" /><br />
+    @Html.TextBoxFor(a => a.CaptchaCode, new { @placeholder = "Captcha", @class = "email" })<br /><br />
+
+    @Html.HiddenFor(a => a.CaptchaPath, new { id = "captchaReference" })
+
+        <input type="submit" value="Submit" />
+    <br /><br />
+}
+
+<script src="~/Content/Stageplan/Javascript/captcha.js"></script>
+
+<script>
+    var captchaEle = document.getElementById("captcha_saveStageplan");
+    var captchaRefEle = document.getElementById("captchaReference");
+    captcha.add(captchaEle, captchaRefEle);
+</script>

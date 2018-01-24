@@ -1,24 +1,89 @@
-﻿@model Stage_plan.Bll.SubscriptionPreferences
+﻿@model Stage_Plan.Ui.Models.HomePageViewModel
+   
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Free online stage plot creator";
+    decimal totalScore = Model.Rating.GetScore();
+}
+@section head{
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Free online stage plan creator">
+    <meta name="keywords" content="stage plan, stage plot, creator, creation, online, software, free">
 }
 
-<div class="mainImage">
-    <img src="~/Content/MainSite/Images/Live-Event.jpg" />
+<div class="mainImage hideIfSmall">
+   <section class="homePageRating">
+       <span id="stars"></span>
+       <span>@totalScore / @Model.Rating.MaximumScore.</span><span>@Model.Rating.StagePlansCreated stage plots created</span>
+   </section>
 </div>
 
 <section>
-    <h1>Create a stage plan</h1>
-    <p>Use our  @Html.ActionLink("stage plan builder", "Index", "Stageplan") to create the exact stage plot for your gig. After that all you need to do is send the provided URL to the engineer of the venue. You can enter your instruments, monitors DI boxes and provide full details of what you want. </p>
-    <p>You don't need to provide your email address or sign up. It's all free.</p>
-    <p>Create as many stage plans as you like. It's free, extremely easy and quick.</p>
-
+    <div class="column-8 clearAndExpandIfSmall">
+        <h1>Create a stage plan</h1>
+        <p>Use our  @Html.ActionLink("stage plan builder", "Index", "Stageplan") to create the exact stage plot for your gig. After that all you need to do is send the provided URL to the engineer of the venue. You can enter your instruments, monitors, DI boxes etc, scale and rotate and provide full details of what you want. </p>
+        <p>You don't need to provide your email address or sign up. It's all free.</p>
+        <p>Use our online stage plot creator to create as many stage plans as you like. It's free, extremely easy and quick. Please note, the stage plan will only last for @System.Configuration.ConfigurationManager.AppSettings["DaysStagePlanRemains"] days after you create it.</p>
+    </div>
+    <img src="~/Content/MainSite/Images/Bassist.png" />
 </section>
 
-<article class="quickTutorial">
+@if (Model.RecentBands.Any())
+{
+    <article class="showRecentBands">
+        <section>
+            <h2>Recent stage plans</h2>
+
+
+            @foreach (var band in Model.RecentBands)
+            {
+                <div class="column-6 clearAndExpandIfSmall clearAndExpandIfMedium">
+                    <div style="background:@band.HtmlColor;" class="recentBand">
+                        <p>
+                            <span>Band: </span> @band.BandName
+                            <br />
+
+
+                            @*    <span>Created: </span> @band.Created.ToShortDateString()*@
+                            @if (!String.IsNullOrEmpty(band.Genre))
+                    {
+                                <span>Genre: </span> @band.Genre
+                                <br />
+                            }
+
+                            @if (!String.IsNullOrEmpty(band.SocialMediaUrl))
+                    {
+                                <span>Social media: </span>    <a href="@band.SocialMediaUrl" target="_blank">@band.SocialMediaUrl</a>
+                                <br />
+                            }
+                            @if (!String.IsNullOrEmpty(band.WebUrl))
+                    {
+                                <span>Website: </span>        <a href="@band.WebUrl" target="_blank">@band.WebUrl</a>
+                                <br />
+                            }
+
+                            @if (!String.IsNullOrEmpty(band.Country))
+                            {
+                                <span>Country: </span> @band.Country
+                                <br />
+                            }
+
+
+
+                            @*  <hr class="showIfSmall showIfMedium hideIfLarge" />*@
+                        </p>
+                    </div>
+                </div>
+            }
+            <div class="clearBoth">&nbsp;</div>
+        </section>
+    </article>
+}
+
+<article class="quickTutorial ">
     <section>
-        <h2>How to make a stage plan</h2>
+        <h2>Make a stage plan</h2>
         <ol>
             <li>
                 @Html.ActionLink("Create a free stage plan.", "Index", "Stageplan")
@@ -43,37 +108,40 @@
             </li>
         </ol>
     </section>
+
 </article>
 
 <section>
-    
+
     <div class="roadMapSignUp">
-    <article class="roadMap">
-        <p class="title">Road map</p>
-        <ol>
-            <li>Export to PDF</li>
-            <li>Save and load stage plans</li>
-            <li>Rating system</li>
-            <li>Android app</li>
-            <li>Tutorials</li>
-        </ol>
-    </article>
-   
-    <article class="signUp">
-        <p class="title">Sign up</p>
-        <p>Sign up and get emails for any new features.</p>
-        @using (Html.BeginForm("OptinRequest", "Home"))
-            {
-            @Html.TextBoxFor(a => a.Name, new { @placeholder = "Name", @class = "name" }) <br />
+        <article class="roadMap column-5 clearAndExpandIfSmall">
+            <p class="title">Road map</p>
+            <ol>
+                <li><del>Touch support</del> Complete but fiddly for resize</li>
+                <li><del>Show/promote bands on home page</del> Complete</li>
+                <li><del>Send your stage plan to the promoter/engineer/venue</del> Complete</li>
+                <li><del>Rating system</del> Complete</li>
+                <li><del>Resize instruments</del> Complete</li>
+                <li><del>Flip/rotate instruments</del> Complete</li>
+                <li><del>Move instruments on top of each with a click</del> Complete</li>
+                <li>Save and load stage plans</li>
+                <li>Tutorials</li>
+            </ol>
+        </article>
 
-            @Html.TextBoxFor(a => a.EmailAddress, new { @placeholder = "Email", @class = "email" })<br />
-
-         
-            <div class="center">
-                <input type="submit" value="Submit" />
-            </div>
-        }
-    </article>
+        <article class="signUp column-6 clearAndExpandIfSmall">
+            <p class="title">Sign up</p>
+            <p>Sign up and get emails for any new features.</p>
+            @Html.Partial("_SignUpMailingList", Model.SubscriptionPreferences)
+        </article>
     </div>
     <div class="clearBoth"></div>
 </section>
+
+@section scripts{
+    <script src="~/Content/MainSite/Javascript/Rating.js"></script>
+    <script>
+        //stars
+        rating.setUp("stars", @totalScore)
+    </script>
+    }

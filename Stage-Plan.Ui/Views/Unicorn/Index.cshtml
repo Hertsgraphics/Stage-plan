@@ -1,0 +1,22 @@
+﻿@model Stage_Plan.Ui.Models.Login.Login
+
+<div class="column-10">
+
+
+    @using (Html.BeginForm("Index", "Unicorn"))
+    {
+
+        @Html.LabelFor(a => a.Username)<br />
+        @Html.TextBoxFor(a => a.Username)<br /><br />
+
+        @Html.LabelFor(a => a.Password)<br />
+        @Html.PasswordFor(a => a.Password)<br /><br />
+
+        <input type="submit" value="Log in" />
+
+    }
+    <br />
+    <br />
+</div>
+
+<div class="clearBoth"></div>

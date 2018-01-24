@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "StagePlanVsStagePlot";
+    ViewBag.Title = "Stage Plan Vs Stage Plot";
 }
 
 <div class="mainImage">
@@ -9,7 +9,18 @@
 
 <section>
     <h1>Stage plan Vs Stage plot</h1>
-    <p>Use our  @Html.ActionLink("stage plan builder", "Index", "Stageplan") to create the exact stage plot for your gig. After that all you need to do is send the provided URL to the engineer of the venue. You can enter your instruments, monitors DI boxes and provide full details of what you want. </p>
-    <p>You don't need to provide your email address or sign up. It's all free.</p>
-    <p>Create as many stage plans as you like. It's free, extremely easy and quick.</p>
+    <p>It is the same thing to us. Some people call it a stage plat, others a plan but there is no difference in the definition. In fact, the online dictionaries don't have a definition for either (at least, not at the time of this article). So what is a stage plan? </p>
+
+    <p><blockquote>A stage plot is a graphic representation that illustrates your band's setup when you perform live, your placement on stage, what gear you use, and some other helpful information. <cite>CD Baby</cite></blockquote></p>
+    <p>Yup, we'd agree with that. And with stage-plan.com we've tried to ensure you can put in as much useful information as you can. See our blog post about @Html.ActionLink("What do I need to include in my stage plot", "What_Do_I_Need_To_Include_In_My_Stage_Plan", "Blog") </p>
+
+
+    <p>&nbsp;<br />@Html.ActionLink("Create a free stage plan", "Index", "Stageplan", null, new { @class = "stagePlanButton blueBg whiteText", id = "stagePlanButton" })</p>
 </section>
+
+<script src="~/Content/Stageplan/Javascript/helpers.js"></script>
+
+<script src="~/Content/MainSite/Javascript/stagePlanButton.js"></script>
+<script>        document.getElementById("stagePlanButton").className += " " + stagePlanButton.getCss();
+
+</script>

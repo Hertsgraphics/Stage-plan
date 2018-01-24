@@ -7,8 +7,8 @@
     <ProjectGuid>{13776E4F-EDAE-45EE-827B-62C886C0318B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Stage_plan.Dal</RootNamespace>
-    <AssemblyName>Stage-plan.Dal</AssemblyName>
+    <RootNamespace>Stage_Plan.Dal</RootNamespace>
+    <AssemblyName>Stage-Plan.Dal</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountVenue.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,14 +72,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Generic.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImageId.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IAccount.cs" />
     <Compile Include="MailingList.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partials\Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stageplan.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="StageplanInstrument.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
   </ItemGroup>

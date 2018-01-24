@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -199,18 +200,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StageplanController.cs" />
+    <Compile Include="Controllers\CreateTemplateController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
+    <Compile Include="Controllers\UnicornController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Contact\AbstractContact.cs" />
     <Compile Include="Models\Contact\Contact.cs" />
     <Compile Include="Models\Contact\IContact.cs" />
-    <Compile Include="Models\Emails\Email.cs" />
+    <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\Instrument.cs" />
-    <Compile Include="Models\Instruments.cs" />
+    <Compile Include="Models\Login\Login.cs" />
+    <Compile Include="Models\SharePlan.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PlanViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -220,33 +227,186 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\MainSite\Css\reusable.css" />
+    <Content Include="Content\MainSite\Images\Missing-plan.jpg" />
+    <Content Include="Content\MainSite\Images\MusiciansButton\BassistAlone.png" />
+    <Content Include="Content\MainSite\Images\MusiciansButton\DrummerAlone.png" />
+    <Content Include="Content\MainSite\Images\MusiciansButton\GuitaristAlone.png" />
+    <Content Include="Content\MainSite\Images\MusiciansButton\KeyboardistAlone.png" />
+    <Content Include="Content\MainSite\Images\MusiciansButton\VocalistAlone.png" />
+    <Content Include="Content\MainSite\Images\Page-not-found.jpg" />
+    <Content Include="Content\MainSite\Images\EmptyStar.png" />
+    <Content Include="Content\MainSite\Images\Star.png" />
+    <Content Include="Content\MainSite\Images\Star20.png" />
+    <Content Include="Content\MainSite\Images\Star40.png" />
+    <Content Include="Content\MainSite\Images\Star60.png" />
+    <Content Include="Content\MainSite\Images\Star80.png" />
+    <Content Include="Content\MainSite\Javascript\lmsResponsiveMenu.js" />
+    <Content Include="Content\MainSite\Javascript\Rating.js" />
+    <Content Include="Content\Shared\Responsive\responsive.css" />
     <Content Include="Content\MainSite\Css\Site.css" />
+    <Content Include="Content\MainSite\Images\Bassist.png" />
+    <Content Include="Content\MainSite\Images\Crying-Emotion.png" />
+    <Content Include="Content\MainSite\Images\Drummer.png" />
+    <Content Include="Content\MainSite\Images\Email\facebook.png" />
+    <Content Include="Content\MainSite\Images\Email\google.png" />
+    <Content Include="Content\MainSite\Images\facebook.png" />
+    <Content Include="Content\MainSite\Images\facebook.svg" />
+    <Content Include="Content\MainSite\Images\google.png" />
+    <Content Include="Content\MainSite\Images\Guitarist.png" />
     <Content Include="Content\MainSite\Images\Happy-Emotion.png" />
+    <Content Include="Content\MainSite\Images\Keyboardist.png" />
     <Content Include="Content\MainSite\Images\Live-Event.jpg" />
     <Content Include="Content\MainSite\Images\Live-Venue.jpg" />
     <Content Include="Content\MainSite\Images\MixingDesk-Mic.jpg" />
     <Content Include="Content\MainSite\Images\MixingDesk.jpg" />
+    <Content Include="Content\MainSite\Images\Quick-Tutorial-01.jpg" />
     <Content Include="Content\MainSite\Images\Quick-Tutorial.jpg" />
     <Content Include="Content\MainSite\Images\Stage-Plan-Logo.png" />
     <Content Include="Content\MainSite\Images\Venue.jpg" />
-    <Content Include="Content\Stageplan\Css\lmsResponsiveMenu.css" />
+    <Content Include="Content\MainSite\Images\Vocalist.png" />
+    <Content Include="Content\MainSite\Javascript\stagePlanButton.js" />
+    <Content Include="Content\Stageplan\Css\lmsRating.css" />
+    <Content Include="Content\Shared\lmsResponsiveMenu.css" />
+    <Content Include="Content\Stageplan\Css\progressBar.css" />
+    <Content Include="Content\Shared\reusable.css" />
+    <Content Include="Content\Stageplan\Images\Acoustic-Guitar.svg" />
+    <Content Include="Content\Stageplan\Images\Bass.svg" />
+    <Content Include="Content\Stageplan\Images\Cello.svg" />
+    <Content Include="Content\Stageplan\Images\DI-Box.svg" />
+    <Content Include="Content\Stageplan\Images\Double-Bass.svg" />
+    <Content Include="Content\Stageplan\Images\Drums.svg" />
+    <Content Include="Content\Stageplan\Images\Ear-Monitor.svg" />
+    <Content Include="Content\Stageplan\Images\Fluite.svg" />
+    <Content Include="Content\Stageplan\Images\Flute.svg" />
+    <Content Include="Content\Stageplan\Images\Guitar.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Acoustic-Guitar.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Acoustic-Guitar.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Bass.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Bass.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Cello.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Cello.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\copy.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\DI-Box.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\DI-Box.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Double-Bass.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Double-Bass.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Drums.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Drums.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Ear-Monitor.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Ear-Monitor.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\EQ-Spinner.gif" />
+    <Content Include="Content\Stageplan\Images\Instruments\Flute.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Flute.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Guitar.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Guitar.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Keyboards.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Keyboards.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Laptop.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Laptop.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Mic-Clip.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Mic-Vocal.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Mic.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Mic.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Monitor.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Monitor.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Other.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Other.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\pdfIcon.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Piano.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Piano.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Power-plug.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Saxophone.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Saxophone.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Saxophone02.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Speaker-01.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Speaker-01.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Speaker-02.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Speaker-02.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Speaker-04.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Speaker-04.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Stage-Plan-Logo-01.jpg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Stage-Plan-Logo.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Stage.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\StageplanRedBackground.jpg" />
+    <Content Include="Content\Stageplan\Images\Instruments\StageplanRedBackground.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Steel-Guitar.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Steel-Guitar.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Three-pin-power-plug.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Trombone.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Trombone.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Trumpet.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Trumpet.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Tuba.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Tuba.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Two-pin-power-plug.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Viola.svg" />
+    <Content Include="Content\Stageplan\Images\Instruments\Violin.png" />
+    <Content Include="Content\Stageplan\Images\Instruments\Violin.svg" />
+    <Content Include="Content\Stageplan\Images\Keyboards.svg" />
+    <Content Include="Content\Stageplan\Images\Laptop.png" />
+    <Content Include="Content\Stageplan\Images\Laptop.svg" />
+    <Content Include="Content\Stageplan\Images\Mic.svg" />
+    <Content Include="Content\Stageplan\Images\Monitor.svg" />
+    <Content Include="Content\Stageplan\Images\Other.svg" />
+    <Content Include="Content\Stageplan\Images\Piano.svg" />
+    <Content Include="Content\Stageplan\Images\Saxophone.svg" />
+    <Content Include="Content\Stageplan\Images\Speaker-01.svg" />
+    <Content Include="Content\Stageplan\Images\Speaker-02.svg" />
+    <Content Include="Content\Stageplan\Images\Speaker-04.svg" />
+    <Content Include="Content\Stageplan\Images\StageplanRedBackground.png" />
+    <Content Include="Content\Stageplan\Images\Steel-Guitar.png" />
+    <Content Include="Content\Stageplan\Images\copy.png" />
+    <Content Include="Content\Stageplan\Images\Ear-Monitor.png" />
+    <Content Include="Content\Stageplan\Images\pdfIcon.png" />
+    <Content Include="Content\Stageplan\Images\Power-plug.png" />
+    <Content Include="Content\Stageplan\Images\StageplanRedBackground.jpg" />
+    <Content Include="Content\Stageplan\Images\Captcha\Captcha-04.jpg" />
+    <Content Include="Content\Stageplan\Images\Captcha\Captcha-05.jpg" />
+    <Content Include="Content\Stageplan\Images\Captcha\Captcha-06.jpg" />
     <Content Include="Content\Stageplan\Images\EQ-Spinner.gif" />
+    <Content Include="Content\Stageplan\Images\Steel-Guitar.svg" />
+    <Content Include="Content\Stageplan\Images\Three-pin-power-plug.svg" />
+    <Content Include="Content\Stageplan\Images\Trombone.svg" />
+    <Content Include="Content\Stageplan\Images\Trumpet.svg" />
+    <Content Include="Content\Stageplan\Images\Tuba.svg" />
+    <Content Include="Content\Stageplan\Images\Two-pin-power-plug.svg" />
+    <Content Include="Content\Stageplan\Images\Violin.svg" />
+    <Content Include="Content\Stageplan\Javascript\addInstrument.js" />
+    <Content Include="Content\Stageplan\Javascript\captcha.js" />
+    <Content Include="Content\Stageplan\Javascript\closePopUpFunction.js" />
+    <Content Include="Content\Stageplan\Javascript\dropDownList.js" />
+    <Content Include="Content\Stageplan\Javascript\enterVenueDetails.js" />
+    <Content Include="Content\Stageplan\Javascript\enterBandDetails.js" />
+    <Content Include="Content\Stageplan\Javascript\enums.js" />
     <Content Include="Content\Stageplan\Javascript\helpers.js" />
-    <Content Include="Content\Stageplan\Javascript\jquery-2.1.4.min.js" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\ChartBundle.js" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\jquery-3.2.1.min.js" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\jquery-ui.min.css" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\jquery-ui.min.js" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\Stageplan\Javascript\Libaries\rotate.js" />
+    <Content Include="Content\Stageplan\Javascript\lmsRating.js" />
+    <Content Include="Content\Stageplan\Javascript\lmsTabControl.js" />
+    <Content Include="Content\Stageplan\Javascript\loadInstruments.js" />
     <Content Include="Content\Stageplan\Javascript\progressBar.js" />
     <Content Include="Content\Stageplan\Css\spinner.css" />
     <Content Include="Content\Stageplan\Css\Stageplan.css" />
     <Content Include="Content\Stageplan\Images\Acoustic-Guitar.png" />
     <Content Include="Content\Stageplan\Images\Bass.png" />
-    <Content Include="Content\Stageplan\Images\Captcha-01.jpg" />
-    <Content Include="Content\Stageplan\Images\Captcha-02.jpg" />
-    <Content Include="Content\Stageplan\Images\Captcha-03.jpg" />
+    <Content Include="Content\Stageplan\Images\Captcha\Captcha-01.jpg" />
+    <Content Include="Content\Stageplan\Images\Captcha\Captcha-02.jpg" />
+    <Content Include="Content\Stageplan\Images\Captcha\Captcha-03.jpg" />
     <Content Include="Content\Stageplan\Images\Cello.png" />
     <Content Include="Content\Stageplan\Images\DI-Box.png" />
     <Content Include="Content\Stageplan\Images\Double-Bass.png" />
     <Content Include="Content\Stageplan\Images\Drums.png" />
-    <Content Include="Content\Stageplan\Images\Fluite.png" />
+    <Content Include="Content\Stageplan\Images\Flute.png" />
     <Content Include="Content\Stageplan\Images\Guitar.png" />
     <Content Include="Content\Stageplan\Images\Keyboards.png" />
     <Content Include="Content\Stageplan\Images\Mic.png" />
@@ -266,34 +426,47 @@
     <Content Include="Content\Stageplan\Images\Violin.png" />
     <Content Include="Content\Stageplan\Javascript\ajax.js" />
     <Content Include="Content\Stageplan\Javascript\lmsResponsiveMenu.js" />
+    <Content Include="Content\Stageplan\Javascript\registerBandDetails.js" />
+    <Content Include="Content\Stageplan\Javascript\reposition.js" />
     <Content Include="Content\Stageplan\Javascript\saveStageplan.js" />
-    <Content Include="Content\Stageplan\Javascript\scripts.js" />
+    <Content Include="Content\Stageplan\Javascript\smoothScrolling.js" />
     <Content Include="Content\Stageplan\Javascript\Stageplan.js" />
+    <Content Include="Content\Stageplan\Javascript\validation.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Models\Emails\EmailTemplate.html" />
-    <Content Include="Web.config" />
+    <Content Include="Content\Shared\global.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\MainSite\Css\Responsive\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Content\Fonts\Impacted2.0.woff" />
+    <Content Include="Content\Fonts\AdventPro-Bold.ttf" />
+    <Content Include="Content\Fonts\AdventPro-ExtraLight.ttf" />
+    <Content Include="Content\Fonts\AdventPro-Light.ttf" />
+    <Content Include="Content\Fonts\AdventPro-Medium.ttf" />
+    <Content Include="Content\Fonts\AdventPro-Regular.ttf" />
+    <Content Include="Content\Fonts\AdventPro-SemiBold.ttf" />
+    <Content Include="Content\Fonts\AdventPro-Thin.ttf" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Stageplan\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -306,17 +479,50 @@
     <Content Include="Views\Home\Privacy_Policy.cshtml" />
     <Content Include="Views\Home\SubscriptionPreferences.cshtml" />
     <None Include="Properties\PublishProfiles\Live.pubxml" />
+    <Content Include="Views\Stageplan\Plan.cshtml" />
+    <Content Include="Views\Error\StageplanNotRecognised.cshtml" />
+    <Content Include="Views\Home\Subscribe.cshtml" />
+    <Content Include="Views\Shared\_SignUpMailingList.cshtml" />
+    <Content Include="Views\Shared\PopUp\_ShowSuggestionsPopUp.cshtml" />
+    <Content Include="Views\Shared\PopUp\_SaveStagePlanPopUp.cshtml" />
+    <Content Include="Views\Shared\PopUp\_AddInstrumentPopUp.cshtml" />
+    <Content Include="Views\Shared\PopUp\_ShowYouTubePopUp.cshtml" />
+    <Content Include="Views\Shared\PopUp\_LoadExistingStageplanPopUp.cshtml" />
+    <Content Include="Views\Shared\PopUp\_SaveUrlPopUp.cshtml" />
+    <Content Include="Views\Shared\PopUp\_SignInPopUp.cshtml" />
+    <Content Include="Views\Shared\PopUp\_ShowSelectedInstrumentInfo.cshtml" />
+    <Content Include="Views\Shared\PopUp\_SignUpPopUp.cshtml" />
+    <None Include="Properties\PublishProfiles\Stage-Plan Live.pubxml" />
+    <Content Include="Views\Unicorn\Index.cshtml" />
+    <Content Include="Views\Unicorn\StatsForStagePlan.cshtml" />
+    <Content Include="Views\Shared\PopUp\_EnterBandDetails.cshtml" />
+    <Content Include="Views\Blog\Why_Do_I_Need_A_Stage_Plan.cshtml" />
+    <Content Include="Views\Blog\What_Do_I_Need_To_Include_In_My_Stage_Plan.cshtml" />
+    <Content Include="Views\Blog\Do_I_Need_More_Than_One_Stage_Plot.cshtml" />
+    <Content Include="Views\Blog\Do_I_Need_To_Provide_An_Input_List.cshtml" />
+    <Content Include="Views\Blog\What_Do_I_Do_With_A_Stage_Plot.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\Test Server.pubxml" />
+    <Content Include="Views\Stageplan\MissingPlan.cshtml" />
+    <Content Include="Views\Template\Venue.cshtml" />
+    <Content Include="Views\Shared\PopUp\_EnterVenueDetails.cshtml" />
+    <Content Include="Views\CreateTemplate\Index.cshtml" />
+    <Content Include="Views\Shared\PopUp\_EnterInitialVenueDetails.cshtml" />
+    <Content Include="Views\Shared\PopUp\_EnterInitialVenueDetailsContent.cshtml" />
+    <Content Include="Views\Template\MissingPlan.cshtml" />
+    <Content Include="Views\Shared\PopUp\_ShowUrlPopUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Stage-plan.Bll\Stage-plan.Bll.csproj">
+    <ProjectReference Include="..\Stage-plan.Bll\Stage-Plan.Bll.csproj">
       <Project>{e97cbcc0-bda4-48ed-a5eb-9459ab65cee6}</Project>
-      <Name>Stage-plan.Bll</Name>
+      <Name>Stage-Plan.Bll</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

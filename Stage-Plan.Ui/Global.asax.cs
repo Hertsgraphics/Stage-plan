@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace Stage_plan.Ui
+namespace Stage_Plan.Ui
 {
     public class MvcApplication : System.Web.HttpApplication
     {

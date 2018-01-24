@@ -1,0 +1,170 @@
+﻿.column-1, .column-2, .column-3, .column-4, .column-5, .column-6, .column-7, .column-8, .column-9, .column-10, .column-11, .column-12 {
+    float: left;
+}
+
+.column-1 {
+    width: 8.33333%;
+}
+
+.column-2 {
+    width: 16.66667%;
+}
+
+
+.column-3 {
+    width: 25%;
+}
+
+.column-4 {
+    width: 33.3333%;
+}
+
+.column-5 {
+    width: 41.66667%;
+}
+
+.column-6 {
+    width: 50%;
+}
+
+.column-7 {
+    width: 58.33333%;
+}
+
+.column-8 {
+    width: 66.66667%;
+}
+
+.column-9 {
+    width: 75%;
+}
+
+.column-10 {
+    width: 83.33333%;
+}
+
+.column-11 {
+    width: 91.66667%;
+}
+
+.column-12 {
+    width: 100%;
+}
+
+.column-fiths {
+    width: 20%;
+}
+
+.column-quaters {
+    width: 25%;
+}
+
+.column-thirds {
+    width: 33.333%;
+}
+
+
+@media (min-width:959px) {
+
+    .hideIfLarge {
+        visibility: collapse;
+        display: none;
+    }
+
+    .showIfLarge {
+        visibility: visible;
+        display: block;
+    }
+}
+
+
+@media (max-width:958px) {
+    .hideIfMedium {
+        visibility: collapse;
+        display: none;
+    }
+
+    .showIfMedium {
+        visibility: visible;
+        display: block;
+    }
+
+    .clearIfMedium, .clearAndExpandIfMedium {
+        clear: both;
+    }
+
+    .clearAndExpandIfMedium {
+        width: 97% !important;
+        margin: 0 10px;
+    }
+
+    header .logo {
+        float: left;
+    }
+
+    header nav ul, header nav {
+        margin: 0 !important;
+        padding: 0;
+        float: left;
+        clear: both;
+    }
+
+    .homeFocusWrapper .homeFocus {
+        max-width: 220px;
+        min-width: 100px;
+    }
+
+    .navWrapper {
+        width: 96%;
+    }
+}
+
+
+@media (max-width:878px) {
+
+    nav ul li {
+        display: block;
+    }
+
+    article.quickTutorial {
+        background-image: none;
+    }
+
+    .hideIfSmall {
+        visibility: collapse;
+        display: none;
+    }
+
+    .showIfSmall {
+        visibility: visible;
+        display: block;
+    }
+
+    .clearIfSmall, .clearAndExpandIfSmall {
+        clear: both;
+    }
+
+    section img {
+        max-width: 200px;
+        margin-left: 0;
+    }
+
+    .clearAndExpandIfSmall {
+        width: 92%;
+    }
+
+
+    header .navWrapper {
+        max-width: 100%;
+    }
+
+    .ratingArea, .sharePlan {
+        width: 90%;
+    }
+
+    .tabs ul li {
+        list-style: none;
+        float: none;
+        width: 100%;
+    }
+}
